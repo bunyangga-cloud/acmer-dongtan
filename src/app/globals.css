@@ -15,6 +15,12 @@ html {
   color: #f8fafc;
 }
 
+/* Enforce Korean Word-level Line-breaking across all typography */
+p, h1, h2, h3, h4, h5, h6, span, button, label, a, li, div {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;

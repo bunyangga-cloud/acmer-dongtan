@@ -75,7 +75,7 @@ export default function RegisterSection() {
         setName('');
         setPhone('');
       } else {
-        setSuccess(true); // 사용자 성공 안내 Fallback
+        setSuccess(true);
       }
     } catch (err) {
       console.error('Email Submit Error:', err);
@@ -96,12 +96,12 @@ export default function RegisterSection() {
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-500/20 border border-gold-500/40 text-gold-300 text-xs font-semibold">
             <Sparkles className="w-3.5 h-3.5" /> VIP INTEREST REGISTER
           </div>
-          <h2 className="text-3xl sm:text-4xl font-serif font-bold text-white">
+          <h2 className="text-3xl sm:text-4xl font-serif font-bold text-white break-keep">
             아크메르 동탄 <span className="gold-gradient-text">사전 관심고객 등록</span>
           </h2>
           <div className="w-16 h-0.5 bg-gradient-to-r from-transparent via-gold-400 to-transparent mx-auto" />
-          <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-            관심고객으로 등록해주신 분들께 <strong className="text-gold-300">2026년 9월 GRAND OPEN</strong> 소식 및 VIP 방문 예약 혜택을 가장 먼저 안내해 드립니다.
+          <p className="text-slate-300 text-sm sm:text-base leading-relaxed break-keep">
+            관심고객으로 등록해주신 분들께 2026년 9월 GRAND OPEN 소식 및 VIP 방문 예약 혜택을<br className="hidden sm:block" /> 가장 먼저 안내해 드립니다.
           </p>
         </div>
 
@@ -123,10 +123,10 @@ export default function RegisterSection() {
               <div className="w-20 h-20 rounded-full bg-gold-500/20 border border-gold-400 flex items-center justify-center mx-auto text-gold-400">
                 <CheckCircle className="w-10 h-10" />
               </div>
-              <h3 className="text-2xl sm:text-3xl font-serif font-bold text-white">
+              <h3 className="text-2xl sm:text-3xl font-serif font-bold text-white break-keep">
                 관심고객 등록이 <span className="gold-gradient-text">완료되었습니다!</span>
               </h3>
-              <p className="text-slate-300 text-sm sm:text-base max-w-md mx-auto leading-relaxed">
+              <p className="text-slate-300 text-sm sm:text-base max-w-md mx-auto leading-relaxed break-keep">
                 신청해주셔서 감사합니다.<br />
                 등록해주신 연락처로 <strong className="text-gold-300">2026년 9월 오픈 일정 및 분양 정보</strong>를 가장 먼저 발송해 드리겠습니다.
               </p>
@@ -195,7 +195,7 @@ export default function RegisterSection() {
                       onChange={(e) => setAgreed(e.target.checked)}
                       className="w-4 h-4 rounded border-slate-700 bg-navy-950 text-gold-500 focus:ring-gold-400 focus:ring-offset-navy-950 cursor-pointer"
                     />
-                    <span className="text-slate-300 group-hover:text-white transition-colors">
+                    <span className="text-slate-300 group-hover:text-white transition-colors break-keep">
                       [필수] 개인정보 수집 및 이용 동의
                     </span>
                   </label>
@@ -214,7 +214,7 @@ export default function RegisterSection() {
               {errorMsg && (
                 <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/30 text-red-300 text-xs flex items-center gap-2">
                   <AlertCircle className="w-4 h-4 shrink-0" />
-                  <span>{errorMsg}</span>
+                  <span className="break-keep">{errorMsg}</span>
                 </div>
               )}
 
