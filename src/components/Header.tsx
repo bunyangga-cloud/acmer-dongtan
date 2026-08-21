@@ -43,11 +43,11 @@ export default function Header({ onOpenPhoneModal, onNavigateSection }: HeaderPr
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Logo Area */}
+          {/* Logo Area (한글 '아크메르 동탄' 단독 깔끔 배치) */}
           <button onClick={() => onNavigateSection('top')} className="group flex items-center gap-3 text-left">
             <div className="relative w-9 h-9 sm:w-10 sm:h-10 shrink-0 flex items-center justify-center group-hover:scale-105 transition-transform">
               <Image
-                src="/images/intro_hd_transparent.png?v=5"
+                src="/images/intro_hd_transparent.png?v=6"
                 alt="아크메르 동탄 로고"
                 width={40}
                 height={40}
@@ -56,14 +56,9 @@ export default function Header({ onOpenPhoneModal, onNavigateSection }: HeaderPr
                 className="w-full h-auto object-contain filter contrast-[1.1] drop-shadow-[0_0_8px_rgba(212,175,55,0.4)]"
               />
             </div>
-            <div className="flex flex-col">
-              <span className="font-serif text-lg md:text-xl font-bold tracking-widest text-white group-hover:text-gold-300 transition-colors">
-                ACMER <span className="text-gold-400">DONGTAN</span>
-              </span>
-              <span className="text-[10px] tracking-widest text-slate-400 uppercase -mt-0.5 font-sans">
-                아크메르 동탄
-              </span>
-            </div>
+            <span className="font-serif text-xl sm:text-2xl font-bold tracking-wider text-white group-hover:text-gold-300 transition-colors">
+              아크메르 동탄
+            </span>
           </button>
 
           {/* Desktop Navigation */}

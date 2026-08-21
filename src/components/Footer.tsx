@@ -21,7 +21,7 @@ export default function Footer({ onOpenPhoneModal }: FooterProps) {
           <div className="flex items-center gap-3">
             <div className="relative w-8 h-8 shrink-0 flex items-center justify-center">
               <Image
-                src="/images/intro_hd_transparent.png?v=5"
+                src="/images/intro_hd_transparent.png?v=6"
                 alt="아크메르 동탄 푸터 로고"
                 width={32}
                 height={32}
@@ -30,8 +30,8 @@ export default function Footer({ onOpenPhoneModal }: FooterProps) {
               />
             </div>
             <div>
-              <span className="font-serif text-lg font-bold text-white tracking-wider block">
-                ACMER <span className="text-gold-400">DONGTAN</span> <span className="text-sm text-slate-400 font-sans ml-1">아크메르 동탄</span>
+              <span className="font-serif text-xl font-bold text-white tracking-wider block">
+                아크메르 동탄
               </span>
               <p className="text-slate-500 mt-0.5">동탄 그 이상의 위대함을 만나다 - 2026년 9월 GRAND OPEN</p>
             </div>
@@ -72,7 +72,7 @@ export default function Footer({ onOpenPhoneModal }: FooterProps) {
 
         {/* Copyright */}
         <div className="flex flex-col sm:flex-row items-center justify-between text-slate-500 text-[11px] gap-2">
-          <p>© 2026 ACMER DONGTAN. All rights reserved.</p>
+          <p>© 2026 아크메르 동탄. All rights reserved.</p>
           <p className="font-mono text-slate-600">PREMIUM RESIDENCE ARCHITECTURE</p>
         </div>
       </div>
