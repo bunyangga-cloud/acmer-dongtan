@@ -52,40 +52,45 @@ export default function LocationSection() {
           </p>
         </div>
 
-        {/* 1. Full-width Wide Location Map Image Card */}
+        {/* 1. White Background Clean Compact Image Card (Crisp & High Clarity) */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="relative group rounded-3xl overflow-hidden border border-gold-500/30 shadow-2xl bg-navy-900 mb-12"
+          className="relative group rounded-3xl overflow-hidden border-2 border-gold-500/40 shadow-2xl bg-white p-3 sm:p-5 mb-12"
         >
-          <div className="relative aspect-[16/9] sm:aspect-[21/9] w-full cursor-pointer" onClick={() => setIsLightboxOpen(true)}>
+          {/* Shorter Height Container with Object-contain Crisp White Background */}
+          <div
+            className="relative w-full h-[280px] sm:h-[380px] md:h-[440px] flex items-center justify-center cursor-pointer overflow-hidden rounded-2xl bg-white"
+            onClick={() => setIsLightboxOpen(true)}
+          >
             <Image
-              src="/images/location.png?v=2"
+              src="/images/location.png?v=3"
               alt="아크메르 동탄 입지환경 광역 지도"
               fill
               unoptimized
-              className="object-cover object-center group-hover:scale-102 transition-transform duration-700 filter brightness-95 group-hover:brightness-105"
+              priority
+              className="object-contain object-center group-hover:scale-102 transition-transform duration-500 filter brightness-100 contrast-105"
             />
-            {/* Dark Overlay Gradient */}
-            <div className="absolute inset-0 bg-gradient-to-t from-navy-950/90 via-navy-950/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity" />
 
-            {/* Top Right Zoom Icon */}
-            <div className="absolute top-6 right-6 p-3 rounded-full bg-navy-950/80 border border-gold-500/40 text-gold-400 group-hover:scale-110 transition-transform">
+            {/* Top Right Zoom Icon on White Card */}
+            <div className="absolute top-4 right-4 p-3 rounded-full bg-navy-950/80 border border-gold-500/40 text-gold-400 shadow-lg group-hover:scale-110 transition-transform z-20">
               <Maximize2 className="w-5 h-5" />
             </div>
 
-            {/* Bottom Floating Bar */}
-            <div className="absolute bottom-6 left-6 right-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 md:p-5 rounded-2xl bg-navy-950/85 backdrop-blur-md border border-gold-500/30">
-              <div className="flex items-center gap-2">
-                <MapPin className="w-5 h-5 text-gold-400 shrink-0" />
+            {/* Bottom Floating Info Bar */}
+            <div className="absolute bottom-4 left-4 right-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 md:p-4 rounded-2xl bg-navy-950/90 backdrop-blur-md border border-gold-500/30 text-white z-20 shadow-xl">
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-lg bg-gold-500/20 border border-gold-400 flex items-center justify-center text-gold-400 shrink-0">
+                  <MapPin className="w-4 h-4" />
+                </div>
                 <div>
-                  <h3 className="font-serif font-bold text-base sm:text-lg text-white">
-                    동탄 신도시 입지 프리미엄 광역도
+                  <h3 className="font-serif font-bold text-sm sm:text-base text-white">
+                    동탄 신도시 입지 프리미엄 광역 지도
                   </h3>
                   <p className="text-xs text-slate-300">
-                    클릭 시 고해상도 입지 지도를 확대하여 보실 수 있습니다.
+                    지도 이미지 클릭 시 100% 원본 고해상도로 크게 보실 수 있습니다.
                   </p>
                 </div>
               </div>
@@ -94,9 +99,9 @@ export default function LocationSection() {
                   e.stopPropagation();
                   setIsLightboxOpen(true);
                 }}
-                className="self-start sm:self-auto flex items-center gap-2 px-4 py-2 rounded-xl bg-gold-500/20 border border-gold-400 text-gold-300 hover:text-white hover:bg-gold-500 transition-colors text-xs font-semibold"
+                className="self-start sm:self-auto flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-gold-500 to-gold-600 text-navy-950 hover:brightness-110 transition-all text-xs font-bold shrink-0 shadow-md"
               >
-                <Eye className="w-4 h-4" /> 지도 확대보기
+                <Eye className="w-4 h-4" /> 지도 고해상도 확대보기
               </button>
             </div>
           </div>
@@ -136,7 +141,7 @@ export default function LocationSection() {
         </div>
       </div>
 
-      {/* Lightbox Modal for Location Map */}
+      {/* Lightbox Modal for Location Map (Pure White High-Contrast Lightbox) */}
       <AnimatePresence>
         {isLightboxOpen && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
@@ -152,18 +157,18 @@ export default function LocationSection() {
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              className="relative max-w-6xl w-full max-h-[90vh] aspect-[16/9] z-10 rounded-2xl overflow-hidden border border-gold-500/40 shadow-2xl"
+              className="relative max-w-6xl w-full max-h-[90vh] aspect-[16/9] z-10 rounded-2xl overflow-hidden border-2 border-gold-500/50 shadow-2xl bg-white flex items-center justify-center p-2"
             >
               <Image
-                src="/images/location.png?v=2"
-                alt="아크메르 동탄 입지 지도 고해상도"
+                src="/images/location.png?v=3"
+                alt="아크메르 동탄 입지 지도 원본 고해상도"
                 fill
                 unoptimized
                 className="object-contain"
               />
               <button
                 onClick={() => setIsLightboxOpen(false)}
-                className="absolute top-4 right-4 p-3 rounded-full bg-black/70 text-white hover:text-gold-400 border border-slate-700 transition-colors"
+                className="absolute top-4 right-4 p-3 rounded-full bg-navy-950/80 text-white hover:text-gold-400 border border-gold-500/40 transition-colors z-30 shadow-lg"
               >
                 <X className="w-6 h-6" />
               </button>
