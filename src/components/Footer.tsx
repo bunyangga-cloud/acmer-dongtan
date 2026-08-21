@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { ShieldAlert, ArrowUp } from 'lucide-react';
 
 interface FooterProps {
@@ -17,11 +18,23 @@ export default function Footer({ onOpenPhoneModal }: FooterProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         {/* Top Info Row */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-8 border-b border-slate-900">
-          <div>
-            <span className="font-serif text-lg font-bold text-white tracking-wider block">
-              ACMER <span className="text-gold-400">DONGTAN</span>
-            </span>
-            <p className="text-slate-500 mt-1">동탄 그 이상의 위대함을 만나다 - 2026년 9월 GRAND OPEN</p>
+          <div className="flex items-center gap-3">
+            <div className="relative w-8 h-8 shrink-0 flex items-center justify-center">
+              <Image
+                src="/images/intro_hd_transparent.png?v=5"
+                alt="아크메르 동탄 푸터 로고"
+                width={32}
+                height={32}
+                unoptimized
+                className="w-full h-auto object-contain filter contrast-[1.1] drop-shadow-[0_0_6px_rgba(212,175,55,0.4)]"
+              />
+            </div>
+            <div>
+              <span className="font-serif text-lg font-bold text-white tracking-wider block">
+                ACMER <span className="text-gold-400">DONGTAN</span> <span className="text-sm text-slate-400 font-sans ml-1">아크메르 동탄</span>
+              </span>
+              <p className="text-slate-500 mt-0.5">동탄 그 이상의 위대함을 만나다 - 2026년 9월 GRAND OPEN</p>
+            </div>
           </div>
 
           <div className="flex items-center gap-4">
@@ -58,8 +71,9 @@ export default function Footer({ onOpenPhoneModal }: FooterProps) {
         </div>
 
         {/* Copyright */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-600 pt-4">
-          <p>© 2026 ACMER DONGTAN. All Rights Reserved.</p>
+        <div className="flex flex-col sm:flex-row items-center justify-between text-slate-500 text-[11px] gap-2">
+          <p>© 2026 ACMER DONGTAN. All rights reserved.</p>
+          <p className="font-mono text-slate-600">PREMIUM RESIDENCE ARCHITECTURE</p>
         </div>
       </div>
     </footer>

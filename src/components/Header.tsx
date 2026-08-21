@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { Menu, X, Phone, CalendarCheck, Sparkles } from 'lucide-react';
 
 interface HeaderProps {
@@ -43,29 +44,35 @@ export default function Header({ onOpenPhoneModal, onNavigateSection }: HeaderPr
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Logo Area */}
-          <button onClick={() => onNavigateSection('top')} className="group flex items-center gap-2 text-left">
-            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-gold-400 via-gold-500 to-gold-700 flex items-center justify-center p-0.5 shadow-md shadow-gold-500/20 group-hover:scale-105 transition-transform">
-              <div className="w-full h-full bg-navy-950 rounded-[6px] flex items-center justify-center">
-                <span className="font-serif text-gold-400 text-xl font-bold tracking-tighter">A</span>
-              </div>
+          <button onClick={() => onNavigateSection('top')} className="group flex items-center gap-3 text-left">
+            <div className="relative w-9 h-9 sm:w-10 sm:h-10 shrink-0 flex items-center justify-center group-hover:scale-105 transition-transform">
+              <Image
+                src="/images/intro_hd_transparent.png?v=5"
+                alt="아크메르 동탄 로고"
+                width={40}
+                height={40}
+                unoptimized
+                priority
+                className="w-full h-auto object-contain filter contrast-[1.1] drop-shadow-[0_0_8px_rgba(212,175,55,0.4)]"
+              />
             </div>
             <div className="flex flex-col">
               <span className="font-serif text-lg md:text-xl font-bold tracking-widest text-white group-hover:text-gold-300 transition-colors">
                 ACMER <span className="text-gold-400">DONGTAN</span>
               </span>
-              <span className="text-[10px] tracking-widest text-slate-400 uppercase -mt-1 font-sans">
+              <span className="text-[10px] tracking-widest text-slate-400 uppercase -mt-0.5 font-sans">
                 아크메르 동탄
               </span>
             </div>
           </button>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-8">
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
               <button
-                key={link.name}
+                key={link.targetId}
                 onClick={() => onNavigateSection(link.targetId)}
-                className="text-sm font-medium text-slate-300 hover:text-gold-400 transition-colors relative py-1 group"
+                className="text-sm font-medium text-slate-300 hover:text-gold-400 transition-colors tracking-wide relative group py-1"
               >
                 {link.name}
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gold-400 transition-all duration-300 group-hover:w-full" />
@@ -73,39 +80,36 @@ export default function Header({ onOpenPhoneModal, onNavigateSection }: HeaderPr
             ))}
           </nav>
 
-          {/* Action Buttons */}
-          <div className="hidden lg:flex items-center gap-3">
-            {/* Phone Button */}
+          {/* Desktop Right CTA */}
+          <div className="hidden sm:flex items-center gap-3">
             <button
               onClick={onOpenPhoneModal}
-              className="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-navy-900/80 border border-gold-500/30 text-xs text-gold-300 hover:bg-gold-500/10 hover:border-gold-400 transition-all shadow-sm group"
+              className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold bg-navy-900/80 border border-slate-700 text-slate-300 hover:border-gold-500/50 hover:text-white transition-all shadow-sm"
             >
-              <Phone className="w-3.5 h-3.5 text-gold-400 group-hover:rotate-12 transition-transform" />
-              <span>전화문의 <strong className="text-white font-mono">1600-****</strong></span>
+              <Phone className="w-3.5 h-3.5 text-gold-400" />
+              <span>전화문의 <strong className="text-gold-400">1600-****</strong></span>
             </button>
 
-            {/* Register CTA */}
             <button
               onClick={() => onNavigateSection('register')}
-              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-gold-500 to-gold-600 text-navy-950 font-bold text-xs hover:brightness-110 shadow-lg shadow-gold-500/20 transition-all"
+              className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold bg-gradient-to-r from-gold-500 via-gold-400 to-gold-600 text-navy-950 hover:brightness-110 shadow-lg shadow-gold-500/20 transition-all"
             >
               <Sparkles className="w-3.5 h-3.5" />
-              <span>9월 사전 관심고객등록</span>
+              <span>관심고객등록</span>
             </button>
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="flex lg:hidden items-center gap-2">
+          {/* Mobile Menu Toggle Button */}
+          <div className="flex items-center sm:hidden gap-2">
             <button
-              onClick={onOpenPhoneModal}
-              className="p-2 rounded-lg bg-navy-900 border border-gold-500/30 text-gold-400"
-              title="전화문의"
+              onClick={() => onNavigateSection('register')}
+              className="px-3 py-1.5 rounded-lg text-xs font-bold bg-gold-500 text-navy-950"
             >
-              <Phone className="w-4 h-4" />
+              등록
             </button>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg bg-slate-800/60 text-slate-300 hover:text-white"
+              className="p-2 rounded-lg bg-navy-900 border border-slate-800 text-slate-300 hover:text-white"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -113,44 +117,45 @@ export default function Header({ onOpenPhoneModal, onNavigateSection }: HeaderPr
         </div>
       </div>
 
-      {/* Mobile Menu Dropdown */}
+      {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden glass-nav border-b border-gold-500/20 px-4 pt-3 pb-6 mt-3 space-y-3">
-          <div className="flex flex-col gap-3">
+        <div className="lg:hidden glass-nav border-t border-slate-800/80 px-4 pt-4 pb-6 mt-3 space-y-4 shadow-2xl">
+          <div className="space-y-2">
             {navLinks.map((link) => (
               <button
-                key={link.name}
+                key={link.targetId}
                 onClick={() => {
                   setMobileMenuOpen(false);
                   onNavigateSection(link.targetId);
                 }}
-                className="text-left text-base font-medium text-slate-200 hover:text-gold-400 py-2 border-b border-slate-800/60"
+                className="w-full text-left px-3 py-2.5 rounded-lg text-sm text-slate-300 hover:text-gold-400 hover:bg-navy-900/60 transition-colors"
               >
                 {link.name}
               </button>
             ))}
           </div>
 
-          <div className="pt-2 flex flex-col gap-2">
+          <div className="pt-3 border-t border-slate-800 flex flex-col gap-2">
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
                 onOpenPhoneModal();
               }}
-              className="w-full flex items-center justify-center gap-2 py-3 rounded-lg bg-navy-900 border border-gold-500/30 text-gold-400 text-sm font-semibold"
+              className="w-full py-3 rounded-xl text-xs font-bold bg-navy-900 border border-gold-500/30 text-gold-300 flex items-center justify-center gap-2"
             >
-              <Phone className="w-4 h-4" />
-              <span>전화문의 (1600-**** 오픈예정)</span>
+              <Phone className="w-4 h-4 text-gold-400" />
+              <span>대표번호 1600-**** 안내</span>
             </button>
+
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
                 onNavigateSection('register');
               }}
-              className="w-full flex items-center justify-center gap-2 py-3 rounded-lg bg-gradient-to-r from-gold-500 to-gold-600 text-navy-950 font-bold text-sm"
+              className="w-full py-3 rounded-xl text-xs font-bold bg-gradient-to-r from-gold-500 to-gold-600 text-navy-950 flex items-center justify-center gap-2"
             >
               <CalendarCheck className="w-4 h-4" />
-              <span>9월 오픈 관심고객 신청하기</span>
+              <span>관심고객 사전등록 신청</span>
             </button>
           </div>
         </div>
