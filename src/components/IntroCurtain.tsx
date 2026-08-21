@@ -12,20 +12,20 @@ export default function IntroCurtain({ version = 'v2' }: IntroCurtainProps) {
   const [stage, setStage] = useState<'initial' | 'flare' | 'split' | 'done'>('initial');
 
   useEffect(() => {
-    // 1단계: 오디세이 웅장한 아우라 빔 발광 & 카피 문구 등장 (1.0초)
+    // 1단계: 상단에서 강렬하게 쏟아지는 빛과 카피 문구 등장 (0.8초)
     const timer1 = setTimeout(() => {
       setStage('flare');
-    }, 1000);
+    }, 800);
 
-    // 2단계: 로고 중앙 세로 기둥선 틈새 갈라짐 시작 (2.5초)
+    // 2단계: 강력한 빛 폭발과 함께 액티브하고 빠른 좌우 갈라짐 (2.2초)
     const timer2 = setTimeout(() => {
       setStage('split');
-    }, 2500);
+    }, 2200);
 
-    // 3단계: 갈라짐 완료 및 메인화면 진입 (3.7초)
+    // 3단계: 갈라짐 완료 및 메인 화면 전환 (3.3초)
     const timer3 = setTimeout(() => {
       setStage('done');
-    }, 3700);
+    }, 3300);
 
     return () => {
       clearTimeout(timer1);
@@ -67,110 +67,135 @@ export default function IntroCurtain({ version = 'v2' }: IntroCurtainProps) {
     );
   }
 
-  // ===== 버전 2 (v2) : 고화질 새로 첨부된 HD 원본 로고 + 오디세이 렌즈 플레어 + 슬로건 =====
+  // ===== 버전 2 (v2) : 강력한 상단 하향 빔 + 액티브 스플릿 (세로선 완전 제거) =====
   return (
     <AnimatePresence>
       <div className="fixed inset-0 z-[100] overflow-hidden pointer-events-none select-none bg-[#030712]">
-        {/* Left Curtain Panel */}
+        {/* Left Curtain Panel (세로선 border 완전 제거) */}
         <motion.div
           initial={{ x: 0 }}
           animate={{ x: stage === 'split' ? '-100%' : '0%' }}
-          transition={{ duration: 1.3, ease: [0.77, 0, 0.175, 1] }}
-          className="absolute top-0 bottom-0 left-0 w-1/2 bg-[#040814] border-r border-gold-500/40 shadow-[20px_0_50px_rgba(0,0,0,0.95)] z-10"
+          transition={{ duration: 1.05, ease: [0.16, 1, 0.3, 1] }}
+          className="absolute top-0 bottom-0 left-0 w-1/2 bg-[#040814] shadow-[30px_0_60px_rgba(0,0,0,0.95)] z-10 border-none"
         />
 
-        {/* Right Curtain Panel */}
+        {/* Right Curtain Panel (세로선 border 완전 제거) */}
         <motion.div
           initial={{ x: 0 }}
           animate={{ x: stage === 'split' ? '100%' : '0%' }}
-          transition={{ duration: 1.3, ease: [0.77, 0, 0.175, 1] }}
-          className="absolute top-0 bottom-0 right-0 w-1/2 bg-[#040814] border-l border-gold-500/40 shadow-[-20px_0_50px_rgba(0,0,0,0.95)] z-10"
+          transition={{ duration: 1.05, ease: [0.16, 1, 0.3, 1] }}
+          className="absolute top-0 bottom-0 right-0 w-1/2 bg-[#040814] shadow-[-30px_0_60px_rgba(0,0,0,0.95)] z-10 border-none"
         />
 
-        {/* Center Odyssey Cinema Experience */}
+        {/* Center Content & Powerful Top-Down Light Flare */}
         <motion.div
           animate={{ opacity: stage === 'split' ? 0 : 1 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.45 }}
           className="absolute inset-0 flex flex-col items-center justify-center z-20"
         >
-          {/* Odyssey Solar Core Atmosphere Light Glow */}
+          {/* 1. 상단에서 강렬하게 쏟아지는 슈퍼 렌즈 플레어 & 라이트 샤워 */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full flex flex-col items-center pointer-events-none overflow-hidden h-full">
+            {/* 상단 눈부신 광원 헤일로 */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{
+                opacity: stage === 'flare' || stage === 'split' ? [0.4, 1, 0.6] : 0.2,
+                scale: stage === 'flare' || stage === 'split' ? [0.8, 1.6, 2.2] : 0.8,
+              }}
+              transition={{ duration: 1.2, ease: 'easeOut' }}
+              className="absolute -top-32 w-[600px] sm:w-[900px] h-[350px] bg-gradient-to-b from-white via-gold-300 to-transparent rounded-full filter blur-[70px]"
+            />
+
+            {/* 상단에서 아래로 내리꽂히는 메가 빔 (와이드 광선) */}
+            <motion.div
+              initial={{ scaleY: 0, opacity: 0 }}
+              animate={{
+                scaleY: stage === 'flare' || stage === 'split' ? 1 : 0,
+                opacity: stage === 'flare' ? [0.2, 0.95, 0.7] : stage === 'split' ? 0 : 0.2,
+              }}
+              transition={{ duration: 0.8, ease: 'easeOut' }}
+              className="w-[120px] sm:w-[180px] h-full bg-gradient-to-b from-white/90 via-gold-300/40 to-transparent filter blur-xl origin-top"
+            />
+          </div>
+
+          {/* 2. 대형 앰비언트 글로우 */}
           <motion.div
             animate={{
-              scale: stage === 'flare' || stage === 'split' ? [1, 2.5, 3.8] : 1,
-              opacity: stage === 'flare' ? [0.2, 0.9, 0.4] : 0.2,
+              scale: stage === 'flare' || stage === 'split' ? [1, 2.4, 3.6] : 1,
+              opacity: stage === 'flare' ? [0.3, 0.95, 0.5] : 0.3,
             }}
-            transition={{ duration: 1.4, ease: 'easeOut' }}
-            className="absolute w-[600px] h-[600px] bg-gradient-to-r from-gold-400 via-amber-500 to-gold-300 rounded-full filter blur-[100px] pointer-events-none"
+            transition={{ duration: 1.2, ease: 'easeOut' }}
+            className="absolute w-[600px] h-[600px] bg-gradient-to-r from-gold-300 via-amber-400 to-gold-500 rounded-full filter blur-[110px] pointer-events-none"
           />
 
-          {/* Center High Crisp HD Transparent Logo */}
+          {/* 3. HD 로고 및 문구 컨테이너 */}
           <div className="relative flex flex-col items-center justify-center p-4">
             {/* Pure HD Transparent Logo */}
             <motion.div
               initial={{ scale: 0.92, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 1.0, ease: 'easeOut' }}
+              transition={{ duration: 0.9, ease: 'easeOut' }}
               className="relative z-10 max-w-[280px] sm:max-w-[380px] md:max-w-[460px] lg:max-w-[500px] w-full"
             >
               <Image
-                src="/images/intro_hd_transparent.png?v=2"
-                alt="ACMER DONGTAN HD Crisp Signature Logo"
+                src="/images/intro_hd_transparent.png?v=3"
+                alt="ACMER DONGTAN HD Signature Logo"
                 width={500}
                 height={500}
                 unoptimized
                 priority
-                className="w-full h-auto object-contain filter contrast-[1.05]"
+                className="w-full h-auto object-contain filter contrast-[1.08] drop-shadow-[0_0_25px_rgba(255,240,208,0.5)]"
                 style={{ imageRendering: '-webkit-optimize-contrast' }}
               />
             </motion.div>
 
-            {/* Movie Slogan Text: "동탄의 가장 완벽한 삶을 위해" */}
+            {/* 슬로건: "동탄의 가장 완벽한 삶을 위해" */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.7 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
               className="mt-6 z-10 text-center"
             >
-              <p className="font-serif text-lg sm:text-2xl font-bold tracking-[0.25em] text-white drop-shadow-[0_0_15px_rgba(212,175,55,0.8)]">
+              <p className="font-serif text-lg sm:text-2xl font-bold tracking-[0.25em] text-white drop-shadow-[0_0_20px_rgba(255,215,0,0.9)]">
                 “동탄의 가장 완벽한 삶을 위해”
               </p>
-              <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-gold-400 to-transparent mx-auto mt-3" />
+              <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-gold-300 to-transparent mx-auto mt-3 shadow-[0_0_10px_#ffd700]" />
             </motion.div>
 
-            {/* Central Vertical Line (Aligned with the tallest center tower) */}
+            {/* 4. 세로 중앙 레이저 빔 (상단에서 내리꽂히며 로고 중심 관통) */}
             <motion.div
               initial={{ scaleY: 0, opacity: 0 }}
               animate={{
-                scaleY: stage === 'flare' || stage === 'split' ? 1 : 0.4,
-                opacity: stage === 'split' ? 1 : 0.95,
+                scaleY: stage === 'flare' || stage === 'split' ? 1 : 0.2,
+                opacity: stage === 'split' ? 0 : 1, // 갈라질 때 세로선 흔적 없이 즉시 소멸
               }}
-              transition={{ duration: 0.9, ease: 'easeOut' }}
-              className="absolute top-[-40%] bottom-[-40%] w-[3px] bg-gradient-to-b from-transparent via-gold-300 to-transparent shadow-[0_0_40px_#fff0d0] z-20 pointer-events-none"
+              transition={{ duration: 0.6, ease: 'easeOut' }}
+              className="absolute -top-[50%] -bottom-[50%] w-[4px] sm:w-[6px] bg-gradient-to-b from-white via-gold-200 to-transparent shadow-[0_0_45px_#ffffff] z-20 pointer-events-none"
               style={{
                 left: '50%',
                 transform: 'translateX(-50%)',
               }}
             >
-              {/* Intense Odyssey Light Burst inside the splitting crack */}
-              {stage === 'split' && (
-                <motion.div
-                  initial={{ scale: 0, opacity: 0 }}
-                  animate={{ scale: [1, 4.5, 7], opacity: [1, 0.85, 0] }}
-                  transition={{ duration: 1.0, ease: 'easeOut' }}
-                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-[500px] bg-gradient-to-r from-gold-300 via-white to-gold-400 rounded-full filter blur-2xl shadow-[0_0_100px_#fff0d0]"
-                />
-              )}
-
-              {/* Odyssey Beam Light Sweep */}
+              {/* 내리꽂히는 초고속 수직 빛 플레어 스윕 */}
               <motion.div
                 animate={{
                   y: ['-100%', '200%'],
                   opacity: [0, 1, 0],
                 }}
-                transition={{ duration: 1.2, repeat: Infinity, repeatDelay: 0.3 }}
-                className="w-full h-40 bg-gradient-to-b from-transparent via-white to-transparent filter blur-[1px]"
+                transition={{ duration: 0.9, repeat: Infinity, repeatDelay: 0.2 }}
+                className="w-full h-48 bg-gradient-to-b from-transparent via-white to-transparent filter blur-[1px]"
               />
             </motion.div>
+
+            {/* 5. 갈라질 때 중앙에서 터지는 빛 폭발 (Flash Explosion) */}
+            {stage === 'split' && (
+              <motion.div
+                initial={{ scale: 0.2, opacity: 1 }}
+                animate={{ scale: [1, 5, 8], opacity: [1, 0.7, 0] }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-[700px] bg-gradient-to-r from-gold-200 via-white to-gold-300 rounded-full filter blur-3xl shadow-[0_0_120px_#ffffff] pointer-events-none z-30"
+              />
+            )}
           </div>
         </motion.div>
       </div>
