@@ -6,6 +6,11 @@ export const metadata: Metadata = {
   title: '아크메르 동탄',
   description: '아크메르 동탄ㅣ☎1600-0000 분양가ㅣ반송역 동탄인덕원선 초역세권ㅣ계약금ㅣ아크메르동탄 청약일정ㅣ사전청약의향서 접수ㅣ동탄 아크메르 모델하우스',
   keywords: '아크메르 동탄',
+  icons: {
+    icon: '/images/siteicon.png',
+    shortcut: '/images/siteicon.png',
+    apple: '/images/siteicon.png',
+  },
   other: {
     'naver-site-verification': 'f0e0c45ae8f3fa82bda81fa4e8f0bf7e794fcfe9',
   },
@@ -16,14 +21,20 @@ export const metadata: Metadata = {
     siteName: '아크메르 동탄',
     images: [
       {
-        url: '/images/dongtan.png',
-        width: 1200,
-        height: 630,
-        alt: '아크메르 동탄',
+        url: '/images/siteicon.png',
+        width: 800,
+        height: 800,
+        alt: '아크메르 동탄 로고',
       },
     ],
     locale: 'ko_KR',
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: '아크메르 동탄',
+    description: '아크메르 동탄ㅣ☎1600-0000 분양가ㅣ반송역 동탄인덕원선 초역세권ㅣ계약금ㅣ아크메르동탄 청약일정ㅣ사전청약의향서 접수ㅣ동탄 아크메르 모델하우스',
+    images: ['/images/siteicon.png'],
   },
 };
 
@@ -35,11 +46,16 @@ export default function RootLayout({
   return (
     <html lang="ko" className="scroll-smooth">
       <head>
+        <link rel="icon" href="/images/siteicon.png" />
+        <link rel="apple-touch-icon" href="/images/siteicon.png" />
         <meta name="keywords" content="아크메르 동탄" />
         <meta name="description" content="아크메르 동탄ㅣ☎1600-0000 분양가ㅣ반송역 동탄인덕원선 초역세권ㅣ계약금ㅣ아크메르동탄 청약일정ㅣ사전청약의향서 접수ㅣ동탄 아크메르 모델하우스" />
         <meta property="og:title" content="아크메르 동탄" />
         <meta property="og:site_name" content="아크메르 동탄" />
         <meta property="og:description" content="아크메르 동탄ㅣ☎1600-0000 분양가ㅣ반송역 동탄인덕원선 초역세권ㅣ계약금ㅣ아크메르동탄 청약일정ㅣ사전청약의향서 접수ㅣ동탄 아크메르 모델하우스" />
+        <meta property="og:image" content="https://acmer-dongtan.vercel.app/images/siteicon.png" />
+        <meta property="og:image:width" content="800" />
+        <meta property="og:image:height" content="800" />
         <meta name="naver-site-verification" content="f0e0c45ae8f3fa82bda81fa4e8f0bf7e794fcfe9" />
       </head>
       <body className="bg-navy-950 text-slate-100 antialiased selection:bg-gold-500 selection:text-navy-950">
