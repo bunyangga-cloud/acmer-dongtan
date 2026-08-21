@@ -1,13 +1,11 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
-import { MapPin, Train, TreePine, GraduationCap, Building, Maximize2, X, Eye } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Train, TreePine, GraduationCap, Building } from 'lucide-react';
 
 export default function LocationSection() {
-  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
-
   const locationFeatures = [
     {
       icon: Train,
@@ -52,58 +50,24 @@ export default function LocationSection() {
           </p>
         </div>
 
-        {/* 1. White Background Clean Compact Image Card (Crisp & High Clarity) */}
+        {/* 1. Large High-Clarity Full-width Location Map Card (No modal required, Large & Mobile-Optimized) */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="relative group rounded-3xl overflow-hidden border-2 border-gold-500/40 shadow-2xl bg-white p-3 sm:p-5 mb-12"
+          className="relative rounded-3xl overflow-hidden border-2 border-gold-500/40 shadow-2xl bg-white p-2 sm:p-4 mb-12"
         >
-          {/* Shorter Height Container with Object-contain Crisp White Background */}
-          <div
-            className="relative w-full h-[280px] sm:h-[380px] md:h-[440px] flex items-center justify-center cursor-pointer overflow-hidden rounded-2xl bg-white"
-            onClick={() => setIsLightboxOpen(true)}
-          >
+          {/* Large Container for Crisp Visibility on both Mobile & PC */}
+          <div className="relative w-full h-[360px] sm:h-[480px] md:h-[620px] lg:h-[720px] flex items-center justify-center overflow-hidden rounded-2xl bg-white">
             <Image
-              src="/images/location.png?v=3"
+              src="/images/location.png?v=4"
               alt="아크메르 동탄 입지환경 광역 지도"
               fill
               unoptimized
               priority
-              className="object-contain object-center group-hover:scale-102 transition-transform duration-500 filter brightness-100 contrast-105"
+              className="object-contain object-center filter brightness-100 contrast-105"
             />
-
-            {/* Top Right Zoom Icon on White Card */}
-            <div className="absolute top-4 right-4 p-3 rounded-full bg-navy-950/80 border border-gold-500/40 text-gold-400 shadow-lg group-hover:scale-110 transition-transform z-20">
-              <Maximize2 className="w-5 h-5" />
-            </div>
-
-            {/* Bottom Floating Info Bar */}
-            <div className="absolute bottom-4 left-4 right-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 md:p-4 rounded-2xl bg-navy-950/90 backdrop-blur-md border border-gold-500/30 text-white z-20 shadow-xl">
-              <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-lg bg-gold-500/20 border border-gold-400 flex items-center justify-center text-gold-400 shrink-0">
-                  <MapPin className="w-4 h-4" />
-                </div>
-                <div>
-                  <h3 className="font-serif font-bold text-sm sm:text-base text-white">
-                    동탄 신도시 입지 프리미엄 광역 지도
-                  </h3>
-                  <p className="text-xs text-slate-300">
-                    지도 이미지 클릭 시 100% 원본 고해상도로 크게 보실 수 있습니다.
-                  </p>
-                </div>
-              </div>
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setIsLightboxOpen(true);
-                }}
-                className="self-start sm:self-auto flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-gold-500 to-gold-600 text-navy-950 hover:brightness-110 transition-all text-xs font-bold shrink-0 shadow-md"
-              >
-                <Eye className="w-4 h-4" /> 지도 고해상도 확대보기
-              </button>
-            </div>
           </div>
         </motion.div>
 
@@ -140,42 +104,6 @@ export default function LocationSection() {
           })}
         </div>
       </div>
-
-      {/* Lightbox Modal for Location Map (Pure White High-Contrast Lightbox) */}
-      <AnimatePresence>
-        {isLightboxOpen && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setIsLightboxOpen(false)}
-              className="absolute inset-0 bg-black/90 backdrop-blur-md"
-            />
-
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="relative max-w-6xl w-full max-h-[90vh] aspect-[16/9] z-10 rounded-2xl overflow-hidden border-2 border-gold-500/50 shadow-2xl bg-white flex items-center justify-center p-2"
-            >
-              <Image
-                src="/images/location.png?v=3"
-                alt="아크메르 동탄 입지 지도 원본 고해상도"
-                fill
-                unoptimized
-                className="object-contain"
-              />
-              <button
-                onClick={() => setIsLightboxOpen(false)}
-                className="absolute top-4 right-4 p-3 rounded-full bg-navy-950/80 text-white hover:text-gold-400 border border-gold-500/40 transition-colors z-30 shadow-lg"
-              >
-                <X className="w-6 h-6" />
-              </button>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
     </section>
   );
 }
