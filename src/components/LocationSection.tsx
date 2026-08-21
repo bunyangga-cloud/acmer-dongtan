@@ -62,9 +62,10 @@ export default function LocationSection() {
         >
           <div className="relative aspect-[16/9] sm:aspect-[21/9] w-full cursor-pointer" onClick={() => setIsLightboxOpen(true)}>
             <Image
-              src="/images/locations.png"
+              src="/images/location.png?v=2"
               alt="아크메르 동탄 입지환경 광역 지도"
               fill
+              unoptimized
               className="object-cover object-center group-hover:scale-102 transition-transform duration-700 filter brightness-95 group-hover:brightness-105"
             />
             {/* Dark Overlay Gradient */}
@@ -112,29 +113,30 @@ export default function LocationSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="glass-card p-6 rounded-2xl border border-slate-800 hover:border-gold-500/40 transition-all group flex flex-col justify-between"
+                className="glass-card rounded-2xl p-6 border border-slate-800 hover:border-gold-500/40 transition-all duration-300 group hover:-translate-y-1"
               >
-                <div>
-                  <div className="w-12 h-12 rounded-xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center shrink-0 text-gold-400 group-hover:bg-gold-500 group-hover:text-navy-950 transition-colors mb-4">
-                    <IconComponent className="w-6 h-6" />
-                  </div>
-                  <span className="text-[10px] font-mono tracking-widest text-gold-400/90 font-bold uppercase block mb-1">
-                    {item.tag}
-                  </span>
-                  <h3 className="text-lg font-bold font-serif text-white group-hover:text-gold-300 transition-colors mb-2">
-                    {item.title}
-                  </h3>
-                  <p className="text-xs text-slate-400 leading-relaxed">
-                    {item.desc}
-                  </p>
+                <div className="w-12 h-12 rounded-xl bg-gold-500/10 border border-gold-500/30 text-gold-400 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-gold-500 group-hover:text-navy-950 transition-all duration-300">
+                  <IconComponent className="w-6 h-6" />
                 </div>
+
+                <span className="text-[10px] font-mono font-semibold tracking-widest text-gold-400 uppercase">
+                  {item.tag}
+                </span>
+
+                <h4 className="text-lg font-bold font-serif text-white mt-1 mb-2 group-hover:text-gold-300 transition-colors">
+                  {item.title}
+                </h4>
+
+                <p className="text-xs text-slate-300 leading-relaxed">
+                  {item.desc}
+                </p>
               </motion.div>
             );
           })}
         </div>
       </div>
 
-      {/* Lightbox Modal */}
+      {/* Lightbox Modal for Location Map */}
       <AnimatePresence>
         {isLightboxOpen && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
@@ -153,9 +155,10 @@ export default function LocationSection() {
               className="relative max-w-6xl w-full max-h-[90vh] aspect-[16/9] z-10 rounded-2xl overflow-hidden border border-gold-500/40 shadow-2xl"
             >
               <Image
-                src="/images/locations.png"
-                alt="아크메르 동탄 입지환경 고해상도 지도"
+                src="/images/location.png?v=2"
+                alt="아크메르 동탄 입지 지도 고해상도"
                 fill
+                unoptimized
                 className="object-contain"
               />
               <button
