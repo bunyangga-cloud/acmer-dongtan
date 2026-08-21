@@ -67,11 +67,11 @@ export default function IntroCurtain({ version = 'v2' }: IntroCurtainProps) {
     );
   }
 
-  // ===== 버전 2 (v2) : 강력한 상단 하향 빔 + 액티브 스플릿 (세로선 완전 제거) =====
+  // ===== 버전 2 (v2) : 컴팩트하고 최고로 선명한 HD 로고 + 상단 빔 + 액티브 스플릿 =====
   return (
     <AnimatePresence>
       <div className="fixed inset-0 z-[100] overflow-hidden pointer-events-none select-none bg-[#030712]">
-        {/* Left Curtain Panel (세로선 border 완전 제거) */}
+        {/* Left Curtain Panel */}
         <motion.div
           initial={{ x: 0 }}
           animate={{ x: stage === 'split' ? '-100%' : '0%' }}
@@ -79,7 +79,7 @@ export default function IntroCurtain({ version = 'v2' }: IntroCurtainProps) {
           className="absolute top-0 bottom-0 left-0 w-1/2 bg-[#040814] shadow-[30px_0_60px_rgba(0,0,0,0.95)] z-10 border-none"
         />
 
-        {/* Right Curtain Panel (세로선 border 완전 제거) */}
+        {/* Right Curtain Panel */}
         <motion.div
           initial={{ x: 0 }}
           animate={{ x: stage === 'split' ? '100%' : '0%' }}
@@ -95,7 +95,6 @@ export default function IntroCurtain({ version = 'v2' }: IntroCurtainProps) {
         >
           {/* 1. 상단에서 강렬하게 쏟아지는 슈퍼 렌즈 플레어 & 라이트 샤워 */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full flex flex-col items-center pointer-events-none overflow-hidden h-full">
-            {/* 상단 눈부신 광원 헤일로 */}
             <motion.div
               initial={{ opacity: 0, scale: 0.5 }}
               animate={{
@@ -106,7 +105,6 @@ export default function IntroCurtain({ version = 'v2' }: IntroCurtainProps) {
               className="absolute -top-32 w-[600px] sm:w-[900px] h-[350px] bg-gradient-to-b from-white via-gold-300 to-transparent rounded-full filter blur-[70px]"
             />
 
-            {/* 상단에서 아래로 내리꽂히는 메가 빔 (와이드 광선) */}
             <motion.div
               initial={{ scaleY: 0, opacity: 0 }}
               animate={{
@@ -128,55 +126,54 @@ export default function IntroCurtain({ version = 'v2' }: IntroCurtainProps) {
             className="absolute w-[600px] h-[600px] bg-gradient-to-r from-gold-300 via-amber-400 to-gold-500 rounded-full filter blur-[110px] pointer-events-none"
           />
 
-          {/* 3. HD 로고 및 문구 컨테이너 */}
+          {/* 3. HD 로고 및 문구 컨테이너 (컴팩트 선명도 최적화 크기) */}
           <div className="relative flex flex-col items-center justify-center p-4">
-            {/* Pure HD Transparent Logo */}
+            {/* Pure HD Transparent Compact Razor-Sharp Logo */}
             <motion.div
-              initial={{ scale: 0.92, opacity: 0 }}
+              initial={{ scale: 0.94, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.9, ease: 'easeOut' }}
-              className="relative z-10 max-w-[280px] sm:max-w-[380px] md:max-w-[460px] lg:max-w-[500px] w-full"
+              className="relative z-10 max-w-[200px] sm:max-w-[260px] md:max-w-[320px] lg:max-w-[350px] w-full"
             >
               <Image
-                src="/images/intro_hd_transparent.png?v=3"
-                alt="ACMER DONGTAN HD Signature Logo"
-                width={500}
-                height={500}
+                src="/images/intro_hd_transparent.png?v=4"
+                alt="ACMER DONGTAN HD Crisp Signature Logo"
+                width={350}
+                height={350}
                 unoptimized
                 priority
-                className="w-full h-auto object-contain filter contrast-[1.08] drop-shadow-[0_0_25px_rgba(255,240,208,0.5)]"
+                className="w-full h-auto object-contain filter contrast-[1.12] drop-shadow-[0_0_20px_rgba(255,240,208,0.4)]"
                 style={{ imageRendering: '-webkit-optimize-contrast' }}
               />
             </motion.div>
 
             {/* 슬로건: "동탄의 가장 완벽한 삶을 위해" */}
             <motion.div
-              initial={{ opacity: 0, y: 15 }}
+              initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="mt-6 z-10 text-center"
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="mt-5 z-10 text-center"
             >
-              <p className="font-serif text-lg sm:text-2xl font-bold tracking-[0.25em] text-white drop-shadow-[0_0_20px_rgba(255,215,0,0.9)]">
+              <p className="font-serif text-base sm:text-xl font-bold tracking-[0.25em] text-white drop-shadow-[0_0_15px_rgba(255,215,0,0.8)]">
                 “동탄의 가장 완벽한 삶을 위해”
               </p>
-              <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-gold-300 to-transparent mx-auto mt-3 shadow-[0_0_10px_#ffd700]" />
+              <div className="w-20 h-0.5 bg-gradient-to-r from-transparent via-gold-300 to-transparent mx-auto mt-2.5 shadow-[0_0_8px_#ffd700]" />
             </motion.div>
 
-            {/* 4. 세로 중앙 레이저 빔 (상단에서 내리꽂히며 로고 중심 관통) */}
+            {/* 4. 세로 중앙 레이저 빔 */}
             <motion.div
               initial={{ scaleY: 0, opacity: 0 }}
               animate={{
                 scaleY: stage === 'flare' || stage === 'split' ? 1 : 0.2,
-                opacity: stage === 'split' ? 0 : 1, // 갈라질 때 세로선 흔적 없이 즉시 소멸
+                opacity: stage === 'split' ? 0 : 1,
               }}
               transition={{ duration: 0.6, ease: 'easeOut' }}
-              className="absolute -top-[50%] -bottom-[50%] w-[4px] sm:w-[6px] bg-gradient-to-b from-white via-gold-200 to-transparent shadow-[0_0_45px_#ffffff] z-20 pointer-events-none"
+              className="absolute -top-[50%] -bottom-[50%] w-[3px] sm:w-[5px] bg-gradient-to-b from-white via-gold-200 to-transparent shadow-[0_0_40px_#ffffff] z-20 pointer-events-none"
               style={{
                 left: '50%',
                 transform: 'translateX(-50%)',
               }}
             >
-              {/* 내리꽂히는 초고속 수직 빛 플레어 스윕 */}
               <motion.div
                 animate={{
                   y: ['-100%', '200%'],
@@ -187,7 +184,7 @@ export default function IntroCurtain({ version = 'v2' }: IntroCurtainProps) {
               />
             </motion.div>
 
-            {/* 5. 갈라질 때 중앙에서 터지는 빛 폭발 (Flash Explosion) */}
+            {/* 5. 갈라질 때 중앙 빛 폭발 */}
             {stage === 'split' && (
               <motion.div
                 initial={{ scale: 0.2, opacity: 1 }}
