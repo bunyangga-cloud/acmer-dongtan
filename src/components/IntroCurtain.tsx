@@ -67,7 +67,7 @@ export default function IntroCurtain({ version = 'v2' }: IntroCurtainProps) {
     );
   }
 
-  // ===== 버전 2 (v2) : 영화 <오디세이> 스타일 - 2배 크기 박스없는 100% 투명 로고 + 강렬한 세로선 렌즈 플레어 + 카피문구 =====
+  // ===== 버전 2 (v2) : 고화질 새로 첨부된 HD 원본 로고 + 오디세이 렌즈 플레어 + 슬로건 =====
   return (
     <AnimatePresence>
       <div className="fixed inset-0 z-[100] overflow-hidden pointer-events-none select-none bg-[#030712]">
@@ -103,22 +103,24 @@ export default function IntroCurtain({ version = 'v2' }: IntroCurtainProps) {
             className="absolute w-[600px] h-[600px] bg-gradient-to-r from-gold-400 via-amber-500 to-gold-300 rounded-full filter blur-[100px] pointer-events-none"
           />
 
-          {/* Center 2X Scaled Transparent Logo Container (Box-free Pure PNG) */}
+          {/* Center High Crisp HD Transparent Logo */}
           <div className="relative flex flex-col items-center justify-center p-4">
-            {/* Pure Alpha Transparent 2X Scaled Logo */}
+            {/* Pure HD Transparent Logo */}
             <motion.div
-              initial={{ scale: 0.88, opacity: 0 }}
+              initial={{ scale: 0.92, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 1.0, ease: 'easeOut' }}
-              className="relative z-10 max-w-[340px] sm:max-w-[480px] md:max-w-[560px] lg:max-w-[620px] w-full"
+              className="relative z-10 max-w-[280px] sm:max-w-[380px] md:max-w-[460px] lg:max-w-[500px] w-full"
             >
               <Image
-                src="/images/intro_transparent.png"
-                alt="ACMER DONGTAN 2X Scaled Transparent Signature Logo"
-                width={620}
-                height={620}
+                src="/images/intro_hd_transparent.png?v=2"
+                alt="ACMER DONGTAN HD Crisp Signature Logo"
+                width={500}
+                height={500}
+                unoptimized
                 priority
-                className="w-full h-auto object-contain"
+                className="w-full h-auto object-contain filter contrast-[1.05]"
+                style={{ imageRendering: '-webkit-optimize-contrast' }}
               />
             </motion.div>
 
@@ -135,8 +137,7 @@ export default function IntroCurtain({ version = 'v2' }: IntroCurtainProps) {
               <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-gold-400 to-transparent mx-auto mt-3" />
             </motion.div>
 
-            {/* Central Vertical Line (Aligned with the tallest center tower of intro_transparent.png) */}
-            {/* Intense Solar Flare Rays Emitted from the Splitting Core Crack */}
+            {/* Central Vertical Line (Aligned with the tallest center tower) */}
             <motion.div
               initial={{ scaleY: 0, opacity: 0 }}
               animate={{
