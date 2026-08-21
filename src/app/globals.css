@@ -10,7 +10,6 @@
 }
 
 html {
-  scroll-behavior: smooth;
   font-family: 'Noto Sans KR', sans-serif;
   background-color: #050a14;
   color: #f8fafc;
@@ -31,32 +30,69 @@ html {
   background: #d4af37;
 }
 
-/* Luxury Gold Text Gradient */
+/* Luxury Gold Text Gradient with Flowing Shimmer */
 .gold-gradient-text {
-  background: linear-gradient(135deg, #FFF0D0 0%, #E5C07B 40%, #D4AF37 70%, #AA882C 100%);
+  background: linear-gradient(
+    120deg,
+    #E5C07B 0%,
+    #FFF0D0 25%,
+    #D4AF37 50%,
+    #FFF0D0 75%,
+    #AA882C 100%
+  );
+  background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  animation: goldTextFlow 6s ease-in-out infinite alternate;
 }
 
-/* Luxury Gold Border Gradient */
-.gold-border {
-  border-image: linear-gradient(135deg, #E5C07B, #AA882C, #856921) 1;
-}
-
-/* Subtle Shimmer Animation */
-@keyframes shimmer {
+@keyframes goldTextFlow {
   0% {
-    background-position: -200% 0;
+    background-position: 0% 50%;
+    filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.3));
   }
   100% {
-    background-position: 200% 0;
+    background-position: 100% 50%;
+    filter: drop-shadow(0 0 35px rgba(255, 240, 208, 0.7));
   }
 }
 
-.animate-shimmer {
-  background: linear-gradient(90deg, rgba(212,175,55,0) 0%, rgba(212,175,55,0.15) 50%, rgba(212,175,55,0) 100%);
-  background-size: 200% 100%;
-  animation: shimmer 4s infinite;
+/* Dynamic Light Flare Sweep */
+@keyframes lightFlareSweep {
+  0% {
+    transform: translateX(-150%) skewX(-25deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.35;
+  }
+  80% {
+    opacity: 0.35;
+  }
+  100% {
+    transform: translateX(250%) skewX(-25deg);
+    opacity: 0;
+  }
+}
+
+.animate-light-flare {
+  animation: lightFlareSweep 10s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Ambient Radial Glow Pulse */
+@keyframes ambientPulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1) translate(0, 0);
+  }
+  50% {
+    opacity: 0.65;
+    transform: scale(1.15) translate(20px, -15px);
+  }
+}
+
+.animate-ambient-pulse {
+  animation: ambientPulse 12s ease-in-out infinite;
 }
 
 /* Backdrop Glassmorphism */
