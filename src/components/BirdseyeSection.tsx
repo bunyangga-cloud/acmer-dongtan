@@ -49,7 +49,7 @@ export default function BirdseyeSection() {
           </h2>
           <div className="w-16 h-0.5 bg-gradient-to-r from-transparent via-gold-400 to-transparent mx-auto" />
           <p className="text-slate-400 text-sm sm:text-base">
-            웅장함과 세련됨이 교차하는 미학적 건축 설계 (조감도가 5.5초 간격으로 우아하게 자동 전환됩니다)
+            웅장함과 세련됨이 교차하는 미학적 건축 설계
           </p>
         </div>
 
