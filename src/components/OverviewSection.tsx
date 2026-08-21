@@ -1,10 +1,12 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ShieldCheck, Compass, Sparkles, Building2, MapPin, Layers } from 'lucide-react';
 
 export default function OverviewSection() {
+  const [activeIndex, setActiveIndex] = useState(0);
+
   const highlights = [
     {
       icon: Building2,
@@ -28,6 +30,14 @@ export default function OverviewSection() {
     }
   ];
 
+  // 3.2초마다 순환하며 한 개씩 활성화 (0 -> 1 -> 2 -> 3 -> 0)
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % highlights.length);
+    }, 3200);
+    return () => clearInterval(timer);
+  }, [highlights.length]);
+
   return (
     <section id="overview" className="py-24 relative bg-navy-950 text-white overflow-hidden">
       {/* Background Decor */}
@@ -50,28 +60,90 @@ export default function OverviewSection() {
           </p>
         </div>
 
-        {/* Feature Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Feature Cards Grid (Sequential Scale & Gold Gradient Border Animation) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
           {highlights.map((item, idx) => {
             const IconComponent = item.icon;
+            const isActive = activeIndex === idx;
+
             return (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="glass-card rounded-2xl p-6 hover:border-gold-500/50 transition-all duration-300 group hover:-translate-y-1"
+                onMouseEnter={() => setActiveIndex(idx)}
+                animate={{
+                  scale: isActive ? 1.06 : 0.98,
+                  y: isActive ? -8 : 0,
+                }}
+                transition={{ duration: 0.5, ease: 'easeOut' }}
+                className={`relative rounded-2xl p-6 transition-all duration-500 cursor-pointer flex flex-col justify-between overflow-hidden ${
+                  isActive
+                    ? 'bg-gradient-to-b from-navy-900 via-navy-900/90 to-navy-950 shadow-2xl shadow-gold-500/20 z-20'
+                    : 'bg-navy-950/70 opacity-75 hover:opacity-100 z-10'
+                }`}
+                style={{
+                  padding: '2px', // border wrapping trick
+                }}
               >
-                <div className="w-12 h-12 rounded-xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center mb-5 text-gold-400 group-hover:bg-gold-500 group-hover:text-navy-950 transition-colors">
-                  <IconComponent className="w-6 h-6" />
+                {/* Gold Gradient Border Wrapper */}
+                <div
+                  className={`w-full h-full rounded-2xl p-6 flex flex-col justify-between transition-colors duration-500 ${
+                    isActive
+                      ? 'bg-navy-900/95 border-2 border-transparent bg-clip-padding'
+                      : 'bg-navy-950/80 border border-slate-800'
+                  }`}
+                  style={
+                    isActive
+                      ? {
+                          borderImage: 'linear-gradient(135deg, #FFF0D0, #E5C07B, #D4AF37, #AA882C) 1',
+                          borderRadius: '16px',
+                        }
+                      : undefined
+                  }
+                >
+                  {/* Active Gold Outer Glow Edge */}
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeBorder"
+                      className="absolute inset-0 rounded-2xl border-2 border-gold-400 pointer-events-none shadow-[0_0_20px_rgba(212,175,55,0.4)]"
+                      transition={{ duration: 0.4 }}
+                    />
+                  )}
+
+                  <div>
+                    {/* Icon Box */}
+                    <div
+                      className={`w-12 h-12 rounded-xl flex items-center justify-center mb-5 transition-all duration-300 ${
+                        isActive
+                          ? 'bg-gradient-to-br from-gold-400 to-gold-600 text-navy-950 shadow-lg shadow-gold-500/30 scale-110'
+                          : 'bg-gold-500/10 border border-gold-500/30 text-gold-400'
+                      }`}
+                    >
+                      <IconComponent className="w-6 h-6" />
+                    </div>
+
+                    <h3
+                      className={`text-xl font-bold font-serif mb-2 transition-colors duration-300 ${
+                        isActive ? 'text-gold-300' : 'text-white'
+                      }`}
+                    >
+                      {item.title}
+                    </h3>
+
+                    <p className="text-sm text-slate-300 leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
+
+                  {/* Active Bottom Indicator Line */}
+                  <div className="mt-4 pt-3 border-t border-slate-800/60 flex items-center justify-between">
+                    <span className="text-[10px] font-mono tracking-widest text-slate-500">
+                      0{idx + 1} / 04
+                    </span>
+                    {isActive && (
+                      <span className="w-2 h-2 rounded-full bg-gold-400 animate-ping" />
+                    )}
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold font-serif mb-2 text-white group-hover:text-gold-300 transition-colors">
-                  {item.title}
-                </h3>
-                <p className="text-sm text-slate-400 leading-relaxed">
-                  {item.desc}
-                </p>
               </motion.div>
             );
           })}
@@ -83,7 +155,7 @@ export default function OverviewSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-16 rounded-2xl bg-navy-900/60 border border-gold-500/20 p-8 md:p-10 backdrop-blur-md"
+          className="mt-16 rounded-2xl bg-navy-900/60 border border-gold-500/20 p-8 md:p-10 backdrop-blur-md shadow-xl"
         >
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-slate-800">
             <div className="space-y-2 pt-4 md:pt-0">
