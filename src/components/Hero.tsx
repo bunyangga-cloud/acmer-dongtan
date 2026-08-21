@@ -11,7 +11,7 @@ interface HeroProps {
 
 export default function Hero({ onNavigateRegister }: HeroProps) {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-12">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-16">
       {/* Background Image Container with Overlay */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -115,15 +115,16 @@ export default function Hero({ onNavigateRegister }: HeroProps) {
         </motion.div>
       </div>
 
-      {/* Scroll Down Indicator */}
-      <motion.div
+      {/* Clickable Scroll Down Indicator */}
+      <motion.a
+        href="#overview"
         animate={{ y: [0, 8, 0] }}
         transition={{ repeat: Infinity, duration: 2 }}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1 text-slate-400 text-xs"
+        className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1 text-slate-400 hover:text-gold-300 text-xs transition-colors cursor-pointer group"
       >
-        <span className="tracking-widest uppercase text-[10px]">SCROLL DOWN</span>
-        <ChevronDown className="w-4 h-4 text-gold-400" />
-      </motion.div>
+        <span className="tracking-widest uppercase text-[10px] group-hover:text-gold-300">SCROLL DOWN</span>
+        <ChevronDown className="w-4 h-4 text-gold-400 group-hover:translate-y-1 transition-transform" />
+      </motion.a>
     </section>
   );
 }
