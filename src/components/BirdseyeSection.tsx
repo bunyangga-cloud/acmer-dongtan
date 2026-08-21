@@ -16,23 +16,21 @@ export default function BirdseyeSection() {
       title: '아크메르 동탄 - 시그니처 랜드마크 뷰',
       subtitle: '동탄 스카이라인을 압도하는 주거 타워의 웅장한 입면 특화 설계',
       tag: 'SIGNATURE TOWER VIEW',
-      hasOverlayText: false,
     },
     {
       id: 1,
       src: '/images/dongtan2.png',
-      title: '반송역 초역세권 프리미엄 뷰',
+      title: '아크메르 동탄 - 반송역 초역세권 프리미엄 뷰',
       subtitle: '동탄인덕원선 반송역 인접 도보 역세권 주거 중심지',
       tag: 'STATION & PARK VIEW',
-      hasOverlayText: true,
     },
   ];
 
-  // 3초 간격으로 조감도 1과 2가 자동으로 살며시 순환(Auto-Carousel)
+  // 5.5초 간격으로 여유롭고 부드럽게 자동 순환 (Auto-Carousel)
   useEffect(() => {
     const timer = setInterval(() => {
       setActiveSlide((prev) => (prev === 0 ? 1 : 0));
-    }, 3000);
+    }, 5500);
     return () => clearInterval(timer);
   }, []);
 
@@ -51,11 +49,11 @@ export default function BirdseyeSection() {
           </h2>
           <div className="w-16 h-0.5 bg-gradient-to-r from-transparent via-gold-400 to-transparent mx-auto" />
           <p className="text-slate-400 text-sm sm:text-base">
-            웅장함과 세련됨이 교차하는 미학적 건축 설계 (조감도가 3초 간격으로 자동 순환됩니다)
+            웅장함과 세련됨이 교차하는 미학적 건축 설계 (조감도가 5.5초 간격으로 우아하게 자동 전환됩니다)
           </p>
         </div>
 
-        {/* 100% Fit Whole Image Container (No Clipping / Entirely Visible on PC) */}
+        {/* 100% Fit Whole Image Container (No Clipping / Original Clean Render) */}
         <div className="relative group rounded-3xl overflow-hidden border border-gold-500/30 shadow-2xl bg-navy-950 p-2 md:p-4">
           <div
             className="relative w-full h-[380px] sm:h-[480px] md:h-[580px] lg:h-[640px] flex items-center justify-center cursor-pointer overflow-hidden rounded-2xl bg-slate-950"
@@ -68,10 +66,10 @@ export default function BirdseyeSection() {
                 initial={{ opacity: 0, scale: 0.98 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 1.02 }}
-                transition={{ duration: 0.8, ease: 'easeInOut' }}
+                transition={{ duration: 1, ease: 'easeInOut' }}
                 className="relative w-full h-full flex items-center justify-center"
               >
-                {/* Image set to object-contain so PC screen displays 100% of image without cropping */}
+                {/* Original Clean Image Render with object-contain fit */}
                 <Image
                   src={currentSlide.src}
                   alt={currentSlide.title}
@@ -79,30 +77,6 @@ export default function BirdseyeSection() {
                   priority
                   className="object-contain object-center filter brightness-100 group-hover:brightness-105 transition-all duration-700"
                 />
-
-                {/* Overlaid Web Typography Text Layer for Slide 2 (Replaces original image text) */}
-                {currentSlide.hasOverlayText && (
-                  <>
-                    {/* Clean Gradient Patch to hide original static text in the upper left of dongtan2.png */}
-                    <div className="absolute top-[8%] left-[2%] w-[45%] md:w-[32%] h-[45%] bg-gradient-to-br from-[#dce8f5] via-[#eaf0f8] to-[#f4f7fc]/95 backdrop-blur-[6px] rounded-2xl opacity-95 pointer-events-none shadow-sm" />
-
-                    {/* High-quality Web Typography Overlay */}
-                    <div className="absolute top-[10%] left-[4%] max-w-[88%] sm:max-w-[40%] md:max-w-[34%] z-10 text-slate-900 p-3 sm:p-5 pointer-events-none font-serif">
-                      <h3 className="text-xl sm:text-2xl md:text-3xl font-bold tracking-tight leading-snug text-slate-900 mb-3 drop-shadow-sm">
-                        동탄을 이끄는<br />
-                        새로운 역사이자 영원한 상징
-                      </h3>
-                      <div className="space-y-2 text-xs sm:text-sm text-slate-700 font-sans leading-relaxed">
-                        <p>
-                          대자연의 쾌적함, 교통의 우월함, 공간의 우아함까지 20년의 염원이 담긴 동탄의 그 자리에
-                        </p>
-                        <p className="font-medium text-slate-900">
-                          삶의 모든 것을 소유하는 동탄의 새로운 상징이 될 역사적 랜드마크를 완성합니다.
-                        </p>
-                      </div>
-                    </div>
-                  </>
-                )}
               </motion.div>
             </AnimatePresence>
 
