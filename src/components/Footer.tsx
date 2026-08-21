@@ -53,14 +53,13 @@ export default function Footer({ onOpenPhoneModal }: FooterProps) {
             ※ 대표 전화번호(1600-0000) 및 견본주택 상세 주소는 2026년 9월 분양 승인 공고 후 정식으로 안내될 예정입니다.
           </p>
           <p>
-            ※ 등록해주신 관심고객 개인정보는 y3974@naver.com으로 안전하게 수집되며, 오직 분양 안내 목적 외에는 타 용도로 일체 사용되지 않습니다.
+            ※ 수집된 개인정보는 분양 안내 목적 외에는 타 용도로 일체 사용되지 않습니다.
           </p>
         </div>
 
         {/* Copyright */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-600 pt-4">
           <p>© 2026 ACMER DONGTAN. All Rights Reserved.</p>
-          <p>사이트 관리자 문의: y3974@naver.com</p>
         </div>
       </div>
     </footer>

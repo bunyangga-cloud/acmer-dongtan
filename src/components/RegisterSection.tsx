@@ -2,13 +2,15 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { User, Phone, CheckCircle, Send, Sparkles, AlertCircle, Lock } from 'lucide-react';
+import { User, Phone, CheckCircle, Send, Sparkles, AlertCircle } from 'lucide-react';
+import TermsModal from '@/components/TermsModal';
 
 export default function RegisterSection() {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [agreed, setAgreed] = useState(true);
 
+  const [isTermsOpen, setIsTermsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
@@ -48,33 +50,35 @@ export default function RegisterSection() {
     setLoading(true);
 
     try {
-      // Web3Forms 메일 알림 연동 (y3974@naver.com 수신)
-      const formData = new FormData();
-      formData.append('access_key', 'e4dfefed-8a16-43d9-9ec6-896dfa2862c9'); // Web3Forms Public Access Key
-      formData.append('subject', `[아크메르 동탄] 새로운 관심고객 등록 - ${name.trim()}님`);
-      formData.append('from_name', '아크메르 동탄 알리미');
-      formData.append('name', name.trim());
-      formData.append('phone', phone.trim());
-      formData.append('recipient_email', 'y3974@naver.com');
-      formData.append('message', `아크메르 동탄 관심고객 등록 정보\n- 성함: ${name.trim()}\n- 연락처: ${phone.trim()}\n- 수신 지정: y3974@naver.com\n- 신청 일시: ${new Date().toLocaleString('ko-KR')}`);
-
-      const response = await fetch('https://api.web3forms.com/submit', {
+      // FormSubmit AJAX 연동으로 y3974@naver.com 직접 수신 전송
+      const res = await fetch('https://formsubmit.co/ajax/y3974@naver.com', {
         method: 'POST',
-        body: formData,
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          _subject: `[아크메르 동탄] 새로운 관심고객 등록: ${name.trim()}님`,
+          _template: 'table',
+          _captcha: 'false',
+          '신청자 성함': name.trim(),
+          '신청자 연락처': phone.trim(),
+          '신청일시': new Date().toLocaleString('ko-KR'),
+          '수신 지정 이메일': 'y3974@naver.com'
+        })
       });
 
-      const result = await response.json();
+      const data = await res.json();
 
-      if (result.success) {
+      if (res.ok || data.success === 'true' || data.success === true) {
         setSuccess(true);
         setName('');
         setPhone('');
       } else {
-        // Fallback: 처리 완료 화면 전환
-        setSuccess(true);
+        setSuccess(true); // 사용자 성공 안내 Fallback
       }
     } catch (err) {
-      console.error('Submit error:', err);
+      console.error('Email Submit Error:', err);
       setSuccess(true);
     } finally {
       setLoading(false);
@@ -181,19 +185,29 @@ export default function RegisterSection() {
                 </div>
               </div>
 
-              {/* Terms Checkbox */}
+              {/* Terms Checkbox with [보기] Button */}
               <div className="pt-2">
-                <label className="flex items-start gap-3 cursor-pointer group">
-                  <input
-                    type="checkbox"
-                    checked={agreed}
-                    onChange={(e) => setAgreed(e.target.checked)}
-                    className="mt-0.5 w-4 h-4 rounded border-slate-700 bg-navy-950 text-gold-500 focus:ring-gold-400 focus:ring-offset-navy-950 cursor-pointer"
-                  />
-                  <span className="text-xs text-slate-400 group-hover:text-slate-300 transition-colors leading-relaxed">
-                    [필수] 분양 정보 안내 및 상담을 위한 개인정보(성명, 연락처) 수집·이용에 동의합니다.
-                  </span>
-                </label>
+                <div className="flex items-center justify-between flex-wrap gap-2 text-xs">
+                  <label className="flex items-center gap-2 cursor-pointer group">
+                    <input
+                      type="checkbox"
+                      checked={agreed}
+                      onChange={(e) => setAgreed(e.target.checked)}
+                      className="w-4 h-4 rounded border-slate-700 bg-navy-950 text-gold-500 focus:ring-gold-400 focus:ring-offset-navy-950 cursor-pointer"
+                    />
+                    <span className="text-slate-300 group-hover:text-white transition-colors">
+                      [필수] 개인정보 수집 및 이용 동의
+                    </span>
+                  </label>
+
+                  <button
+                    type="button"
+                    onClick={() => setIsTermsOpen(true)}
+                    className="text-gold-400 hover:text-gold-300 font-semibold underline underline-offset-2 transition-colors ml-1"
+                  >
+                    [보기]
+                  </button>
+                </div>
               </div>
 
               {/* Error Message */}
@@ -211,7 +225,7 @@ export default function RegisterSection() {
                 className="w-full py-4 rounded-xl bg-gradient-to-r from-gold-500 via-gold-400 to-gold-600 text-navy-950 font-bold text-base hover:brightness-110 shadow-xl shadow-gold-500/20 transition-all flex items-center justify-center gap-2 disabled:opacity-50"
               >
                 {loading ? (
-                  <span>신청 정보를 접수 중입니다...</span>
+                  <span>신청 정보를 메일로 접수 중입니다...</span>
                 ) : (
                   <>
                     <Send className="w-5 h-5" />
@@ -219,15 +233,15 @@ export default function RegisterSection() {
                   </>
                 )}
               </button>
-
-              {/* Info Note */}
-              <div className="pt-2 text-center flex items-center justify-center gap-2 text-xs text-slate-500">
-                <Lock className="w-3.5 h-3.5 text-gold-400/80" />
-                <span>수집된 정보는 y3974@naver.com 관리자 메일 전송 및 분양 알림 용도로만 안전하게 보호됩니다.</span>
-              </div>
             </form>
           )}
         </motion.div>
+
+        {/* Terms Popup Modal */}
+        <TermsModal
+          isOpen={isTermsOpen}
+          onClose={() => setIsTermsOpen(false)}
+        />
       </div>
     </section>
   );
