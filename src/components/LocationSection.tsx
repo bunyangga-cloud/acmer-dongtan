@@ -7,8 +7,18 @@ import { Train, TreePine, GraduationCap, Building, ZoomIn } from 'lucide-react';
 
 export default function LocationSection() {
   const [showMagnifier, setShowMagnifier] = useState(false);
-  const [magnifierPos, setMagnifierPos] = useState({ x: 0, y: 0, bgX: 0, bgY: 0 });
+  const [magnifierData, setMagnifierData] = useState({
+    x: 0,
+    y: 0,
+    bgX: 0,
+    bgY: 0,
+    zoomWidth: 0,
+    zoomHeight: 0,
+  });
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const ZOOM_LEVEL = 2.8; // 시원하게 2.8배 왕 확대!
+  const LENS_SIZE = 240; // 240px 큼직한 돋보기 렌즈 알 크기
 
   const locationFeatures = [
     {
@@ -37,32 +47,37 @@ export default function LocationSection() {
     }
   ];
 
-  // 마우스 이동 시 돋보기 위치 및 확대 배경 좌표 실시간 계산 (2.5배 확대)
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  // 정확한 물리 돋보기 수학 공식 계산 (전체 컨테이너 너비 기준 2.8배 확대 오프셋)
+  const updateMagnifier = (clientX: number, clientY: number) => {
     if (!containerRef.current) return;
     const { left, top, width, height } = containerRef.current.getBoundingClientRect();
-    const x = e.clientX - left;
-    const y = e.clientY - top;
+    const x = clientX - left;
+    const y = clientY - top;
 
-    // 백분율 좌표 (0% ~ 100%)
-    const bgX = (x / width) * 100;
-    const bgY = (y / height) * 100;
+    // 돋보기 렌즈 중심점에 들어올 배경 오프셋 좌표 (-x * ZOOM + LENS_SIZE / 2)
+    const zoomWidth = width * ZOOM_LEVEL;
+    const zoomHeight = height * ZOOM_LEVEL;
+    const bgX = -(x * ZOOM_LEVEL - LENS_SIZE / 2);
+    const bgY = -(y * ZOOM_LEVEL - LENS_SIZE / 2);
 
-    setMagnifierPos({ x, y, bgX, bgY });
+    setMagnifierData({
+      x,
+      y,
+      bgX,
+      bgY,
+      zoomWidth,
+      zoomHeight,
+    });
   };
 
-  // 모바일 터치 드래그 지원
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    updateMagnifier(e.clientX, e.clientY);
+  };
+
   const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-    if (!containerRef.current || e.touches.length === 0) return;
-    const touch = e.touches[0];
-    const { left, top, width, height } = containerRef.current.getBoundingClientRect();
-    const x = touch.clientX - left;
-    const y = touch.clientY - top;
-
-    const bgX = (x / width) * 100;
-    const bgY = (y / height) * 100;
-
-    setMagnifierPos({ x, y, bgX, bgY });
+    if (e.touches.length > 0) {
+      updateMagnifier(e.touches[0].clientX, e.touches[0].clientY);
+    }
   };
 
   return (
@@ -82,7 +97,7 @@ export default function LocationSection() {
           </p>
         </div>
 
-        {/* 1. Interactive Magnifier Map Card (Hover Glass Zooming) */}
+        {/* 1. Corrected True 2.8X Magnifier Map Card */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -91,12 +106,12 @@ export default function LocationSection() {
           className="relative rounded-3xl overflow-hidden border-2 border-gold-500/40 shadow-2xl bg-white p-2 sm:p-4 mb-12"
         >
           {/* Top Instruction Badge */}
-          <div className="flex items-center justify-between px-3 py-2 bg-navy-950/90 rounded-xl mb-3 text-xs text-gold-300 border border-gold-500/30">
+          <div className="flex items-center justify-between px-3.5 py-2.5 bg-navy-950/90 rounded-xl mb-3 text-xs text-gold-300 border border-gold-500/30">
             <div className="flex items-center gap-2 font-medium">
               <ZoomIn className="w-4 h-4 text-gold-400 animate-pulse" />
-              <span>지도 위에 마우스를 올리면 <strong>실시간 돋보기 확대</strong>로 상세 정보를 선명하게 보실 수 있습니다.</span>
+              <span>지도 위에 마우스를 올리면 <strong>왕 돋보기 렌즈(2.8배)</strong>로 글씨와 도로가 큼직하게 짠!하고 돋아 보입니다.</span>
             </div>
-            <span className="hidden sm:inline-block text-[11px] font-mono text-slate-400">2.5X MAGNIFIER ZOOM</span>
+            <span className="hidden sm:inline-block text-[11px] font-mono text-slate-400">2.8X REAL MAGNIFIER</span>
           </div>
 
           {/* Map Container with Magnifier Tracker */}
@@ -105,13 +120,16 @@ export default function LocationSection() {
             onMouseEnter={() => setShowMagnifier(true)}
             onMouseLeave={() => setShowMagnifier(false)}
             onMouseMove={handleMouseMove}
-            onTouchStart={() => setShowMagnifier(true)}
+            onTouchStart={(e) => {
+              setShowMagnifier(true);
+              if (e.touches.length > 0) updateMagnifier(e.touches[0].clientX, e.touches[0].clientY);
+            }}
             onTouchEnd={() => setShowMagnifier(false)}
             onTouchMove={handleTouchMove}
             className="relative w-full h-[380px] sm:h-[480px] md:h-[620px] lg:h-[720px] flex items-center justify-center overflow-hidden rounded-2xl bg-white cursor-crosshair select-none"
           >
             <Image
-              src="/images/location.png?v=5"
+              src="/images/location.png?v=6"
               alt="아크메르 동탄 입지환경 광역 지도"
               fill
               unoptimized
@@ -119,24 +137,24 @@ export default function LocationSection() {
               className="object-contain object-center filter brightness-100 contrast-105"
             />
 
-            {/* Circle Magnifier Lens */}
+            {/* True Scale 2.8X Circle Magnifier Lens */}
             {showMagnifier && (
               <div
-                className="absolute pointer-events-none rounded-full border-4 border-gold-400 shadow-[0_0_30px_rgba(212,175,55,0.6)] bg-white overflow-hidden z-30"
+                className="absolute pointer-events-none rounded-full border-4 border-gold-400 shadow-[0_0_35px_rgba(212,175,55,0.7)] bg-white overflow-hidden z-30"
                 style={{
-                  width: '200px',
-                  height: '200px',
-                  left: `${magnifierPos.x - 100}px`,
-                  top: `${magnifierPos.y - 100}px`,
-                  backgroundImage: 'url(/images/location.png?v=5)',
+                  width: `${LENS_SIZE}px`,
+                  height: `${LENS_SIZE}px`,
+                  left: `${magnifierData.x - LENS_SIZE / 2}px`,
+                  top: `${magnifierData.y - LENS_SIZE / 2}px`,
+                  backgroundImage: 'url(/images/location.png?v=6)',
                   backgroundRepeat: 'no-repeat',
-                  backgroundSize: '250%', // 2.5배 실시간 확대
-                  backgroundPosition: `${magnifierPos.bgX}% ${magnifierPos.bgY}%`,
+                  backgroundSize: `${magnifierData.zoomWidth}px ${magnifierData.zoomHeight}px`,
+                  backgroundPosition: `${magnifierData.bgX}px ${magnifierData.bgY}px`,
                 }}
               >
-                {/* Crosshair Target Spec */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-30">
-                  <div className="w-4 h-4 rounded-full border border-gold-500" />
+                {/* Center Crosshair Target Ring */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-25">
+                  <div className="w-6 h-6 rounded-full border-2 border-gold-500" />
                 </div>
               </div>
             )}
