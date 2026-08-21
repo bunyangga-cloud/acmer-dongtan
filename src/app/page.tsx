@@ -11,6 +11,7 @@ import RegisterSection from '@/components/RegisterSection';
 import PhoneModal from '@/components/PhoneModal';
 import Footer from '@/components/Footer';
 import FadeTransitionOverlay from '@/components/FadeTransitionOverlay';
+import IntroCurtain from '@/components/IntroCurtain';
 
 export default function Home() {
   const [isPhoneModalOpen, setIsPhoneModalOpen] = useState(false);
@@ -41,6 +42,9 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-navy-950 text-white font-sans selection:bg-gold-500 selection:text-navy-950 relative">
+      {/* Grand Split Curtain Intro Animation (최초 진입 시 중앙 골드빛 번짐 후 좌우 갈라짐 인트로) */}
+      <IntroCurtain />
+
       {/* Smooth Fade Transition Overlay */}
       <FadeTransitionOverlay isTransitioning={isTransitioning} />
 
@@ -53,19 +57,19 @@ export default function Home() {
       {/* 1. Main Hero Visual with Dynamic Pan & Zoom + Light Flares */}
       <Hero onNavigateSection={handleNavigateSection} />
 
-      {/* 2. Overview & Brand Section */}
+      {/* 2. Overview & Brand Section (Includes 95 & 99 Block Specs) */}
       <OverviewSection />
 
-      {/* 3. Bird's Eye View Gallery (dongtan.png) */}
+      {/* 3. Bird's Eye View Gallery (dongtan.png & dongtan2.png Auto-Carousel) */}
       <BirdseyeSection />
 
-      {/* 4. Location Environment Section (locations.png) */}
+      {/* 4. Location Environment Section (locations.png Wide 1-Column) */}
       <LocationSection />
 
       {/* 5. Q&A FAQ 5 Items */}
       <FAQSection />
 
-      {/* 6. Interest Registration Form */}
+      {/* 6. Interest Registration Form (y3974@naver.com Email Delivery) */}
       <RegisterSection />
 
       {/* Footer */}
