@@ -5,27 +5,27 @@ import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface IntroCurtainProps {
-  version?: 'v1' | 'v2'; // v1: 기존 버전, v2: 하이엔드 intro.png 별똥별 & 골드 스플릿 버전
+  version?: 'v1' | 'v2';
 }
 
 export default function IntroCurtain({ version = 'v2' }: IntroCurtainProps) {
   const [stage, setStage] = useState<'initial' | 'flare' | 'split' | 'done'>('initial');
 
   useEffect(() => {
-    // 1단계: 골드 빛 발광 및 별똥별 유성우 모션 (1.0초)
+    // 1단계: 로고 등장 & 대각선 별똥별 유성우 (1.0초)
     const timer1 = setTimeout(() => {
       setStage('flare');
     }, 1000);
 
-    // 2단계: 중앙 세로 기둥선 기점으로 좌우 커튼 갈라짐 시작 (2.2초)
+    // 2단계: 중앙 세로선 틈새 골드 빛 뿜어냄 & 좌우 웅장 갈라짐 (2.2초)
     const timer2 = setTimeout(() => {
       setStage('split');
     }, 2200);
 
-    // 3단계: 커튼이 완벽히 열리고 인트로 완료 (3.2초)
+    // 3단계: 갈라짐 완벽히 열리고 종료 (3.4초)
     const timer3 = setTimeout(() => {
       setStage('done');
-    }, 3200);
+    }, 3400);
 
     return () => {
       clearTimeout(timer1);
@@ -67,110 +67,121 @@ export default function IntroCurtain({ version = 'v2' }: IntroCurtainProps) {
     );
   }
 
-  // ===== 버전 2 (v2) : 하이엔드 intro.png 로고 + 중앙 세로선 골드 플레어 + 별똥별 유성 + 웅장 스플릿 =====
+  // ===== 버전 2 (v2 - 하이엔드 2배 스케일업 엠블럼 + 대각선 별똥별 + 세로 기둥 틈새 골드빛 발현 스플릿) =====
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-[100] overflow-hidden pointer-events-none select-none bg-black">
+      <div className="fixed inset-0 z-[100] overflow-hidden pointer-events-none select-none bg-navy-950">
         {/* Left Curtain Panel */}
         <motion.div
           initial={{ x: 0 }}
           animate={{ x: stage === 'split' ? '-100%' : '0%' }}
-          transition={{ duration: 1.2, ease: [0.77, 0, 0.175, 1] }}
-          className="absolute top-0 bottom-0 left-0 w-1/2 bg-[#060a12] border-r border-gold-500/30 shadow-[10px_0_30px_rgba(0,0,0,0.9)] z-10"
+          transition={{ duration: 1.25, ease: [0.77, 0, 0.175, 1] }}
+          className="absolute top-0 bottom-0 left-0 w-1/2 bg-[#050a14] border-r border-gold-500/40 shadow-[15px_0_40px_rgba(0,0,0,0.95)] z-10"
         />
 
         {/* Right Curtain Panel */}
         <motion.div
           initial={{ x: 0 }}
           animate={{ x: stage === 'split' ? '100%' : '0%' }}
-          transition={{ duration: 1.2, ease: [0.77, 0, 0.175, 1] }}
-          className="absolute top-0 bottom-0 right-0 w-1/2 bg-[#060a12] border-l border-gold-500/30 shadow-[-10px_0_30px_rgba(0,0,0,0.9)] z-10"
+          transition={{ duration: 1.25, ease: [0.77, 0, 0.175, 1] }}
+          className="absolute top-0 bottom-0 right-0 w-1/2 bg-[#050a14] border-l border-gold-500/40 shadow-[-15px_0_40px_rgba(0,0,0,0.95)] z-10"
         />
 
-        {/* Center Content: intro.png + Gold Light Sweep + Shooting Stars */}
+        {/* Center Content: 2X Scaled Logo + Diagonal Shooting Stars + Central Split Burst */}
         <motion.div
           animate={{ opacity: stage === 'split' ? 0 : 1 }}
           transition={{ duration: 0.5 }}
           className="absolute inset-0 flex flex-col items-center justify-center z-20"
         >
-          {/* Shooting Stars Background Orbits (별똥별 유성우 연출) */}
+          {/* Diagonal Shooting Stars Streams (대각선 별똥별 유성우) */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            {/* Shooting Star 1 */}
+            {/* Shooting Star 1 - Top Left to Bottom Right */}
             <motion.div
-              initial={{ x: '-20%', y: '-20%', opacity: 0 }}
-              animate={{ x: '120%', y: '120%', opacity: [0, 1, 0] }}
-              transition={{ duration: 1.4, delay: 0.2, repeat: Infinity, repeatDelay: 1.2 }}
-              className="absolute w-40 h-[2px] bg-gradient-to-r from-transparent via-gold-300 to-white filter drop-shadow-[0_0_8px_#fff0d0] transform -rotate-45"
+              initial={{ x: '-30%', y: '-30%', opacity: 0 }}
+              animate={{ x: '130%', y: '130%', opacity: [0, 1, 0] }}
+              transition={{ duration: 1.5, delay: 0.3, repeat: Infinity, repeatDelay: 1.0 }}
+              className="absolute top-[10%] left-[10%] w-64 h-[2px] bg-gradient-to-r from-transparent via-gold-300 to-white filter drop-shadow-[0_0_12px_#fff0d0] transform -rotate-45"
             />
 
-            {/* Shooting Star 2 */}
+            {/* Shooting Star 2 - Top Right to Bottom Left */}
             <motion.div
-              initial={{ x: '100%', y: '-10%', opacity: 0 }}
-              animate={{ x: '-20%', y: '110%', opacity: [0, 1, 0] }}
-              transition={{ duration: 1.6, delay: 0.6, repeat: Infinity, repeatDelay: 1.5 }}
-              className="absolute w-48 h-[2px] bg-gradient-to-r from-transparent via-amber-300 to-white filter drop-shadow-[0_0_10px_#d4af37] transform rotate-45"
+              initial={{ x: '120%', y: '-20%', opacity: 0 }}
+              animate={{ x: '-30%', y: '120%', opacity: [0, 1, 0] }}
+              transition={{ duration: 1.7, delay: 0.7, repeat: Infinity, repeatDelay: 1.3 }}
+              className="absolute top-[20%] right-[10%] w-72 h-[2px] bg-gradient-to-r from-transparent via-amber-300 to-white filter drop-shadow-[0_0_15px_#d4af37] transform rotate-45"
             />
 
-            {/* Shooting Star 3 (Center Flare Trail) */}
+            {/* Shooting Star 3 - Diagonal Burst across center */}
             <motion.div
-              initial={{ x: '-10%', y: '30%', opacity: 0 }}
-              animate={{ x: '110%', y: '90%', opacity: [0, 0.9, 0] }}
-              transition={{ duration: 1.2, delay: 1.0, repeat: Infinity, repeatDelay: 2 }}
-              className="absolute w-36 h-[2px] bg-gradient-to-r from-transparent via-gold-400 to-white filter drop-shadow-[0_0_6px_#fff0d0] transform -rotate-30"
+              initial={{ x: '-20%', y: '20%', opacity: 0 }}
+              animate={{ x: '120%', y: '100%', opacity: [0, 0.95, 0] }}
+              transition={{ duration: 1.3, delay: 1.1, repeat: Infinity, repeatDelay: 1.6 }}
+              className="absolute top-[35%] left-[5%] w-56 h-[2px] bg-gradient-to-r from-transparent via-gold-400 to-white filter drop-shadow-[0_0_10px_#fff0d0] transform -rotate-35"
             />
           </div>
 
-          {/* Center Logo Container */}
-          <div className="relative flex flex-col items-center justify-center p-6">
-            {/* Ambient Gold Radial Flare Pulse behind intro.png */}
+          {/* Center Logo Container (2X Scaled Up, No Box, Seamless Fit) */}
+          <div className="relative flex flex-col items-center justify-center p-4">
+            {/* Ambient Gold Solar Flare Pulse behind intro.png */}
             <motion.div
               animate={{
-                scale: stage === 'flare' ? [1, 1.8, 2.2] : 1,
-                opacity: stage === 'flare' ? [0.2, 0.85, 0.3] : 0.3,
+                scale: stage === 'flare' || stage === 'split' ? [1, 2.2, 3.2] : 1,
+                opacity: stage === 'flare' ? [0.25, 0.95, 0.4] : 0.3,
               }}
               transition={{ duration: 1.2, ease: 'easeOut' }}
-              className="absolute w-80 h-80 bg-gradient-to-r from-gold-300 via-gold-500 to-amber-400 rounded-full filter blur-[70px] pointer-events-none"
+              className="absolute w-[500px] h-[500px] bg-gradient-to-r from-gold-300 via-gold-500 to-amber-400 rounded-full filter blur-[90px] pointer-events-none"
             />
 
-            {/* intro.png Image Logo rendered in crisp high-contrast center */}
+            {/* 2X Scaled intro.png Logo (No box borders, clean seamless rendering) */}
             <motion.div
-              initial={{ scale: 0.9, opacity: 0, y: 10 }}
+              initial={{ scale: 0.85, opacity: 0, y: 15 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="relative z-10 max-w-[200px] sm:max-w-[260px] md:max-w-[300px] w-full"
+              transition={{ duration: 0.9 }}
+              className="relative z-10 max-w-[340px] sm:max-w-[480px] md:max-w-[560px] lg:max-w-[620px] w-full"
             >
               <Image
                 src="/images/intro.png"
-                alt="ACMER DONGTAN Signature Logo"
-                width={300}
-                height={300}
+                alt="ACMER DONGTAN 2X Scaled Signature Logo"
+                width={620}
+                height={620}
                 priority
-                className="w-full h-auto object-contain filter drop-shadow-[0_0_20px_rgba(212,175,55,0.4)]"
+                className="w-full h-auto object-contain filter drop-shadow-[0_0_35px_rgba(212,175,55,0.6)]"
               />
             </motion.div>
 
-            {/* Central Vertical Gold Beam - Perfectly Aligned with the tallest tower stroke of intro.png */}
+            {/* Central Vertical Line (aligned with the tallest center tower line of intro.png) */}
+            {/* Gold Light Burst Emitted from the Core Crack when Splitting */}
             <motion.div
               initial={{ scaleY: 0, opacity: 0 }}
               animate={{
-                scaleY: stage === 'flare' || stage === 'split' ? 1 : 0.4,
-                opacity: stage === 'split' ? 0 : 0.95,
+                scaleY: stage === 'flare' || stage === 'split' ? 1 : 0.5,
+                opacity: stage === 'split' ? 1 : 0.9,
               }}
               transition={{ duration: 0.8, ease: 'easeOut' }}
-              className="absolute top-[-20%] bottom-[-20%] w-[3px] bg-gradient-to-b from-transparent via-gold-300 to-transparent shadow-[0_0_25px_#fff0d0] z-20 pointer-events-none"
+              className="absolute top-[-30%] bottom-[-30%] w-[4px] bg-gradient-to-b from-transparent via-gold-300 to-transparent shadow-[0_0_35px_#fff0d0] z-20 pointer-events-none"
               style={{
                 left: '50%',
                 transform: 'translateX(-50%)',
               }}
             >
-              {/* Pulsing Light Sweep Burst along the central line */}
+              {/* Intense Gold Light Burst from inside the splitting crack */}
+              {stage === 'split' && (
+                <motion.div
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={{ scale: [1, 4, 6], opacity: [1, 0.8, 0] }}
+                  transition={{ duration: 0.9, ease: 'easeOut' }}
+                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-96 bg-gradient-to-r from-gold-300 via-white to-gold-400 rounded-full filter blur-xl shadow-[0_0_80px_#fff0d0]"
+                />
+              )}
+
+              {/* Pulsing Light Beam Sweep */}
               <motion.div
                 animate={{
                   y: ['-100%', '200%'],
                   opacity: [0, 1, 0],
                 }}
-                transition={{ duration: 1.2, repeat: Infinity, repeatDelay: 0.5 }}
-                className="w-full h-24 bg-gradient-to-b from-transparent via-white to-transparent filter blur-[1px]"
+                transition={{ duration: 1.1, repeat: Infinity, repeatDelay: 0.4 }}
+                className="w-full h-32 bg-gradient-to-b from-transparent via-white to-transparent filter blur-[1px]"
               />
             </motion.div>
           </div>
