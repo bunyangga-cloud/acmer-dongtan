@@ -1,15 +1,47 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { Sparkles, Calendar, ChevronDown, Award } from 'lucide-react';
+import { Sparkles, Calendar, ChevronDown, Train } from 'lucide-react';
 
 interface HeroProps {
   onNavigateSection: (targetId: string) => void;
 }
 
 export default function Hero({ onNavigateSection }: HeroProps) {
+  const [activeFeature, setActiveFeature] = useState(0);
+
+  // 상단 3개 버튼 정의 (첫 번째: 메타역 초역세권)
+  const heroFeatures = [
+    {
+      id: 0,
+      icon: Train,
+      text: '메타역 초역세권',
+      targetId: 'location',
+    },
+    {
+      id: 1,
+      icon: Sparkles,
+      text: '1,808세대 대단지',
+      targetId: 'overview',
+    },
+    {
+      id: 2,
+      icon: Calendar,
+      text: '9월 분양 예정',
+      targetId: 'register',
+    },
+  ];
+
+  // 2.4초마다 순차적으로 활성 버튼 이동 (0 -> 1 -> 2 -> 0)
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveFeature((prev) => (prev + 1) % heroFeatures.length);
+    }, 2400);
+    return () => clearInterval(timer);
+  }, [heroFeatures.length]);
+
   // 얇고 은은하게 교차하는 사선 빛줄기 4개 정의 (화이트 & 골드 랜덤 교차)
   const lightRays = [
     {
@@ -153,22 +185,36 @@ export default function Hero({ onNavigateSection }: HeroProps) {
           </h1>
         </motion.div>
 
-        {/* Feature Tags */}
+        {/* 4. 순차적으로 이동 및 배경색 변화하는 3개 버튼 박스 */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.45 }}
-          className="flex flex-wrap items-center justify-center gap-3 md:gap-4 text-xs sm:text-sm text-slate-100 mb-10"
+          className="flex flex-wrap items-center justify-center gap-3 md:gap-4 mb-10"
         >
-          <span className="flex items-center gap-1.5 bg-black/60 backdrop-blur-md px-4 py-2 rounded-xl border border-white/20 shadow-md">
-            <Award className="w-4 h-4 text-gold-400" /> 랜드마크 조감도 뷰
-          </span>
-          <span className="flex items-center gap-1.5 bg-black/60 backdrop-blur-md px-4 py-2 rounded-xl border border-white/20 shadow-md">
-            <Sparkles className="w-4 h-4 text-gold-400" /> 1,808세대 대단지
-          </span>
-          <span className="flex items-center gap-1.5 bg-black/60 backdrop-blur-md px-4 py-2 rounded-xl border border-white/20 shadow-md">
-            <Calendar className="w-4 h-4 text-gold-400" /> 9월 분양 예정
-          </span>
+          {heroFeatures.map((item, idx) => {
+            const IconComponent = item.icon;
+            const isActive = activeFeature === idx;
+
+            return (
+              <button
+                key={item.id}
+                onClick={() => onNavigateSection(item.targetId)}
+                onMouseEnter={() => setActiveFeature(idx)}
+                className={`flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-xl transition-all duration-500 cursor-pointer ${
+                  isActive
+                    ? 'bg-gradient-to-r from-amber-500 via-gold-400 to-amber-600 text-navy-950 font-bold border-2 border-gold-300 shadow-xl shadow-gold-500/35 scale-105 -translate-y-1'
+                    : 'bg-black/60 text-slate-200 border border-white/20 hover:border-gold-400/60 backdrop-blur-md opacity-85 hover:opacity-100'
+                }`}
+              >
+                <IconComponent className={`w-4 h-4 transition-transform duration-300 ${isActive ? 'text-navy-950 scale-110' : 'text-gold-400'}`} />
+                <span className="text-xs sm:text-sm tracking-wide">{item.text}</span>
+                {isActive && (
+                  <span className="w-1.5 h-1.5 rounded-full bg-navy-950 animate-ping" />
+                )}
+              </button>
+            );
+          })}
         </motion.div>
 
         {/* CTA Buttons */}
