@@ -41,8 +41,8 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-navy-950 text-white font-sans selection:bg-gold-500 selection:text-navy-950 relative">
-      {/* Grand Split Curtain Intro Animation (최초 진입 시 중앙 골드빛 번짐 후 좌우 갈라짐 인트로) */}
+    <main className="min-h-screen bg-[#f8fafc] text-slate-900 font-sans selection:bg-gold-400 selection:text-slate-950 relative">
+      {/* Grand Split Curtain Intro Animation */}
       <IntroCurtain />
 
       {/* Smooth Fade Transition Overlay */}

@@ -46,16 +46,13 @@ export default function LocationSection() {
     }
   ];
 
-  // 마우스 커서 팁 좌표와 돋보기 렌즈가 바라보는 이미지 픽셀 1:1 완벽 정밀 매칭
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!imgRef.current) return;
     const rect = imgRef.current.getBoundingClientRect();
     
-    // 마우스가 이미지 영역 내부 어디에 있는지 정확한 픽셀 계산
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
 
-    // 마우스 커서가 이미지 영역 바깥으로 나가면 돋보기 숨김
     if (x < 0 || y < 0 || x > rect.width || y > rect.height) {
       setShowMagnifier(false);
       return;
@@ -108,18 +105,18 @@ export default function LocationSection() {
   };
 
   return (
-    <section id="location" className="py-24 relative bg-navy-950 text-white overflow-hidden border-t border-slate-900">
+    <section id="location" className="py-24 relative bg-white text-slate-900 overflow-hidden border-t border-slate-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 space-y-4">
-          <span className="text-gold-400 font-serif text-sm font-semibold tracking-widest uppercase">
+          <span className="text-amber-700 font-serif text-sm font-bold tracking-widest uppercase">
             LOCATION PREMIUM
           </span>
-          <h2 className="text-3xl sm:text-4xl font-serif font-bold tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-serif font-bold tracking-tight text-slate-900">
             모든 가치가 집약된 <span className="gold-gradient-text">동탄 최중심 입지</span>
           </h2>
-          <div className="w-16 h-0.5 bg-gradient-to-r from-transparent via-gold-400 to-transparent mx-auto" />
-          <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
+          <div className="w-16 h-0.5 bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto" />
+          <p className="text-slate-600 text-base sm:text-lg leading-relaxed font-normal">
             교통, 자연, 교육, 생활 인프라까지 미래 가치가 집중되는 아크메르 동탄의 입지 프리미엄을 확인하세요.
           </p>
         </div>
@@ -130,15 +127,15 @@ export default function LocationSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="relative rounded-3xl overflow-hidden border-2 border-gold-500/40 shadow-2xl bg-white p-2 sm:p-4 mb-12"
+          className="relative rounded-3xl overflow-hidden border border-slate-200/90 shadow-xl bg-white p-2 sm:p-4 mb-12"
         >
           {/* Top Instruction Badge */}
-          <div className="flex items-center justify-between px-3.5 py-2.5 bg-navy-950/90 rounded-xl mb-3 text-xs text-gold-300 border border-gold-500/30">
-            <div className="flex items-center gap-2 font-medium">
-              <ZoomIn className="w-4 h-4 text-gold-400 animate-pulse" />
+          <div className="flex items-center justify-between px-4 py-3 bg-amber-50 rounded-xl mb-3 text-xs text-amber-900 border border-amber-200/80">
+            <div className="flex items-center gap-2 font-bold">
+              <ZoomIn className="w-4 h-4 text-amber-600 animate-pulse" />
               <span>지도 위에 마우스를 올리시면 <strong>마우스 위치 그대로 1:1 정확하게 돋보기로 선명히 확대</strong>됩니다.</span>
             </div>
-            <span className="hidden sm:inline-block text-[11px] font-mono text-slate-400">1:1 PRECISION MAGNIFIER</span>
+            <span className="hidden sm:inline-block text-[11px] font-mono text-amber-700 font-semibold">1:1 PRECISION MAGNIFIER</span>
           </div>
 
           {/* Precision Image Container */}
@@ -163,7 +160,7 @@ export default function LocationSection() {
             {/* 1:1 Precision Circle Gold Magnifier Lens */}
             {showMagnifier && (
               <div
-                className="absolute pointer-events-none rounded-full border-4 border-gold-400 shadow-[0_0_35px_rgba(212,175,55,0.8)] bg-white overflow-hidden z-30"
+                className="absolute pointer-events-none rounded-full border-4 border-amber-500 shadow-[0_0_35px_rgba(212,175,55,0.8)] bg-white overflow-hidden z-30"
                 style={{
                   width: `${LENS_SIZE}px`,
                   height: `${LENS_SIZE}px`,
@@ -177,7 +174,7 @@ export default function LocationSection() {
               >
                 {/* Center Precision Target Dot */}
                 <div className="absolute inset-0 flex items-center justify-center opacity-30">
-                  <div className="w-4 h-4 rounded-full border border-gold-500 bg-gold-400/20" />
+                  <div className="w-4 h-4 rounded-full border border-amber-600 bg-amber-400/20" />
                 </div>
               </div>
             )}
@@ -195,21 +192,21 @@ export default function LocationSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="glass-card rounded-2xl p-6 border border-slate-800 hover:border-gold-500/40 transition-all duration-300 group hover:-translate-y-1"
+                className="bg-slate-50/80 rounded-2xl p-6 border border-slate-200/80 hover:bg-white hover:border-amber-400 hover:shadow-lg transition-all duration-300 group hover:-translate-y-1"
               >
-                <div className="w-12 h-12 rounded-xl bg-gold-500/10 border border-gold-500/30 text-gold-400 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-gold-500 group-hover:text-navy-950 transition-all duration-300">
+                <div className="w-12 h-12 rounded-xl bg-amber-100/80 border border-amber-200 text-amber-800 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-amber-500 group-hover:text-white transition-all duration-300">
                   <IconComponent className="w-6 h-6" />
                 </div>
 
-                <span className="text-[10px] font-mono font-semibold tracking-widest text-gold-400 uppercase">
+                <span className="text-[10px] font-mono font-bold tracking-widest text-amber-700 uppercase">
                   {item.tag}
                 </span>
 
-                <h4 className="text-lg font-bold font-serif text-white mt-1 mb-2 group-hover:text-gold-300 transition-colors">
+                <h4 className="text-lg font-bold font-serif text-slate-900 mt-1 mb-2 group-hover:text-amber-800 transition-colors">
                   {item.title}
                 </h4>
 
-                <p className="text-xs text-slate-300 leading-relaxed">
+                <p className="text-xs text-slate-600 leading-relaxed font-normal">
                   {item.desc}
                 </p>
               </motion.div>

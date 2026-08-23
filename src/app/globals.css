@@ -5,14 +5,14 @@
 @tailwind utilities;
 
 :root {
-  --background: #050a14;
-  --foreground: #f8fafc;
+  --background: #ffffff;
+  --foreground: #0f172a;
 }
 
 html {
   font-family: 'Noto Sans KR', sans-serif;
-  background-color: #050a14;
-  color: #f8fafc;
+  background-color: #f8fafc;
+  color: #0f172a;
 }
 
 /* Enforce Korean Word-level Line-breaking across all typography */
@@ -26,25 +26,25 @@ p, h1, h2, h3, h4, h5, h6, span, button, label, a, li, div {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #080f1e;
+  background: #f1f5f9;
 }
 ::-webkit-scrollbar-thumb {
-  background: #2a3854;
+  background: #cbd5e1;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #d4af37;
 }
 
-/* Luxury Gold Text Gradient with Flowing Shimmer */
+/* Luxury Deep Gold Text Gradient for Crisp Readability on Light Backgrounds */
 .gold-gradient-text {
   background: linear-gradient(
     120deg,
-    #E5C07B 0%,
-    #FFF0D0 25%,
-    #D4AF37 50%,
-    #FFF0D0 75%,
-    #AA882C 100%
+    #996515 0%,
+    #b8860b 25%,
+    #d4af37 50%,
+    #b8860b 75%,
+    #805300 100%
   );
   background-size: 200% auto;
   -webkit-background-clip: text;
@@ -55,11 +55,9 @@ p, h1, h2, h3, h4, h5, h6, span, button, label, a, li, div {
 @keyframes goldTextFlow {
   0% {
     background-position: 0% 50%;
-    filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.3));
   }
   100% {
     background-position: 100% 50%;
-    filter: drop-shadow(0 0 35px rgba(255, 240, 208, 0.7));
   }
 }
 
@@ -70,10 +68,10 @@ p, h1, h2, h3, h4, h5, h6, span, button, label, a, li, div {
     opacity: 0;
   }
   20% {
-    opacity: 0.35;
+    opacity: 0.25;
   }
   80% {
-    opacity: 0.35;
+    opacity: 0.25;
   }
   100% {
     transform: translateX(250%) skewX(-25deg);
@@ -88,11 +86,11 @@ p, h1, h2, h3, h4, h5, h6, span, button, label, a, li, div {
 /* Ambient Radial Glow Pulse */
 @keyframes ambientPulse {
   0%, 100% {
-    opacity: 0.3;
+    opacity: 0.4;
     transform: scale(1) translate(0, 0);
   }
   50% {
-    opacity: 0.65;
+    opacity: 0.7;
     transform: scale(1.15) translate(20px, -15px);
   }
 }
@@ -101,15 +99,16 @@ p, h1, h2, h3, h4, h5, h6, span, button, label, a, li, div {
   animation: ambientPulse 12s ease-in-out infinite;
 }
 
-/* Backdrop Glassmorphism */
+/* Light Luxury Glassmorphism */
 .glass-card {
-  background: rgba(11, 19, 37, 0.7);
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(16px);
-  border: 1px solid rgba(212, 175, 55, 0.15);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.04);
 }
 
 .glass-nav {
-  background: rgba(5, 10, 20, 0.85);
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.9);
 }

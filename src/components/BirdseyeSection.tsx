@@ -26,7 +26,7 @@ export default function BirdseyeSection() {
     },
   ];
 
-  // 5.5초 간격으로 여유롭고 부드럽게 자동 순환 (Auto-Carousel)
+  // 5.5초 간격으로 부드럽게 자동 순환 (Auto-Carousel)
   useEffect(() => {
     const timer = setInterval(() => {
       setActiveSlide((prev) => (prev === 0 ? 1 : 0));
@@ -37,26 +37,26 @@ export default function BirdseyeSection() {
   const currentSlide = slides[activeSlide];
 
   return (
-    <section id="birdseye" className="py-24 relative bg-slate-950 text-white border-t border-slate-900">
+    <section id="birdseye" className="py-24 relative bg-slate-50 text-slate-900 border-t border-slate-200/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-10 space-y-4">
-          <span className="text-gold-400 font-serif text-sm font-semibold tracking-widest uppercase">
+          <span className="text-amber-700 font-serif text-sm font-bold tracking-widest uppercase">
             BIRD'S EYE VIEW & ARCHITECTURE
           </span>
-          <h2 className="text-3xl sm:text-4xl font-serif font-bold text-white">
+          <h2 className="text-3xl sm:text-4xl font-serif font-bold text-slate-900">
             아크메르 동탄 <span className="gold-gradient-text">단지 조감도</span>
           </h2>
-          <div className="w-16 h-0.5 bg-gradient-to-r from-transparent via-gold-400 to-transparent mx-auto" />
-          <p className="text-slate-400 text-sm sm:text-base">
+          <div className="w-16 h-0.5 bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto" />
+          <p className="text-slate-600 text-sm sm:text-base font-normal">
             웅장함과 세련됨이 교차하는 미학적 건축 설계
           </p>
         </div>
 
         {/* 100% Fit Whole Image Container (No Clipping / Original Clean Render) */}
-        <div className="relative group rounded-3xl overflow-hidden border border-gold-500/30 shadow-2xl bg-navy-950 p-2 md:p-4">
+        <div className="relative group rounded-3xl overflow-hidden border border-slate-200/90 shadow-xl bg-white p-2 md:p-3.5">
           <div
-            className="relative w-full h-[380px] sm:h-[480px] md:h-[580px] lg:h-[640px] flex items-center justify-center cursor-pointer overflow-hidden rounded-2xl bg-slate-950"
+            className="relative w-full h-[380px] sm:h-[480px] md:h-[580px] lg:h-[640px] flex items-center justify-center cursor-pointer overflow-hidden rounded-2xl bg-slate-100"
             onClick={() => setIsLightboxOpen(true)}
           >
             {/* Auto Crossfade Slider Images */}
@@ -69,7 +69,6 @@ export default function BirdseyeSection() {
                 transition={{ duration: 1, ease: 'easeInOut' }}
                 className="relative w-full h-full flex items-center justify-center"
               >
-                {/* Original Clean Image Render with object-contain fit */}
                 <Image
                   src={currentSlide.src}
                   alt={currentSlide.title}
@@ -81,21 +80,21 @@ export default function BirdseyeSection() {
             </AnimatePresence>
 
             {/* Top Right Zoom Button */}
-            <div className="absolute top-4 right-4 p-3 rounded-full bg-navy-950/80 border border-gold-500/40 text-gold-400 group-hover:scale-110 transition-transform z-20">
+            <div className="absolute top-4 right-4 p-3 rounded-full bg-white/90 border border-slate-200 text-amber-700 shadow-md group-hover:scale-110 transition-transform z-20">
               <Maximize2 className="w-5 h-5" />
             </div>
 
             {/* Bottom Floating Info Bar */}
-            <div className="absolute bottom-4 left-4 right-4 md:bottom-6 md:left-6 md:right-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 md:p-4 rounded-2xl bg-navy-950/85 backdrop-blur-md border border-gold-500/30 z-20">
+            <div className="absolute bottom-4 left-4 right-4 md:bottom-6 md:left-6 md:right-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 md:p-4 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200 shadow-lg z-20">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-gold-500/20 border border-gold-400 flex items-center justify-center text-gold-400 font-serif font-bold text-xs shrink-0">
+                <div className="w-8 h-8 rounded-lg bg-amber-500 text-white flex items-center justify-center font-serif font-bold text-xs shrink-0 shadow-sm">
                   0{activeSlide + 1}
                 </div>
                 <div>
-                  <div className="flex items-center gap-2 text-gold-400 text-[10px] font-semibold uppercase">
+                  <div className="flex items-center gap-2 text-amber-700 text-[10px] font-bold uppercase">
                     <Sparkles className="w-3 h-3" /> {currentSlide.tag}
                   </div>
-                  <h4 className="text-sm md:text-base font-serif font-bold text-white">
+                  <h4 className="text-sm md:text-base font-serif font-bold text-slate-900">
                     {currentSlide.title}
                   </h4>
                 </div>
@@ -111,7 +110,7 @@ export default function BirdseyeSection() {
                       setActiveSlide(idx);
                     }}
                     className={`h-2 rounded-full transition-all ${
-                      activeSlide === idx ? 'w-6 bg-gold-400' : 'w-2 bg-slate-700'
+                      activeSlide === idx ? 'w-6 bg-amber-500' : 'w-2 bg-slate-300'
                     }`}
                   />
                 ))}
@@ -120,7 +119,7 @@ export default function BirdseyeSection() {
                     e.stopPropagation();
                     setIsLightboxOpen(true);
                   }}
-                  className="ml-2 flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gold-500/20 border border-gold-400 text-gold-300 hover:text-white transition-colors text-xs font-medium"
+                  className="ml-2 flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-50 border border-amber-300 text-amber-800 hover:bg-amber-100 transition-colors text-xs font-bold"
                 >
                   <Eye className="w-3.5 h-3.5" /> 확대보기
                 </button>
@@ -131,36 +130,36 @@ export default function BirdseyeSection() {
 
         {/* 3 Key Architectural Pillars */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-          <div className="glass-card rounded-xl p-5 border border-slate-800">
+          <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm">
             <div className="flex items-start gap-3">
-              <CheckCircle2 className="w-5 h-5 text-gold-400 shrink-0 mt-0.5" />
+              <CheckCircle2 className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
               <div>
-                <h4 className="font-bold text-white text-base">랜드마크 주거 타워</h4>
-                <p className="text-xs text-slate-400 mt-1">
+                <h4 className="font-bold text-slate-900 text-base">랜드마크 주거 타워</h4>
+                <p className="text-xs text-slate-600 mt-1 font-normal">
                   탁 트인 조망권과 채광을 극대화한 특화 동배치 설계
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="glass-card rounded-xl p-5 border border-slate-800">
+          <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm">
             <div className="flex items-start gap-3">
-              <CheckCircle2 className="w-5 h-5 text-gold-400 shrink-0 mt-0.5" />
+              <CheckCircle2 className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
               <div>
-                <h4 className="font-bold text-white text-base">친환경 조경 에코 단지</h4>
-                <p className="text-xs text-slate-400 mt-1">
+                <h4 className="font-bold text-slate-900 text-base">친환경 조경 에코 단지</h4>
+                <p className="text-xs text-slate-600 mt-1 font-normal">
                   단지 중앙을 가로지르는 산책로와 녹지 정원 조성
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="glass-card rounded-xl p-5 border border-slate-800">
+          <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm">
             <div className="flex items-start gap-3">
-              <CheckCircle2 className="w-5 h-5 text-gold-400 shrink-0 mt-0.5" />
+              <CheckCircle2 className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
               <div>
-                <h4 className="font-bold text-white text-base">반송역 초역세권 프리미엄</h4>
-                <p className="text-xs text-slate-400 mt-1">
+                <h4 className="font-bold text-slate-900 text-base">반송역 초역세권 프리미엄</h4>
+                <p className="text-xs text-slate-600 mt-1 font-normal">
                   동탄인덕원선 반송역 인접 도보 역세권 주거 중심지
                 </p>
               </div>
@@ -178,14 +177,14 @@ export default function BirdseyeSection() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsLightboxOpen(false)}
-              className="absolute inset-0 bg-black/90 backdrop-blur-md"
+              className="absolute inset-0 bg-slate-950/80 backdrop-blur-md"
             />
 
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              className="relative max-w-6xl w-full max-h-[90vh] aspect-[16/9] z-10 rounded-2xl overflow-hidden border border-gold-500/40 shadow-2xl bg-slate-950 flex items-center justify-center"
+              className="relative max-w-6xl w-full max-h-[90vh] aspect-[16/9] z-10 rounded-2xl overflow-hidden border border-amber-400/50 shadow-2xl bg-white flex items-center justify-center"
             >
               <Image
                 src={currentSlide.src}
@@ -195,7 +194,7 @@ export default function BirdseyeSection() {
               />
               <button
                 onClick={() => setIsLightboxOpen(false)}
-                className="absolute top-4 right-4 p-3 rounded-full bg-black/70 text-white hover:text-gold-400 border border-slate-700 transition-colors z-30"
+                className="absolute top-4 right-4 p-3 rounded-full bg-slate-900/80 text-white hover:text-amber-400 border border-slate-700 transition-colors z-30"
               >
                 <X className="w-6 h-6" />
               </button>

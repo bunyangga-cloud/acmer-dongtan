@@ -17,12 +17,12 @@ export default function IntroCurtain({ version = 'v2' }: IntroCurtainProps) {
       setStage('textIn');
     }, 800);
 
-    // 2단계: 문구를 감상한 후 골드 렌즈 블룸 디졸브 시작 (2.2초)
+    // 2단계: 문구를 감상한 후 찬란한 화이트&골드 라이트 블룸 디졸브 시작 (2.2초)
     const timer2 = setTimeout(() => {
       setStage('dissolve');
     }, 2200);
 
-    // 3단계: 디졸브 완료 후 메인 화면 진입 (3.2초)
+    // 3단계: 디졸브 완료 후 밝고 화사한 메인 화면 진입 (3.2초)
     const timer3 = setTimeout(() => {
       setStage('done');
     }, 3200);
@@ -67,7 +67,7 @@ export default function IntroCurtain({ version = 'v2' }: IntroCurtainProps) {
     );
   }
 
-  // ===== 버전 2 (v2) : 큼직한 웅장 골드 링 + 자연스러운 슬로건 페이드 인 + 시네마틱 디졸브 =====
+  // ===== 버전 2 (v2) : 큼직한 웅장 골드 링 + 슬로건 페이드 인 + 화사한 라이트 블룸 디졸브 =====
   return (
     <AnimatePresence>
       <motion.div
@@ -90,7 +90,7 @@ export default function IntroCurtain({ version = 'v2' }: IntroCurtainProps) {
           className="absolute w-[600px] sm:w-[850px] h-[600px] sm:h-[850px] bg-gradient-to-r from-gold-300/30 via-gold-500/25 to-amber-400/30 rounded-full filter blur-[120px]"
         />
 
-        {/* 2. 큼직하고 웅장한 대형 골드 렌즈 플레어 링 (크기 큼직하게 최적화) */}
+        {/* 2. 큼직하고 웅장한 대형 골드 렌즈 플레어 링 */}
         <motion.div
           initial={{ scale: 0.7, opacity: 0 }}
           animate={{
@@ -139,13 +139,13 @@ export default function IntroCurtain({ version = 'v2' }: IntroCurtainProps) {
           </motion.div>
         </div>
 
-        {/* 4. 디졸브 골드 라이트 블룸 */}
+        {/* 4. 밝고 환한 라이트 블룸 디졸브 (Bright Light Veil into White Luxury Theme) */}
         {stage === 'dissolve' && (
           <motion.div
             initial={{ opacity: 0 }}
-            animate={{ opacity: [0, 0.85, 0] }}
+            animate={{ opacity: [0, 0.95, 0] }}
             transition={{ duration: 0.9, ease: 'easeInOut' }}
-            className="absolute inset-0 bg-gradient-to-t from-gold-500/20 via-gold-300/30 to-white/20 filter blur-2xl pointer-events-none z-30"
+            className="absolute inset-0 bg-gradient-to-t from-amber-100/40 via-white/80 to-white/90 filter blur-xl pointer-events-none z-30"
           />
         )}
       </motion.div>
