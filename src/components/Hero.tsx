@@ -18,7 +18,7 @@ export default function Hero({ onNavigateSection }: HeroProps) {
     {
       id: 0,
       icon: Train,
-      text: '메타역 초역세권',
+      text: '반송역(메타역) 초역세권',
       targetId: 'location',
     },
     {
