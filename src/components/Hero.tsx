@@ -32,17 +32,50 @@ export default function Hero({ onNavigateSection }: HeroProps) {
             alt="아크메르 동탄 조감도 메인 비주얼"
             fill
             priority
-            className="object-cover object-center filter brightness-[0.72] contrast-[1.08]"
+            className="object-cover object-center filter brightness-[0.75] contrast-[1.08]"
           />
         </motion.div>
 
-        {/* 2. 시네마틱 비네팅 & 은은한 엠비언트 (조감도가 뚜렷하게 보이면서 텍스트 가독성 확보) */}
+        {/* 2. 시네마틱 비네팅 */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/40" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-black/50" />
 
-        {/* Moving Gold Light Beam Sweep */}
+        {/* 3. 은은한 그라데이션 골드빛 사선 플로우 (Subtle Diagonal Golden Ray Stream) */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <div className="w-[45%] h-[200%] absolute -top-[50%] left-0 bg-gradient-to-r from-transparent via-gold-400/20 to-transparent blur-3xl transform rotate-12 animate-light-flare" />
+          {/* 첫 번째 사선 골드 앰비언트 광선 (부드럽고 넓은 골드빛) */}
+          <motion.div
+            initial={{ x: '-100%', y: '-100%', opacity: 0 }}
+            animate={{
+              x: ['-100%', '200%'],
+              y: ['-100%', '200%'],
+              opacity: [0, 0.45, 0.7, 0.45, 0],
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: 'easeInOut',
+              repeatDelay: 1.5,
+            }}
+            className="absolute top-0 left-0 w-[350px] sm:w-[500px] h-[300%] bg-gradient-to-r from-transparent via-amber-300/25 via-gold-200/30 to-transparent filter blur-3xl transform -rotate-45 origin-top-left"
+          />
+
+          {/* 두 번째 사선 샴페인 빛줄기 (섬세하고 맑은 햇살 플레어) */}
+          <motion.div
+            initial={{ x: '-120%', y: '-120%', opacity: 0 }}
+            animate={{
+              x: ['-120%', '180%'],
+              y: ['-120%', '180%'],
+              opacity: [0, 0.5, 0.8, 0.5, 0],
+            }}
+            transition={{
+              duration: 10,
+              repeat: Infinity,
+              ease: 'easeInOut',
+              delay: 4,
+              repeatDelay: 2,
+            }}
+            className="absolute top-0 left-0 w-[160px] sm:w-[240px] h-[300%] bg-gradient-to-r from-transparent via-white/35 via-gold-300/30 to-transparent filter blur-2xl transform -rotate-45 origin-top-left"
+          />
         </div>
       </div>
 
