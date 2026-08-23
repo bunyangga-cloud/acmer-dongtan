@@ -12,7 +12,7 @@ interface HeroProps {
 export default function Hero({ onNavigateSection }: HeroProps) {
   const [activeFeature, setActiveFeature] = useState(0);
 
-  // 상단 3개 버튼 정의 (첫 번째: 메타역 초역세권)
+  // 상단 3개 버튼 정의
   const heroFeatures = [
     {
       id: 0,
@@ -42,49 +42,9 @@ export default function Hero({ onNavigateSection }: HeroProps) {
     return () => clearInterval(timer);
   }, [heroFeatures.length]);
 
-  // 얇고 은은하게 교차하는 사선 빛줄기 4개 정의 (화이트 & 골드 랜덤 교차)
-  const lightRays = [
-    {
-      id: 1,
-      color: 'from-transparent via-white/40 via-amber-200/50 to-transparent',
-      width: 'w-12 sm:w-20',
-      duration: 7.5,
-      delay: 0,
-      repeatDelay: 3.5,
-      blur: 'blur-lg',
-    },
-    {
-      id: 2,
-      color: 'from-transparent via-gold-300/45 to-transparent',
-      width: 'w-8 sm:w-14',
-      duration: 9.0,
-      delay: 2.2,
-      repeatDelay: 2.8,
-      blur: 'blur-md',
-    },
-    {
-      id: 3,
-      color: 'from-transparent via-white/50 to-transparent',
-      width: 'w-6 sm:w-10',
-      duration: 6.8,
-      delay: 4.8,
-      repeatDelay: 4.0,
-      blur: 'blur-sm',
-    },
-    {
-      id: 4,
-      color: 'from-transparent via-amber-300/35 via-white/40 to-transparent',
-      width: 'w-16 sm:w-24',
-      duration: 8.2,
-      delay: 6.5,
-      repeatDelay: 3.2,
-      blur: 'blur-xl',
-    },
-  ];
-
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-16">
-      {/* 1. Dynamic Pan & Zoom Background Image (100% 선명한 조감도) */}
+      {/* 1. Dynamic Pan & Zoom Background Image (100% 선명하고 깨끗한 조감도 원본 노출) */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <motion.div
           animate={{
@@ -108,34 +68,9 @@ export default function Hero({ onNavigateSection }: HeroProps) {
           />
         </motion.div>
 
-        {/* 2. 시네마틱 비네팅 */}
+        {/* 2. 시네마틱 비네팅 (대각선 조명 없이 깨끗하고 차분한 뷰) */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/40" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-black/50" />
-
-        {/* 3. 화면 전체를 횡단하는 얇고 은은한 사선 화이트 & 골드 교차 빛줄기 */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {lightRays.map((ray) => (
-            <motion.div
-              key={ray.id}
-              initial={{ transform: 'translateX(-100vw) translateY(-100vh) rotate(-45deg)' }}
-              animate={{
-                transform: [
-                  'translateX(-80vw) translateY(-80vh) rotate(-45deg)',
-                  'translateX(120vw) translateY(120vh) rotate(-45deg)',
-                ],
-                opacity: [0, 0.7, 0.9, 0.7, 0],
-              }}
-              transition={{
-                duration: ray.duration,
-                repeat: Infinity,
-                ease: 'easeInOut',
-                delay: ray.delay,
-                repeatDelay: ray.repeatDelay,
-              }}
-              className={`absolute top-0 left-1/2 h-[350vh] ${ray.width} bg-gradient-to-r ${ray.color} ${ray.blur} origin-center`}
-            />
-          ))}
-        </div>
       </div>
 
       {/* Hero Content */}
