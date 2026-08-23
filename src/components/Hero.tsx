@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Sparkles, Calendar, ChevronDown, Train } from 'lucide-react';
+import MetaStationMotionWidget from '@/components/MetaStationMotionWidget';
 
 interface HeroProps {
   onNavigateSection: (targetId: string) => void;
@@ -68,7 +69,7 @@ export default function Hero({ onNavigateSection }: HeroProps) {
           />
         </motion.div>
 
-        {/* 2. 시네마틱 비네팅 (대각선 조명 없이 깨끗하고 차분한 뷰) */}
+        {/* 2. 시네마틱 비네팅 */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/40" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-black/50" />
       </div>
@@ -187,6 +188,9 @@ export default function Hero({ onNavigateSection }: HeroProps) {
           <div>문의: <span className="text-white font-mono">대표번호 오픈 직전 공개</span></div>
         </motion.div>
       </div>
+
+      {/* [메타역모션] - PC 기준 우측 하단 여백 라이브 워킹 모션 위젯 (언제든지 토글/제거 가능) */}
+      <MetaStationMotionWidget onNavigateSection={onNavigateSection} />
 
       {/* Clickable Scroll Down Indicator */}
       <motion.button
