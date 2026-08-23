@@ -10,9 +10,49 @@ interface HeroProps {
 }
 
 export default function Hero({ onNavigateSection }: HeroProps) {
+  // 얇고 은은하게 교차하는 사선 빛줄기 4개 정의 (화이트 & 골드 랜덤 교차)
+  const lightRays = [
+    {
+      id: 1,
+      color: 'from-transparent via-white/40 via-amber-200/50 to-transparent',
+      width: 'w-12 sm:w-20',
+      duration: 7.5,
+      delay: 0,
+      repeatDelay: 3.5,
+      blur: 'blur-lg',
+    },
+    {
+      id: 2,
+      color: 'from-transparent via-gold-300/45 to-transparent',
+      width: 'w-8 sm:w-14',
+      duration: 9.0,
+      delay: 2.2,
+      repeatDelay: 2.8,
+      blur: 'blur-md',
+    },
+    {
+      id: 3,
+      color: 'from-transparent via-white/50 to-transparent',
+      width: 'w-6 sm:w-10',
+      duration: 6.8,
+      delay: 4.8,
+      repeatDelay: 4.0,
+      blur: 'blur-sm',
+    },
+    {
+      id: 4,
+      color: 'from-transparent via-amber-300/35 via-white/40 to-transparent',
+      width: 'w-16 sm:w-24',
+      duration: 8.2,
+      delay: 6.5,
+      repeatDelay: 3.2,
+      blur: 'blur-xl',
+    },
+  ];
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-16">
-      {/* 1. Dynamic Pan & Zoom Background Image (100% 선명한 조감도 원본 노출) */}
+      {/* 1. Dynamic Pan & Zoom Background Image (100% 선명한 조감도) */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <motion.div
           animate={{
@@ -40,42 +80,29 @@ export default function Hero({ onNavigateSection }: HeroProps) {
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/40" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-black/50" />
 
-        {/* 3. 은은한 그라데이션 골드빛 사선 플로우 (Subtle Diagonal Golden Ray Stream) */}
+        {/* 3. 화면 전체를 횡단하는 얇고 은은한 사선 화이트 & 골드 교차 빛줄기 */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {/* 첫 번째 사선 골드 앰비언트 광선 (부드럽고 넓은 골드빛) */}
-          <motion.div
-            initial={{ x: '-100%', y: '-100%', opacity: 0 }}
-            animate={{
-              x: ['-100%', '200%'],
-              y: ['-100%', '200%'],
-              opacity: [0, 0.45, 0.7, 0.45, 0],
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: 'easeInOut',
-              repeatDelay: 1.5,
-            }}
-            className="absolute top-0 left-0 w-[350px] sm:w-[500px] h-[300%] bg-gradient-to-r from-transparent via-amber-300/25 via-gold-200/30 to-transparent filter blur-3xl transform -rotate-45 origin-top-left"
-          />
-
-          {/* 두 번째 사선 샴페인 빛줄기 (섬세하고 맑은 햇살 플레어) */}
-          <motion.div
-            initial={{ x: '-120%', y: '-120%', opacity: 0 }}
-            animate={{
-              x: ['-120%', '180%'],
-              y: ['-120%', '180%'],
-              opacity: [0, 0.5, 0.8, 0.5, 0],
-            }}
-            transition={{
-              duration: 10,
-              repeat: Infinity,
-              ease: 'easeInOut',
-              delay: 4,
-              repeatDelay: 2,
-            }}
-            className="absolute top-0 left-0 w-[160px] sm:w-[240px] h-[300%] bg-gradient-to-r from-transparent via-white/35 via-gold-300/30 to-transparent filter blur-2xl transform -rotate-45 origin-top-left"
-          />
+          {lightRays.map((ray) => (
+            <motion.div
+              key={ray.id}
+              initial={{ transform: 'translateX(-100vw) translateY(-100vh) rotate(-45deg)' }}
+              animate={{
+                transform: [
+                  'translateX(-80vw) translateY(-80vh) rotate(-45deg)',
+                  'translateX(120vw) translateY(120vh) rotate(-45deg)',
+                ],
+                opacity: [0, 0.7, 0.9, 0.7, 0],
+              }}
+              transition={{
+                duration: ray.duration,
+                repeat: Infinity,
+                ease: 'easeInOut',
+                delay: ray.delay,
+                repeatDelay: ray.repeatDelay,
+              }}
+              className={`absolute top-0 left-1/2 h-[350vh] ${ray.width} bg-gradient-to-r ${ray.color} ${ray.blur} origin-center`}
+            />
+          ))}
         </div>
       </div>
 
