@@ -16,8 +16,8 @@ export default function LocationSection() {
   });
   const imgRef = useRef<HTMLImageElement>(null);
 
-  const ZOOM_LEVEL = 2.5; // 2.5배 또렷한 고화질 확대
-  const LENS_SIZE = 220;  // 돋보기 알 크기 (220px)
+  const ZOOM_LEVEL = 2.8; // 2.8배 고해상도 확대
+  const LENS_SIZE = 440;  // 돋보기 알 크기 (기존 220px 대비 2배 대형 렌즈 440px)
 
   const locationFeatures = [
     {
