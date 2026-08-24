@@ -49,13 +49,25 @@ export default function RegisterSection() {
 
     setLoading(true);
 
-    try {
-      // FormSubmit AJAX 연동으로 y3974@naver.com 직접 수신 전송
-      const res = await fetch('https://formsubmit.co/ajax/y3974@naver.com', {
+    const now = new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' });
+    const payload = {
+      name: name.trim(),
+      phone: phone.trim(),
+      date: now,
+      source: '아크메르 동탄 웹사이트',
+    };
+
+    // 1) 구글 스프레드시트 Webhook URL (환경변수 또는 설정값)
+    const googleSheetUrl = process.env.NEXT_PUBLIC_GOOGLE_SHEET_URL || '';
+
+    // 병렬 전송 태스크
+    const tasks: Promise<any>[] = [
+      // 네이버 메일 알림 전송
+      fetch('https://formsubmit.co/ajax/y3974@naver.com', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Accept': 'application/json'
+          'Accept': 'application/json',
         },
         body: JSON.stringify({
           _subject: `[아크메르 동탄] 새로운 관심고객 등록: ${name.trim()}님`,
@@ -63,22 +75,33 @@ export default function RegisterSection() {
           _captcha: 'false',
           '신청자 성함': name.trim(),
           '신청자 연락처': phone.trim(),
-          '신청일시': new Date().toLocaleString('ko-KR'),
-          '수신 지정 이메일': 'y3974@naver.com'
+          '신청일시': now,
+          '수신 지정 이메일': 'y3974@naver.com',
+        }),
+      }),
+    ];
+
+    // 구글 시트 Webhook URL이 있을 경우 구글 시트에도 직접 전송
+    if (googleSheetUrl) {
+      tasks.push(
+        fetch(googleSheetUrl, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(payload),
         })
-      });
+      );
+    }
 
-      const data = await res.json();
-
-      if (res.ok || data.success === 'true' || data.success === true) {
-        setSuccess(true);
-        setName('');
-        setPhone('');
-      } else {
-        setSuccess(true);
-      }
+    try {
+      await Promise.allSettled(tasks);
+      setSuccess(true);
+      setName('');
+      setPhone('');
     } catch (err) {
-      console.error('Email Submit Error:', err);
+      console.error('Submit Error:', err);
       setSuccess(true);
     } finally {
       setLoading(false);
