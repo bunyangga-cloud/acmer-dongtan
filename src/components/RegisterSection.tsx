@@ -57,8 +57,10 @@ export default function RegisterSection() {
       source: '아크메르 동탄 웹사이트',
     };
 
-    // 1) 구글 스프레드시트 Webhook URL (환경변수 또는 설정값)
-    const googleSheetUrl = process.env.NEXT_PUBLIC_GOOGLE_SHEET_URL || '';
+    // 1) 구글 스프레드시트 Webhook URL (발급받으신 Apps Script 웹 앱 주소)
+    const googleSheetUrl =
+      process.env.NEXT_PUBLIC_GOOGLE_SHEET_URL ||
+      'https://script.google.com/macros/s/AKfycbwltdIZbBGc_ny02Xz6gJzznSn2NGdF_y_dxIzflXNQILUFxRRQ3pSOqIGsvz85-L7X/exec';
 
     // 병렬 전송 태스크
     const tasks: Promise<any>[] = [
