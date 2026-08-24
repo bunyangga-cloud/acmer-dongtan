@@ -30,7 +30,7 @@ export default function MetaStationMotionWidget({ onNavigateSection }: MetaStati
             <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-gold-500" />
           </span>
           <span className="text-[11px] font-bold text-gold-300 tracking-wider font-mono">
-            동탄인덕원선 반송역(메타역) 예정
+            동탄인덕원선 반송역 (예정)
           </span>
         </div>
         <Sparkles className="w-3.5 h-3.5 text-gold-400 group-hover:rotate-12 transition-transform" />
@@ -64,7 +64,7 @@ export default function MetaStationMotionWidget({ onNavigateSection }: MetaStati
             <div className="w-8 h-8 rounded-lg bg-[#0e1b3d] border border-gold-400/80 flex items-center justify-center text-gold-300 shadow-md">
               <Train className="w-4 h-4" />
             </div>
-            <span className="text-[9px] text-slate-300 mt-1 font-bold tracking-tight">반송역(메타역)</span>
+            <span className="text-[9px] text-slate-300 mt-1 font-bold tracking-tight">반송역</span>
           </div>
 
           {/* Side-Profile 3D Walking Character (두 발 교차 보행 사이클 애니메이션) */}

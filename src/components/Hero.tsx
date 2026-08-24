@@ -18,7 +18,7 @@ export default function Hero({ onNavigateSection }: HeroProps) {
     {
       id: 0,
       icon: Train,
-      text: '반송역(메타역) 초역세권',
+      text: '반송역 초역세권',
       targetId: 'location',
     },
     {
@@ -137,16 +137,16 @@ export default function Hero({ onNavigateSection }: HeroProps) {
                 key={item.id}
                 onClick={() => onNavigateSection(item.targetId)}
                 onMouseEnter={() => setActiveFeature(idx)}
-                className={`flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-xl transition-all duration-500 cursor-pointer ${
+                className={`flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-xl transition-all duration-500 cursor-pointer backdrop-blur-md ${
                   isActive
-                    ? 'bg-gradient-to-r from-amber-500 via-gold-400 to-amber-600 text-navy-950 font-bold border-2 border-gold-300 shadow-xl shadow-gold-500/35 scale-105 -translate-y-1'
-                    : 'bg-black/60 text-slate-200 border border-white/20 hover:border-gold-400/60 backdrop-blur-md opacity-85 hover:opacity-100'
+                    ? 'bg-black/80 text-gold-300 font-bold border-2 border-gold-400 shadow-[0_0_25px_rgba(212,175,55,0.5)] scale-105 -translate-y-1'
+                    : 'bg-black/60 text-slate-300 border border-white/20 hover:border-gold-400/50 hover:text-white opacity-80 hover:opacity-100'
                 }`}
               >
-                <IconComponent className={`w-4 h-4 transition-transform duration-300 ${isActive ? 'text-navy-950 scale-110' : 'text-gold-400'}`} />
+                <IconComponent className={`w-4 h-4 transition-transform duration-300 ${isActive ? 'text-gold-400 scale-110' : 'text-slate-400'}`} />
                 <span className="text-xs sm:text-sm tracking-wide">{item.text}</span>
                 {isActive && (
-                  <span className="w-1.5 h-1.5 rounded-full bg-navy-950 animate-ping" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-gold-400 animate-ping" />
                 )}
               </button>
             );
