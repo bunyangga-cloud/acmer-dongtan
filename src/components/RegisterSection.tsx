@@ -158,9 +158,9 @@ export default function RegisterSection() {
               <div className="pt-4">
                 <button
                   onClick={() => setSuccess(false)}
-                  className="px-6 py-2.5 rounded-xl border border-amber-400 bg-amber-50 text-amber-800 hover:bg-amber-100 transition-all text-sm font-bold"
+                  className="px-8 py-3 rounded-xl bg-gradient-to-r from-amber-500 via-amber-400 to-amber-600 text-white hover:brightness-105 transition-all text-sm font-bold shadow-md shadow-amber-500/20"
                 >
-                  추가 관심고객 등록하기
+                  확인
                 </button>
               </div>
             </motion.div>

@@ -192,16 +192,18 @@ export default function Hero({ onNavigateSection }: HeroProps) {
       {/* [메타역모션] - PC 기준 우측 하단 여백 라이브 워킹 모션 위젯 (언제든지 토글/제거 가능) */}
       <MetaStationMotionWidget onNavigateSection={onNavigateSection} />
 
-      {/* Clickable Scroll Down Indicator */}
-      <motion.button
-        onClick={() => onNavigateSection('overview')}
-        animate={{ y: [0, 8, 0] }}
-        transition={{ repeat: Infinity, duration: 2 }}
-        className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1 text-slate-300 hover:text-gold-300 text-xs transition-colors cursor-pointer group"
-      >
-        <span className="tracking-widest uppercase text-[10px] font-bold group-hover:text-gold-300">SCROLL DOWN</span>
-        <ChevronDown className="w-4 h-4 text-gold-400 group-hover:translate-y-1 transition-transform" />
-      </motion.button>
+      {/* Clickable Scroll Down Indicator (완벽한 중앙 정렬 컨테이너) */}
+      <div className="absolute bottom-4 inset-x-0 z-20 flex justify-center pointer-events-none">
+        <motion.button
+          onClick={() => onNavigateSection('overview')}
+          animate={{ y: [0, 8, 0] }}
+          transition={{ repeat: Infinity, duration: 2 }}
+          className="pointer-events-auto flex flex-col items-center gap-1 text-slate-300 hover:text-gold-300 text-xs transition-colors cursor-pointer group"
+        >
+          <span className="tracking-widest uppercase text-[10px] font-bold group-hover:text-gold-300">SCROLL DOWN</span>
+          <ChevronDown className="w-4 h-4 text-gold-400 group-hover:translate-y-1 transition-transform" />
+        </motion.button>
+      </div>
     </section>
   );
 }
