@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { Sparkles, Calendar, ChevronDown, Train } from 'lucide-react';
+import { Sparkles, Calendar, ChevronDown, Train, Building2, Briefcase } from 'lucide-react';
 import MetaStationMotionWidget from '@/components/MetaStationMotionWidget';
 
 interface HeroProps {
@@ -13,25 +13,25 @@ interface HeroProps {
 export default function Hero({ onNavigateSection }: HeroProps) {
   const [activeFeature, setActiveFeature] = useState(0);
 
-  // 상단 3개 버튼 정의
+  // 상단 3개 버튼 정의 (반송역 직결계획, 1808세대 대단지, 삼성 직주근접&인프라)
   const heroFeatures = [
     {
       id: 0,
       icon: Train,
-      text: '반송역 초역세권',
+      text: '반송역 직결계획',
       targetId: 'location',
     },
     {
       id: 1,
-      icon: Sparkles,
-      text: '1,808세대 대단지',
+      icon: Building2,
+      text: '1808세대 대단지',
       targetId: 'overview',
     },
     {
       id: 2,
-      icon: Calendar,
-      text: '9월 분양 예정',
-      targetId: 'register',
+      icon: Briefcase,
+      text: '삼성 직주근접&인프라',
+      targetId: 'core-summary',
     },
   ];
 
@@ -121,12 +121,12 @@ export default function Hero({ onNavigateSection }: HeroProps) {
           </h1>
         </motion.div>
 
-        {/* 4. 순차적으로 이동 및 배경색 변화하는 3개 버튼 박스 */}
+        {/* 4. 순차적으로 이동 및 배경색 변화하는 3개 버튼 박스 (PC는 가로 배치, 모바일은 세로 배치) */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.45 }}
-          className="flex flex-wrap items-center justify-center gap-3 md:gap-4 mb-10"
+          className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 mb-6 sm:mb-10 w-full max-w-[260px] sm:max-w-none mx-auto"
         >
           {heroFeatures.map((item, idx) => {
             const IconComponent = item.icon;
@@ -137,14 +137,14 @@ export default function Hero({ onNavigateSection }: HeroProps) {
                 key={item.id}
                 onClick={() => onNavigateSection(item.targetId)}
                 onMouseEnter={() => setActiveFeature(idx)}
-                className={`flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-xl transition-all duration-500 cursor-pointer backdrop-blur-md ${
+                className={`w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-2.5 sm:py-2.5 rounded-xl transition-all duration-500 cursor-pointer backdrop-blur-md ${
                   isActive
-                    ? 'bg-black/80 text-gold-300 font-bold border-2 border-gold-400 shadow-[0_0_25px_rgba(212,175,55,0.5)] scale-105 -translate-y-1'
+                    ? 'bg-black/85 text-gold-300 font-bold border-2 border-gold-400 shadow-[0_0_25px_rgba(212,175,55,0.5)] scale-102 sm:scale-105 -translate-y-0.5 sm:-translate-y-1'
                     : 'bg-black/60 text-slate-300 border border-white/20 hover:border-gold-400/50 hover:text-white opacity-80 hover:opacity-100'
                 }`}
               >
                 <IconComponent className={`w-4 h-4 transition-transform duration-300 ${isActive ? 'text-gold-400 scale-110' : 'text-slate-400'}`} />
-                <span className="text-xs sm:text-sm tracking-wide">{item.text}</span>
+                <span className="text-xs sm:text-sm tracking-wide font-medium">{item.text}</span>
                 {isActive && (
                   <span className="w-1.5 h-1.5 rounded-full bg-gold-400 animate-ping" />
                 )}
