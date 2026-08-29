@@ -28,10 +28,10 @@ export default function Header({ onOpenPhoneModal, onNavigateSection }: HeaderPr
 
   const navLinks = [
     { name: '사업개요', targetId: 'overview' },
-    { name: '핵심요약 6', targetId: 'core-summary' },
+    { name: '핵심요약', targetId: 'core-summary' },
     { name: '조감도 갤러리', targetId: 'birdseye' },
     { name: '입지환경', targetId: 'location' },
-    { name: 'Q&A (자주묻는질문)', targetId: 'faq' },
+    { name: 'Q&A FAQ', targetId: 'faq' },
     { name: '관심고객등록', targetId: 'register' },
   ];
 
@@ -39,20 +39,20 @@ export default function Header({ onOpenPhoneModal, onNavigateSection }: HeaderPr
     <header
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         isScrolled
-          ? 'bg-[#091024]/95 shadow-2xl shadow-black/50 backdrop-blur-md border-b border-gold-500/30 py-3'
-          : 'bg-gradient-to-b from-black/80 via-black/40 to-transparent py-4'
+          ? 'bg-[#091024]/95 shadow-2xl shadow-black/50 backdrop-blur-md border-b border-gold-500/30 py-2.5'
+          : 'bg-gradient-to-b from-black/85 via-black/50 to-transparent py-3 sm:py-4'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between">
+      <div className="max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between gap-4">
           {/* Logo Area */}
-          <button onClick={() => onNavigateSection('top')} className="group flex items-center text-left">
-            <div className="relative h-12 sm:h-[60px] w-auto aspect-[2172/724] shrink-0 flex items-center group-hover:scale-105 transition-transform">
+          <button onClick={() => onNavigateSection('top')} className="group flex items-center text-left shrink-0">
+            <div className="relative h-10 sm:h-12 w-auto aspect-[2172/724] shrink-0 flex items-center group-hover:scale-105 transition-transform">
               <Image
                 src="/images/logo2.png"
                 alt="아크메르 동탄 로고"
-                width={210}
-                height={70}
+                width={160}
+                height={53}
                 unoptimized
                 priority
                 className="h-full w-auto object-contain drop-shadow-[0_2px_12px_rgba(255,255,255,0.25)] filter brightness-105"
@@ -61,12 +61,12 @@ export default function Header({ onOpenPhoneModal, onNavigateSection }: HeaderPr
           </button>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-8">
+          <nav className="hidden lg:flex items-center gap-3 xl:gap-6 2xl:gap-8">
             {navLinks.map((link) => (
               <button
                 key={link.targetId}
                 onClick={() => onNavigateSection(link.targetId)}
-                className="text-sm font-semibold text-slate-200 hover:text-gold-400 transition-colors tracking-wide relative group py-1"
+                className="text-xs xl:text-sm font-semibold text-slate-200 hover:text-gold-400 transition-colors tracking-wide relative group py-1 whitespace-nowrap"
               >
                 {link.name}
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gold-400 transition-all duration-300 group-hover:w-full" />
@@ -75,12 +75,12 @@ export default function Header({ onOpenPhoneModal, onNavigateSection }: HeaderPr
           </nav>
 
           {/* Desktop Right CTA & BGM Player */}
-          <div className="hidden sm:flex items-center gap-3">
+          <div className="hidden sm:flex items-center gap-2.5 shrink-0">
             <AudioPlayer />
 
             <button
               onClick={onOpenPhoneModal}
-              className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold bg-navy-950/80 border border-slate-700 text-slate-200 hover:border-gold-500/50 hover:text-white transition-all shadow-sm"
+              className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold bg-navy-950/80 border border-slate-700 text-slate-200 hover:border-gold-500/50 hover:text-white transition-all shadow-sm whitespace-nowrap"
             >
               <Phone className="w-3.5 h-3.5 text-gold-400" />
               <span>전화문의 <strong className="text-gold-400 font-bold">1600-****</strong></span>
@@ -88,7 +88,7 @@ export default function Header({ onOpenPhoneModal, onNavigateSection }: HeaderPr
 
             <button
               onClick={() => onNavigateSection('register')}
-              className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold bg-gradient-to-r from-amber-500 via-gold-400 to-amber-600 text-navy-950 hover:brightness-110 shadow-lg shadow-gold-500/25 transition-all"
+              className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold bg-gradient-to-r from-amber-500 via-gold-400 to-amber-600 text-navy-950 hover:brightness-110 shadow-lg shadow-gold-500/25 transition-all whitespace-nowrap"
             >
               <Sparkles className="w-3.5 h-3.5" />
               <span>관심고객등록</span>
