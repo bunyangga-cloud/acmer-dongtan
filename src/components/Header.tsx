@@ -28,6 +28,7 @@ export default function Header({ onOpenPhoneModal, onNavigateSection }: HeaderPr
 
   const navLinks = [
     { name: '사업개요', targetId: 'overview' },
+    { name: '핵심요약 6', targetId: 'core-summary' },
     { name: '조감도 갤러리', targetId: 'birdseye' },
     { name: '입지환경', targetId: 'location' },
     { name: 'Q&A (자주묻는질문)', targetId: 'faq' },

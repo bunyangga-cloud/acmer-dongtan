@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import OverviewSection from '@/components/OverviewSection';
+import CoreValueSummarySection from '@/components/CoreValueSummarySection';
 import BirdseyeSection from '@/components/BirdseyeSection';
 import LocationSection from '@/components/LocationSection';
 import FAQSection from '@/components/FAQSection';
@@ -59,6 +60,9 @@ export default function Home() {
 
       {/* 2. Overview & Brand Section (Includes 95 & 99 Block Specs) */}
       <OverviewSection />
+
+      {/* 2-2. 6대 핵심 요약 브리핑 섹션 (CORE VALUE 6) */}
+      <CoreValueSummarySection onNavigateRegister={() => handleNavigateSection('register')} />
 
       {/* 3. Bird's Eye View Gallery (dongtan.png & dongtan2.png Auto-Carousel) */}
       <BirdseyeSection />
