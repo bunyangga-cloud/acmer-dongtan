@@ -1,78 +1,120 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Volume2, VolumeX } from 'lucide-react';
+
+// 단일 전역 오디오 인스턴스 및 상태 브로드캐스트 (컴포넌트가 여러 개 있어도 완벽 동기화)
+let globalAudio: HTMLAudioElement | null = null;
+let globalIsPlaying = false;
+const listeners = new Set<(playing: boolean) => void>();
+
+function notifyListeners(playing: boolean) {
+  globalIsPlaying = playing;
+  listeners.forEach((listener) => listener(playing));
+}
+
+function getOrCreateAudio(): HTMLAudioElement {
+  if (!globalAudio && typeof window !== 'undefined') {
+    globalAudio = new Audio('https://theartdata.mycafe24.com/data/bgm/acmer/bgm.mp3');
+    globalAudio.loop = true;
+    globalAudio.volume = 0.45;
+
+    globalAudio.addEventListener('play', () => notifyListeners(true));
+    globalAudio.addEventListener('pause', () => notifyListeners(false));
+    globalAudio.addEventListener('ended', () => notifyListeners(false));
+  }
+  return globalAudio!;
+}
+
+// 자동재생 시도 및 실패 시 전역 이벤트 리스너 망 가동
+let autoplayInitiated = false;
+function initAutoplay() {
+  if (autoplayInitiated || typeof window === 'undefined') return;
+  autoplayInitiated = true;
+
+  const audio = getOrCreateAudio();
+
+  // 1) 즉시 실행 시도
+  audio
+    .play()
+    .then(() => {
+      notifyListeners(true);
+    })
+    .catch(() => {
+      // 2) 브라우저 첫 상호작용 보안 정책 대응: 스크롤, 마우스 이동, 터치, 클릭 등 첫 인터랙션 감지 즉시 재생
+      const triggerInteractionPlay = () => {
+        if (audio.paused) {
+          audio
+            .play()
+            .then(() => {
+              notifyListeners(true);
+              removeInteractionListeners();
+            })
+            .catch(() => {});
+        } else {
+          removeInteractionListeners();
+        }
+      };
+
+      const removeInteractionListeners = () => {
+        window.removeEventListener('click', triggerInteractionPlay);
+        window.removeEventListener('touchstart', triggerInteractionPlay);
+        window.removeEventListener('pointerdown', triggerInteractionPlay);
+        window.removeEventListener('scroll', triggerInteractionPlay);
+        window.removeEventListener('wheel', triggerInteractionPlay);
+        window.removeEventListener('mousemove', triggerInteractionPlay);
+        window.removeEventListener('keydown', triggerInteractionPlay);
+      };
+
+      window.addEventListener('click', triggerInteractionPlay, { once: true, passive: true });
+      window.addEventListener('touchstart', triggerInteractionPlay, { once: true, passive: true });
+      window.addEventListener('pointerdown', triggerInteractionPlay, { once: true, passive: true });
+      window.addEventListener('scroll', triggerInteractionPlay, { once: true, passive: true });
+      window.addEventListener('wheel', triggerInteractionPlay, { once: true, passive: true });
+      window.addEventListener('mousemove', triggerInteractionPlay, { once: true, passive: true });
+      window.addEventListener('keydown', triggerInteractionPlay, { once: true, passive: true });
+    });
+}
 
 interface AudioPlayerProps {
   className?: string;
   variant?: 'compact' | 'full';
 }
 
-export default function AudioPlayer({ className = '', variant = 'compact' }: AudioPlayerProps) {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
+export default function AudioPlayer({ className = '' }: AudioPlayerProps) {
+  const [isPlaying, setIsPlaying] = useState(globalIsPlaying);
 
   useEffect(() => {
-    // 오디오 인스턴스 생성
-    const audio = new Audio('https://theartdata.mycafe24.com/data/bgm/acmer/bgm.mp3');
-    audio.loop = true;
-    audio.volume = 0.45;
-    audioRef.current = audio;
-
-    // 1) 즉시 자동 재생 시도
-    const startAudio = () => {
-      if (!audioRef.current) return;
-      audioRef.current
-        .play()
-        .then(() => {
-          setIsPlaying(true);
-        })
-        .catch(() => {
-          // 브라우저 정책으로 첫 로드 자동재생 차단 시, 첫 사용자 클릭/터치/스크롤 시 자동 재생
-          const handleFirstUserInteraction = () => {
-            if (audioRef.current && audioRef.current.paused) {
-              audioRef.current
-                .play()
-                .then(() => {
-                  setIsPlaying(true);
-                })
-                .catch(() => {});
-            }
-            window.removeEventListener('click', handleFirstUserInteraction);
-            window.removeEventListener('touchstart', handleFirstUserInteraction);
-            window.removeEventListener('keydown', handleFirstUserInteraction);
-          };
-
-          window.addEventListener('click', handleFirstUserInteraction, { once: true });
-          window.addEventListener('touchstart', handleFirstUserInteraction, { once: true });
-          window.addEventListener('keydown', handleFirstUserInteraction, { once: true });
-        });
+    // 상태 동기화 구독
+    const handleStateChange = (playing: boolean) => {
+      setIsPlaying(playing);
     };
+    listeners.add(handleStateChange);
+    setIsPlaying(globalIsPlaying);
 
-    startAudio();
+    // 최초 1회 자동 재생 트리거
+    initAutoplay();
 
-    // 언마운트 시 정리
     return () => {
-      audio.pause();
-      audio.src = '';
+      listeners.delete(handleStateChange);
     };
   }, []);
 
   const togglePlay = () => {
-    if (!audioRef.current) return;
+    const audio = getOrCreateAudio();
 
-    if (isPlaying) {
-      audioRef.current.pause();
-      setIsPlaying(false);
+    if (globalIsPlaying) {
+      audio.pause();
+      notifyListeners(false);
     } else {
-      audioRef.current
+      audio
         .play()
         .then(() => {
-          setIsPlaying(true);
+          notifyListeners(true);
         })
         .catch((err) => {
-          console.warn('Audio Autoplay policy:', err);
+          console.warn('Audio Play policy:', err);
         });
     }
   };
@@ -81,13 +123,13 @@ export default function AudioPlayer({ className = '', variant = 'compact' }: Aud
     <button
       onClick={togglePlay}
       type="button"
-      className={`group relative flex items-center gap-2.5 px-3 py-1.5 rounded-full backdrop-blur-md transition-all duration-300 select-none ${
+      className={`group relative flex items-center gap-2 px-3 py-1.5 rounded-full backdrop-blur-md transition-all duration-300 select-none ${
         isPlaying
           ? 'bg-gold-500/20 border border-gold-400 text-gold-300 shadow-[0_0_15px_rgba(212,175,55,0.35)]'
           : 'bg-navy-950/70 border border-slate-700 text-slate-400 hover:border-slate-500 hover:text-slate-200'
       } ${className}`}
-      title={isPlaying ? '배경음악 끄기' : '배경음악 켜기'}
-      aria-label={isPlaying ? '배경음악 끄기' : '배경음악 켜기'}
+      title={isPlaying ? '배경음악 일시정지' : '배경음악 재생'}
+      aria-label={isPlaying ? '배경음악 일시정지' : '배경음악 재생'}
     >
       {/* Icon */}
       {isPlaying ? (

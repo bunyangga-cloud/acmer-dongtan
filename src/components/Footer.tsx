@@ -19,19 +19,20 @@ export default function Footer({ onOpenPhoneModal }: FooterProps) {
         {/* Top Info Row */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-8 border-b border-slate-800/80">
           <div className="flex items-center gap-4">
-            <div className="relative h-11 sm:h-[52px] w-auto aspect-[2172/724] shrink-0 flex items-center">
+            <div className="relative h-12 sm:h-[60px] w-auto aspect-[2172/724] shrink-0 flex items-center">
               <Image
                 src="/images/logo2.png"
                 alt="아크메르 동탄 푸터 로고"
-                width={182}
-                height={60}
+                width={210}
+                height={70}
                 unoptimized
                 className="h-full w-auto object-contain drop-shadow-[0_2px_12px_rgba(255,255,255,0.25)] filter brightness-105"
               />
             </div>
-            <div className="border-l border-slate-800 pl-4 hidden sm:block">
-              <p className="text-slate-400 font-medium">동탄 그 이상의 위대함을 만나다</p>
-              <p className="text-gold-400/90 text-[11px] font-mono">2026년 9월 GRAND OPEN</p>
+            <div className="border-l border-slate-700/80 pl-4">
+              <span className="font-serif text-lg sm:text-xl font-bold text-white tracking-wider block">
+                아크메르 동탄
+              </span>
             </div>
           </div>
 
