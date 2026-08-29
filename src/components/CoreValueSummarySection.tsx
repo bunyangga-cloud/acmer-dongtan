@@ -124,163 +124,159 @@ export default function CoreValueSummarySection({ onNavigateRegister }: CoreValu
   }, [coreValues.length]);
 
   return (
-    <section id="core-summary" className="py-12 sm:py-20 relative bg-white overflow-hidden border-t border-slate-200">
-      {/* Container with Outer White Margins */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Main Inner Dark Navy Framed Canvas (기존 완벽한 박스 내부 색상 및 스타일 100% 보존) */}
-        <div className="rounded-[2.5rem] bg-[#060b18] text-white p-6 sm:p-10 md:p-14 border border-slate-800/90 shadow-2xl shadow-slate-900/15 relative overflow-hidden space-y-16">
-          {/* Background Inner Lighting Glows */}
-          <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-gold-500/10 rounded-full filter blur-[140px] pointer-events-none" />
-          <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-blue-600/10 rounded-full filter blur-[140px] pointer-events-none" />
+    <section id="core-summary" className="py-24 relative bg-white text-slate-900 overflow-hidden border-t border-slate-200">
+      {/* Background Soft Accent */}
+      <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-amber-100/50 rounded-full filter blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-blue-50 rounded-full filter blur-[140px] pointer-events-none" />
 
-          {/* Section Header (기존 럭셔리 다크 헤더 원본 유지) */}
-          <div className="text-center max-w-3xl mx-auto space-y-4 relative z-10">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold-500/15 border border-gold-400/50 text-gold-300 text-xs font-bold tracking-wider">
-              <Sparkles className="w-4 h-4 text-gold-400" /> ACMER DONGTAN CORE VALUE 6
-            </div>
-            
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-white tracking-tight leading-tight">
-              아크메르 동탄 <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-gold-200 to-amber-400">6대 핵심 가치 총정리</span>
-            </h2>
-            
-            <div className="w-20 h-0.5 bg-gradient-to-r from-transparent via-gold-400 to-transparent mx-auto" />
-            
-            {/* Main Key Copy Quote Box (기존 다크/골드 럭셔리 인용구 박스 원본 유지) */}
-            <div className="mt-4 p-5 rounded-2xl bg-gradient-to-r from-navy-950 via-[#0d162e] to-navy-950 border border-gold-500/30 shadow-xl text-gold-200/90 font-serif text-sm sm:text-base leading-relaxed break-keep">
-              “20년의 염원이 담긴 동탄의 그 자리에, 삶의 모든 것을 소유하는 동탄의 새로운 상징이 될 역사적 랜드마크를 완성합니다.”
-            </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-14">
+        {/* Section Header (타이틀 양옆 여백 전부 깨끗한 화이트) */}
+        <div className="text-center max-w-3xl mx-auto space-y-4">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-50 border border-amber-300 text-amber-800 text-xs font-bold tracking-wider">
+            <Sparkles className="w-4 h-4 text-amber-600" /> ACMER DONGTAN CORE VALUE 6
           </div>
+          
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-slate-900 tracking-tight leading-tight">
+            아크메르 동탄 <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 via-amber-500 to-amber-700">6대 핵심 가치 총정리</span>
+          </h2>
+          
+          <div className="w-20 h-0.5 bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto" />
+          
+          {/* Main Key Copy Quote Box (화이트 배경에 찰떡인 세련된 소프트 웜 박스) */}
+          <div className="mt-4 p-5 rounded-2xl bg-slate-50 border border-amber-300/80 shadow-sm text-slate-800 font-serif text-sm sm:text-base leading-relaxed break-keep">
+            “20년의 염원이 담긴 동탄의 그 자리에, 삶의 모든 것을 소유하는 동탄의 새로운 상징이 될 역사적 랜드마크를 완성합니다.”
+          </div>
+        </div>
 
-          {/* 6 Core Value Cards Grid (순차적 골드 테두리 순환 이동 모션 100% 원본 유지) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 relative z-10">
-            {coreValues.map((item, idx) => {
-              const IconComponent = item.icon;
-              const isActive = activeIndex === idx;
+        {/* 6 Core Value Cards Grid (바깥 여백은 모두 흰색, 박스 안은 기존 다크 블루 & 골드 순환 모션 100% 유지) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          {coreValues.map((item, idx) => {
+            const IconComponent = item.icon;
+            const isActive = activeIndex === idx;
 
-              return (
-                <motion.div
-                  key={item.id}
-                  onMouseEnter={() => setActiveIndex(idx)}
-                  animate={{
-                    scale: isActive ? 1.03 : 0.98,
-                    y: isActive ? -8 : 0,
-                  }}
-                  transition={{ duration: 0.4, ease: 'easeOut' }}
-                  className={`rounded-3xl p-7 flex flex-col justify-between transition-all duration-500 cursor-pointer relative overflow-hidden ${
-                    isActive
-                      ? 'bg-gradient-to-b from-[#121f42] to-[#0c1630] border-2 border-gold-400 shadow-[0_0_35px_rgba(212,175,55,0.35)] z-20'
-                      : 'bg-[#0a1226]/90 border border-slate-800/90 hover:border-slate-700 opacity-90 hover:opacity-100 z-10'
-                  }`}
-                >
-                  {/* Accent Top Border Glow when Active */}
-                  {isActive && (
-                    <div className="absolute top-0 inset-x-0 h-[3px] bg-gradient-to-r from-amber-400 via-gold-300 to-amber-400 animate-pulse" />
-                  )}
+            return (
+              <motion.div
+                key={item.id}
+                onMouseEnter={() => setActiveIndex(idx)}
+                animate={{
+                  scale: isActive ? 1.03 : 0.98,
+                  y: isActive ? -8 : 0,
+                }}
+                transition={{ duration: 0.4, ease: 'easeOut' }}
+                className={`rounded-3xl p-7 flex flex-col justify-between transition-all duration-500 cursor-pointer relative overflow-hidden text-white ${
+                  isActive
+                    ? 'bg-gradient-to-b from-[#121f42] to-[#0c1630] border-2 border-gold-400 shadow-[0_12px_40px_rgba(212,175,55,0.4)] z-20'
+                    : 'bg-[#0a1226] border border-slate-800 shadow-xl opacity-95 hover:opacity-100 z-10'
+                }`}
+              >
+                {/* Accent Top Border Glow when Active */}
+                {isActive && (
+                  <div className="absolute top-0 inset-x-0 h-[3px] bg-gradient-to-r from-amber-400 via-gold-300 to-amber-400 animate-pulse" />
+                )}
 
-                  <div>
-                    {/* Top Category Badge & Index */}
-                    <div className="flex items-center justify-between mb-5">
-                      <div className="flex items-center gap-2">
-                        <span className={`px-3 py-1 rounded-full border text-[11px] font-bold tracking-wide transition-colors ${
-                          isActive
-                            ? 'bg-gold-500/20 border-gold-400 text-gold-300'
-                            : 'bg-navy-950 border-slate-700 text-slate-400'
-                        }`}>
-                          {item.badge}
-                        </span>
-                        <span className="text-[10px] font-mono text-slate-500 uppercase tracking-wider hidden sm:inline">
-                          {item.tag}
-                        </span>
-                      </div>
-
-                      <div className="flex items-center gap-2">
-                        {isActive && (
-                          <span className="w-2 h-2 rounded-full bg-gold-400 animate-ping" />
-                        )}
-                        <span className={`text-sm font-mono font-bold transition-colors ${
-                          isActive ? 'text-gold-400 font-extrabold' : 'text-slate-600'
-                        }`}>
-                          0{item.id}
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Icon & Title */}
-                    <div className="flex items-start gap-4 mb-4">
-                      <div className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 transition-all duration-300 shadow-md ${
+                <div>
+                  {/* Top Category Badge & Index */}
+                  <div className="flex items-center justify-between mb-5">
+                    <div className="flex items-center gap-2">
+                      <span className={`px-3 py-1 rounded-full border text-[11px] font-bold tracking-wide transition-colors ${
                         isActive
-                          ? 'bg-gradient-to-br from-gold-400 to-gold-600 text-navy-950 scale-110 shadow-gold-500/40'
-                          : 'bg-[#0f1b3b] border border-gold-500/30 text-gold-400'
+                          ? 'bg-gold-500/20 border-gold-400 text-gold-300'
+                          : 'bg-navy-950 border-slate-700 text-slate-400'
                       }`}>
-                        <IconComponent className="w-6 h-6" />
-                      </div>
-                      <div>
-                        <h3 className={`text-lg sm:text-xl font-bold font-serif transition-colors break-keep leading-snug ${
-                          isActive ? 'text-gold-300' : 'text-white'
-                        }`}>
-                          {item.title}
-                        </h3>
-                        <p className="text-xs font-semibold text-amber-400/90 mt-1 font-mono">
-                          {item.subtitle}
-                        </p>
-                      </div>
+                        {item.badge}
+                      </span>
+                      <span className="text-[10px] font-mono text-slate-500 uppercase tracking-wider hidden sm:inline">
+                        {item.tag}
+                      </span>
                     </div>
 
-                    {/* Description */}
-                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal break-keep mb-6">
-                      {item.description}
-                    </p>
-
-                    {/* Structured Spec Table List */}
-                    <div className="space-y-2 pt-4 border-t border-slate-800/80">
-                      {item.specs.map((spec, sIdx) => (
-                        <div key={sIdx} className="flex items-start justify-between gap-3 text-xs">
-                          <span className="text-slate-400 font-medium shrink-0 flex items-center gap-1.5">
-                            <CheckCircle2 className={`w-3.5 h-3.5 shrink-0 ${isActive ? 'text-gold-400' : 'text-slate-500'}`} />
-                            {spec.label}
-                          </span>
-                          <span className={`font-semibold text-right break-keep transition-colors ${
-                            isActive ? 'text-white' : 'text-slate-300'
-                          }`}>
-                            {spec.value}
-                          </span>
-                        </div>
-                      ))}
+                    <div className="flex items-center gap-2">
+                      {isActive && (
+                        <span className="w-2 h-2 rounded-full bg-gold-400 animate-ping" />
+                      )}
+                      <span className={`text-sm font-mono font-bold transition-colors ${
+                        isActive ? 'text-gold-400 font-extrabold' : 'text-slate-500'
+                      }`}>
+                        0{item.id}
+                      </span>
                     </div>
                   </div>
 
-                  {/* Optional Footnote Notice */}
-                  {item.notice && (
-                    <div className="mt-5 pt-3 border-t border-slate-800/60 text-[10px] text-slate-500 leading-normal">
-                      {item.notice}
+                  {/* Icon & Title */}
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 transition-all duration-300 shadow-md ${
+                      isActive
+                        ? 'bg-gradient-to-br from-gold-400 to-gold-600 text-navy-950 scale-110 shadow-gold-500/40'
+                        : 'bg-[#0f1b3b] border border-gold-500/30 text-gold-400'
+                    }`}>
+                      <IconComponent className="w-6 h-6" />
                     </div>
-                  )}
-                </motion.div>
-              );
-            })}
+                    <div>
+                      <h3 className={`text-lg sm:text-xl font-bold font-serif transition-colors break-keep leading-snug ${
+                        isActive ? 'text-gold-300' : 'text-white'
+                      }`}>
+                        {item.title}
+                      </h3>
+                      <p className="text-xs font-semibold text-amber-400/90 mt-1 font-mono">
+                        {item.subtitle}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Description */}
+                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal break-keep mb-6">
+                    {item.description}
+                  </p>
+
+                  {/* Structured Spec Table List */}
+                  <div className="space-y-2 pt-4 border-t border-slate-800/80">
+                    {item.specs.map((spec, sIdx) => (
+                      <div key={sIdx} className="flex items-start justify-between gap-3 text-xs">
+                        <span className="text-slate-400 font-medium shrink-0 flex items-center gap-1.5">
+                          <CheckCircle2 className={`w-3.5 h-3.5 shrink-0 ${isActive ? 'text-gold-400' : 'text-slate-500'}`} />
+                          {spec.label}
+                        </span>
+                        <span className={`font-semibold text-right break-keep transition-colors ${
+                          isActive ? 'text-white' : 'text-slate-300'
+                        }`}>
+                          {spec.value}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Optional Footnote Notice */}
+                {item.notice && (
+                  <div className="mt-5 pt-3 border-t border-slate-800/60 text-[10px] text-slate-500 leading-normal">
+                    {item.notice}
+                  </div>
+                )}
+              </motion.div>
+            );
+          })}
+        </div>
+
+        {/* Bottom CTA Banner */}
+        <div className="p-8 rounded-3xl bg-gradient-to-r from-[#0c1630] via-navy-950 to-[#0c1630] border border-gold-500/40 shadow-2xl flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left text-white">
+          <div className="space-y-1">
+            <h4 className="text-xl font-bold font-serif text-white">
+              아크메르 동탄 공식 분양 일정 및 모델하우스 안내
+            </h4>
+            <p className="text-xs sm:text-sm text-slate-300">
+              인허가 및 모집공고 일정 확정 시 가장 빠른 1순위 VIP 확정 알림 문자를 발송해 드립니다.
+            </p>
           </div>
 
-          {/* Bottom CTA Banner (기존 다크 골드 배너 원본 유지) */}
-          <div className="p-8 rounded-3xl bg-gradient-to-r from-[#0c1630] via-navy-950 to-[#0c1630] border border-gold-500/40 shadow-2xl flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left relative z-10">
-            <div className="space-y-1">
-              <h4 className="text-xl font-bold font-serif text-white">
-                아크메르 동탄 공식 분양 일정 및 모델하우스 안내
-              </h4>
-              <p className="text-xs sm:text-sm text-slate-300">
-                인허가 및 모집공고 일정 확정 시 가장 빠른 1순위 VIP 확정 알림 문자를 발송해 드립니다.
-              </p>
-            </div>
-
-            {onNavigateRegister && (
-              <button
-                onClick={onNavigateRegister}
-                className="px-8 py-3.5 rounded-xl bg-gradient-to-r from-amber-500 via-gold-400 to-amber-600 text-navy-950 font-bold text-sm hover:brightness-110 shadow-lg shadow-gold-500/30 transition-all flex items-center gap-2 shrink-0 cursor-pointer"
-              >
-                <span>VIP 관심고객 등록하기</span>
-                <ChevronRight className="w-4 h-4" />
-              </button>
-            )}
-          </div>
+          {onNavigateRegister && (
+            <button
+              onClick={onNavigateRegister}
+              className="px-8 py-3.5 rounded-xl bg-gradient-to-r from-amber-500 via-gold-400 to-amber-600 text-navy-950 font-bold text-sm hover:brightness-110 shadow-lg shadow-gold-500/30 transition-all flex items-center gap-2 shrink-0 cursor-pointer"
+            >
+              <span>VIP 관심고객 등록하기</span>
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          )}
         </div>
       </div>
     </section>
