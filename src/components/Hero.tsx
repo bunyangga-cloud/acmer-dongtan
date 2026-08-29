@@ -162,17 +162,10 @@ export default function Hero({ onNavigateSection }: HeroProps) {
         >
           <button
             onClick={() => onNavigateSection('register')}
-            className="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-amber-500 via-gold-400 to-amber-600 text-navy-950 font-bold text-base hover:brightness-110 shadow-xl shadow-gold-500/30 transition-all duration-300 transform hover:-translate-y-0.5 flex items-center justify-center gap-2 group"
+            className="w-full sm:w-auto px-10 py-4 rounded-xl bg-gradient-to-r from-amber-500 via-gold-400 to-amber-600 text-navy-950 font-bold text-base hover:brightness-110 shadow-xl shadow-gold-500/30 transition-all duration-300 transform hover:-translate-y-0.5 flex items-center justify-center gap-2 group cursor-pointer"
           >
             <Sparkles className="w-5 h-5 group-hover:rotate-12 transition-transform" />
             <span>관심고객 우선 등록하기</span>
-          </button>
-
-          <button
-            onClick={() => onNavigateSection('birdseye')}
-            className="w-full sm:w-auto px-6 py-4 rounded-xl bg-black/50 border border-white/30 text-white font-medium text-base hover:bg-white/20 hover:border-gold-400 backdrop-blur-md transition-all text-center"
-          >
-            조감도 및 입지 보기
           </button>
         </motion.div>
 
