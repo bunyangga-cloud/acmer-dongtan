@@ -45,21 +45,18 @@ export default function Header({ onOpenPhoneModal, onNavigateSection }: HeaderPr
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Logo Area */}
-          <button onClick={() => onNavigateSection('top')} className="group flex items-center gap-3 text-left">
-            <div className="relative w-9 h-9 sm:w-10 sm:h-10 shrink-0 flex items-center justify-center group-hover:scale-105 transition-transform">
+          <button onClick={() => onNavigateSection('top')} className="group flex items-center text-left">
+            <div className="relative h-9 sm:h-11 w-auto aspect-[2184/720] shrink-0 flex items-center group-hover:scale-105 transition-transform">
               <Image
-                src="/images/intro_hd_transparent.png?v=6"
+                src="/images/logo.png"
                 alt="아크메르 동탄 로고"
-                width={40}
-                height={40}
+                width={140}
+                height={46}
                 unoptimized
                 priority
-                className="w-full h-auto object-contain filter contrast-[1.1] drop-shadow-[0_0_8px_rgba(212,175,55,0.6)]"
+                className="h-full w-auto object-contain filter contrast-[1.05] drop-shadow-[0_0_8px_rgba(212,175,55,0.4)]"
               />
             </div>
-            <span className="font-serif text-xl sm:text-2xl font-bold tracking-wider text-white group-hover:text-gold-300 transition-colors">
-              아크메르 동탄
-            </span>
           </button>
 
           {/* Desktop Navigation */}
