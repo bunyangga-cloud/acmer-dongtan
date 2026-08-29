@@ -125,26 +125,26 @@ export default function CoreValueSummarySection({ onNavigateRegister }: CoreValu
   }, [coreValues.length]);
 
   return (
-    <section id="core-summary" className="py-24 relative bg-[#060b18] text-white overflow-hidden border-t border-slate-800">
-      {/* Background Lighting */}
-      <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-gold-500/10 rounded-full filter blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-blue-600/10 rounded-full filter blur-[140px] pointer-events-none" />
+    <section id="core-summary" className="py-24 relative bg-slate-50 text-slate-900 overflow-hidden border-t border-slate-200">
+      {/* Background Subtle Glows */}
+      <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-amber-100/60 rounded-full filter blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-blue-100/50 rounded-full filter blur-[140px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-16">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold-500/15 border border-gold-400/50 text-gold-300 text-xs font-bold tracking-wider">
-            <Sparkles className="w-4 h-4 text-gold-400" /> ACMER DONGTAN CORE VALUE 6
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-100/80 border border-amber-300 text-amber-800 text-xs font-bold tracking-wider">
+            <Sparkles className="w-4 h-4 text-amber-600" /> ACMER DONGTAN CORE VALUE 6
           </div>
           
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-white tracking-tight leading-tight">
-            아크메르 동탄 <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-gold-200 to-amber-400">6대 핵심 가치 총정리</span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-slate-900 tracking-tight leading-tight">
+            아크메르 동탄 <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 via-amber-500 to-amber-700">6대 핵심 가치 총정리</span>
           </h2>
           
-          <div className="w-20 h-0.5 bg-gradient-to-r from-transparent via-gold-400 to-transparent mx-auto" />
+          <div className="w-20 h-0.5 bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto" />
           
           {/* Main Key Copy Quote Box */}
-          <div className="mt-4 p-5 rounded-2xl bg-gradient-to-r from-navy-950 via-[#0d162e] to-navy-950 border border-gold-500/30 shadow-xl text-gold-200/90 font-serif text-sm sm:text-base leading-relaxed break-keep">
+          <div className="mt-4 p-5 rounded-2xl bg-gradient-to-r from-navy-950 via-[#0d162e] to-navy-950 border border-gold-500/30 shadow-xl text-gold-200/95 font-serif text-sm sm:text-base leading-relaxed break-keep">
             “20년의 염원이 담긴 동탄의 그 자리에, 삶의 모든 것을 소유하는 동탄의 새로운 상징이 될 역사적 랜드마크를 완성합니다.”
           </div>
         </div>
