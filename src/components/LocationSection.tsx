@@ -149,7 +149,7 @@ export default function LocationSection() {
             {/* Native HTML Img for Crisp Contrast & 1:1 Precise Pixel Ratio */}
             <img
               ref={imgRef}
-              src="/images/location.png?v=7"
+              src="/images/location_new.png"
               alt="아크메르 동탄 입지환경 광역 지도 원본"
               className="w-full h-auto object-contain block filter contrast-[1.08] sharpness-100"
               style={{
@@ -166,7 +166,7 @@ export default function LocationSection() {
                   height: `${LENS_SIZE}px`,
                   left: `${magnifierData.x - LENS_SIZE / 2}px`,
                   top: `${magnifierData.y - LENS_SIZE / 2}px`,
-                  backgroundImage: 'url(/images/location.png?v=7)',
+                  backgroundImage: 'url(/images/location_new.png)',
                   backgroundRepeat: 'no-repeat',
                   backgroundSize: `${magnifierData.bgW}px ${magnifierData.bgH}px`,
                   backgroundPosition: `${magnifierData.bgX}px ${magnifierData.bgY}px`,

@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { User, Phone, CheckCircle, Send, Sparkles, AlertCircle } from 'lucide-react';
+import { User, Phone, CheckCircle, Send, Sparkles, AlertCircle, ShieldCheck, CalendarClock, BellRing } from 'lucide-react';
 import TermsModal from '@/components/TermsModal';
 
 export default function RegisterSection() {
@@ -126,7 +126,8 @@ export default function RegisterSection() {
           </h2>
           <div className="w-16 h-0.5 bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto" />
           <p className="text-slate-600 text-sm sm:text-base leading-relaxed break-keep font-normal">
-            관심고객으로 등록해주신 분들께 2026년 9월 GRAND OPEN 소식 및 VIP 방문 예약 혜택을<br className="hidden sm:block" /> 가장 먼저 안내해 드립니다.
+            아크메르 동탄은 불확실한 미확정 정보로 고객님께 혼선을 드리지 않습니다.<br className="hidden sm:block" />
+            <strong className="text-slate-900 font-semibold">모델하우스 관람 가능 일자 및 공식 모집공고 일정</strong>이 확정되는 즉시 1순위 VIP 확정 알림을 발송해 드립니다.
           </p>
         </div>
 
@@ -139,34 +140,71 @@ export default function RegisterSection() {
           className="rounded-3xl border border-slate-200/90 p-6 sm:p-10 shadow-xl shadow-slate-200/50 bg-slate-50/60 backdrop-blur-md relative overflow-hidden"
         >
           {success ? (
-            /* Success View */
+            /* Success View (고객 안심 및 이탈 방지 메시지) */
             <motion.div
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              className="py-10 text-center space-y-5"
+              className="py-6 text-center space-y-6"
             >
-              <div className="w-20 h-20 rounded-full bg-amber-100 border-2 border-amber-400 flex items-center justify-center mx-auto text-amber-700">
+              <div className="w-20 h-20 rounded-full bg-amber-100 border-2 border-amber-400 flex items-center justify-center mx-auto text-amber-700 shadow-sm">
                 <CheckCircle className="w-10 h-10" />
               </div>
-              <h3 className="text-2xl sm:text-3xl font-serif font-bold text-slate-900 break-keep">
-                관심고객 등록이 <span className="gold-gradient-text">완료되었습니다!</span>
-              </h3>
-              <p className="text-slate-600 text-sm sm:text-base max-w-md mx-auto leading-relaxed break-keep font-normal">
-                신청해주셔서 감사합니다.<br />
-                등록해주신 연락처로 <strong className="text-amber-800 font-bold">2026년 9월 오픈 일정 및 분양 정보</strong>를 가장 먼저 발송해 드리겠습니다.
-              </p>
-              <div className="pt-4">
+
+              <div>
+                <span className="inline-block px-3.5 py-1 rounded-full bg-amber-100 text-amber-900 text-xs font-bold border border-amber-300 mb-2">
+                  VIP 사전 알림 등록 접수 완료
+                </span>
+                <h3 className="text-2xl sm:text-3xl font-serif font-bold text-slate-900 break-keep">
+                  관심고객 등록이 <span className="gold-gradient-text">완료되었습니다!</span>
+                </h3>
+              </div>
+
+              {/* 일정 안내 및 이탈 방지 핵심 박스 */}
+              <div className="max-w-xl mx-auto bg-white rounded-2xl p-5 sm:p-6 border border-slate-200 text-left space-y-3.5 shadow-sm">
+                <div className="flex items-center gap-2 font-bold text-amber-800 text-sm pb-2.5 border-b border-slate-100">
+                  <CalendarClock className="w-4 h-4 text-amber-700 shrink-0" />
+                  <span>향후 일정 및 안내 발송 시점 안내</span>
+                </div>
+                
+                <p className="text-xs sm:text-sm text-slate-700 leading-relaxed break-keep">
+                  현재 아크메르 동탄은 공식 분양 승인 및 일정 조율 단계에 있습니다. <strong className="text-slate-900">확정되지 않은 정보로 섣불리 연락드려 혼선을 드리지 않기 위해, 무분별한 스팸성 영업 전화는 일체 드리지 않습니다.</strong>
+                </p>
+                
+                <div className="p-3.5 rounded-xl bg-amber-50/80 border border-amber-200/80 text-xs sm:text-sm text-amber-950 font-medium leading-relaxed">
+                  📢 <strong>[모델하우스 관람 가능 일자]</strong> 및 <strong>[공식 입주자모집공고 일정]</strong>이 정식 확정되는 즉시, 등록해주신 연락처로 <strong>가장 빠른 1순위 VIP 확정 알림 문자</strong>를 발송해 드리겠습니다.
+                </div>
+
+                <div className="pt-1 text-[11px] text-slate-400 leading-relaxed">
+                  ※ 타 사이트나 개인 블로그의 미확정 추측성 정보에 유의하시기 바라며, 공식 확정 소식은 본 등록처를 통해 가장 안전하고 정확하게 전달됩니다.
+                </div>
+              </div>
+
+              {/* 확인 닫기 버튼 */}
+              <div className="pt-2">
                 <button
                   onClick={() => setSuccess(false)}
-                  className="px-8 py-3 rounded-xl bg-gradient-to-r from-amber-500 via-amber-400 to-amber-600 text-white hover:brightness-105 transition-all text-sm font-bold shadow-md shadow-amber-500/20"
+                  className="px-10 py-3.5 rounded-xl bg-gradient-to-r from-amber-500 via-amber-400 to-amber-600 text-white hover:brightness-105 transition-all text-sm font-bold shadow-md shadow-amber-500/20"
                 >
                   확인
                 </button>
               </div>
             </motion.div>
           ) : (
-            /* Form View */
+            /* Form View (입력 전 안심 안내 포함) */
             <form onSubmit={handleSubmit} className="space-y-6">
+              {/* 입력 전 신뢰 안내 박스 */}
+              <div className="p-4 rounded-2xl bg-amber-50/90 border border-amber-200/90 flex items-start gap-3 text-xs sm:text-sm text-slate-700 leading-relaxed">
+                <ShieldCheck className="w-5 h-5 text-amber-700 shrink-0 mt-0.5" />
+                <div>
+                  <strong className="text-amber-950 font-bold block mb-0.5">
+                    [사전 안내 원칙] 불필요한 영업 전화를 드리지 않습니다.
+                  </strong>
+                  <span className="text-slate-600 text-xs leading-normal">
+                    미확정된 정보로 인한 혼란을 방지하기 위해, <strong>모델하우스 관람 가능 일자 및 모집공고 일정이 공식 확정되는 시점에 1순위 VIP 우선 알림 문자</strong>를 발송해 드립니다.
+                  </span>
+                </div>
+              </div>
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Name Input */}
                 <div className="space-y-2">
@@ -250,7 +288,7 @@ export default function RegisterSection() {
                 className="w-full py-4 rounded-xl bg-gradient-to-r from-amber-500 via-amber-400 to-amber-600 text-white font-bold text-base hover:brightness-105 shadow-xl shadow-amber-500/25 transition-all flex items-center justify-center gap-2 disabled:opacity-50"
               >
                 {loading ? (
-                  <span>신청 정보를 메일로 접수 중입니다...</span>
+                  <span>신청 정보를 접수 중입니다...</span>
                 ) : (
                   <>
                     <Send className="w-5 h-5" />
