@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { 
   Building2, 
@@ -20,6 +20,8 @@ interface CoreValueSummarySectionProps {
 }
 
 export default function CoreValueSummarySection({ onNavigateRegister }: CoreValueSummarySectionProps) {
+  const [activeIndex, setActiveIndex] = useState(0);
+
   const coreValues = [
     {
       id: 1,
@@ -114,6 +116,14 @@ export default function CoreValueSummarySection({ onNavigateRegister }: CoreValu
     }
   ];
 
+  // 3.2초마다 순차적으로 테두리 순환 이동 (1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 1)
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % coreValues.length);
+    }, 3200);
+    return () => clearInterval(timer);
+  }, [coreValues.length]);
+
   return (
     <section id="core-summary" className="py-24 relative bg-[#060b18] text-white overflow-hidden border-t border-slate-800">
       {/* Background Lighting */}
@@ -128,7 +138,7 @@ export default function CoreValueSummarySection({ onNavigateRegister }: CoreValu
           </div>
           
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-white tracking-tight leading-tight">
-            아크메르 동탄 <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-gold-200 to-amber-400">6대 핵심 요약 브리핑</span>
+            아크메르 동탄 <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-gold-200 to-amber-400">6대 핵심 가치 총정리</span>
           </h2>
           
           <div className="w-20 h-0.5 bg-gradient-to-r from-transparent via-gold-400 to-transparent mx-auto" />
@@ -139,46 +149,73 @@ export default function CoreValueSummarySection({ onNavigateRegister }: CoreValu
           </div>
         </div>
 
-        {/* 6 Core Value Cards Grid (2 Columns on Desktop) */}
+        {/* 6 Core Value Cards Grid (순차적 골드 테두리 순환 이동 모션 적용) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {coreValues.map((item, idx) => {
             const IconComponent = item.icon;
+            const isActive = activeIndex === idx;
 
             return (
               <motion.div
                 key={item.id}
-                initial={{ opacity: 0, y: 25 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="rounded-3xl bg-[#0a1226]/90 border border-slate-800/90 hover:border-gold-400/60 p-7 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 shadow-xl hover:shadow-2xl hover:shadow-gold-500/10 group relative overflow-hidden"
+                onMouseEnter={() => setActiveIndex(idx)}
+                animate={{
+                  scale: isActive ? 1.03 : 0.98,
+                  y: isActive ? -8 : 0,
+                }}
+                transition={{ duration: 0.4, ease: 'easeOut' }}
+                className={`rounded-3xl p-7 flex flex-col justify-between transition-all duration-500 cursor-pointer relative overflow-hidden ${
+                  isActive
+                    ? 'bg-gradient-to-b from-[#121f42] to-[#0c1630] border-2 border-gold-400 shadow-[0_0_35px_rgba(212,175,55,0.35)] z-20'
+                    : 'bg-[#0a1226]/85 border border-slate-800/90 hover:border-slate-700 opacity-90 hover:opacity-100 z-10'
+                }`}
               >
-                {/* Accent Top Border Glow */}
-                <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-gold-400/40 to-transparent group-hover:via-gold-400 transition-all duration-500" />
+                {/* Accent Top Border Glow when Active */}
+                {isActive && (
+                  <div className="absolute top-0 inset-x-0 h-[3px] bg-gradient-to-r from-amber-400 via-gold-300 to-amber-400 animate-pulse" />
+                )}
 
                 <div>
                   {/* Top Category Badge & Index */}
                   <div className="flex items-center justify-between mb-5">
                     <div className="flex items-center gap-2">
-                      <span className="px-3 py-1 rounded-full bg-navy-950 border border-slate-700 text-gold-300 text-[11px] font-bold tracking-wide">
+                      <span className={`px-3 py-1 rounded-full border text-[11px] font-bold tracking-wide transition-colors ${
+                        isActive
+                          ? 'bg-gold-500/20 border-gold-400 text-gold-300'
+                          : 'bg-navy-950 border-slate-700 text-slate-400'
+                      }`}>
                         {item.badge}
                       </span>
                       <span className="text-[10px] font-mono text-slate-500 uppercase tracking-wider hidden sm:inline">
                         {item.tag}
                       </span>
                     </div>
-                    <span className="text-sm font-mono font-bold text-slate-600 group-hover:text-gold-400 transition-colors">
-                      0{item.id}
-                    </span>
+
+                    <div className="flex items-center gap-2">
+                      {isActive && (
+                        <span className="w-2 h-2 rounded-full bg-gold-400 animate-ping" />
+                      )}
+                      <span className={`text-sm font-mono font-bold transition-colors ${
+                        isActive ? 'text-gold-400 font-extrabold' : 'text-slate-600'
+                      }`}>
+                        0{item.id}
+                      </span>
+                    </div>
                   </div>
 
                   {/* Icon & Title */}
                   <div className="flex items-start gap-4 mb-4">
-                    <div className="w-12 h-12 rounded-2xl bg-[#0f1b3b] border border-gold-500/30 flex items-center justify-center text-gold-400 shrink-0 group-hover:scale-110 group-hover:border-gold-400 transition-all shadow-md">
+                    <div className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 transition-all duration-300 shadow-md ${
+                      isActive
+                        ? 'bg-gradient-to-br from-gold-400 to-gold-600 text-navy-950 scale-110 shadow-gold-500/40'
+                        : 'bg-[#0f1b3b] border border-gold-500/30 text-gold-400'
+                    }`}>
                       <IconComponent className="w-6 h-6" />
                     </div>
                     <div>
-                      <h3 className="text-lg sm:text-xl font-bold font-serif text-white group-hover:text-gold-300 transition-colors break-keep leading-snug">
+                      <h3 className={`text-lg sm:text-xl font-bold font-serif transition-colors break-keep leading-snug ${
+                        isActive ? 'text-gold-300' : 'text-white'
+                      }`}>
                         {item.title}
                       </h3>
                       <p className="text-xs font-semibold text-amber-400/90 mt-1 font-mono">
@@ -197,10 +234,12 @@ export default function CoreValueSummarySection({ onNavigateRegister }: CoreValu
                     {item.specs.map((spec, sIdx) => (
                       <div key={sIdx} className="flex items-start justify-between gap-3 text-xs">
                         <span className="text-slate-400 font-medium shrink-0 flex items-center gap-1.5">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-gold-400 shrink-0" />
+                          <CheckCircle2 className={`w-3.5 h-3.5 shrink-0 ${isActive ? 'text-gold-400' : 'text-slate-500'}`} />
                           {spec.label}
                         </span>
-                        <span className="text-slate-200 font-semibold text-right break-keep">
+                        <span className={`font-semibold text-right break-keep transition-colors ${
+                          isActive ? 'text-white' : 'text-slate-300'
+                        }`}>
                           {spec.value}
                         </span>
                       </div>

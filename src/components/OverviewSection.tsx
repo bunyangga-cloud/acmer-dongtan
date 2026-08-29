@@ -1,68 +1,11 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShieldCheck, Train, Sparkles, Building2, MapPin, Layers, Home, Hash, Maximize, FileText, CheckCircle2, Award, Briefcase, Trees } from 'lucide-react';
+import { ShieldCheck, Train, Sparkles, Building2, MapPin, Layers, Hash, Maximize, FileText, Award } from 'lucide-react';
 
 export default function OverviewSection() {
-  const [activeIndex, setActiveIndex] = useState(0);
   const [activeSite, setActiveSite] = useState<'site95' | 'site99'>('site95');
-
-  // 핵심 4대 프리미엄 카드 (제공해주신 소스 원본 완벽 반영)
-  const highlights = [
-    {
-      icon: Building2,
-      tag: "LANDMARK ARCHITECTURE",
-      title: "최고 49층 역사적 랜드마크",
-      subtitle: "㈜포스코이앤씨 시공 · 총 1,808세대",
-      desc: "20년의 염원이 담긴 동탄의 중심, 1군 메이저 건설사 ㈜포스코이앤씨의 기술력과 최고 49층 압도적 스카이라인을 완성합니다.",
-      featureBadges: [
-        "최고 49층 시그니처 타워",
-        "자나이나 미레이로 디자인 협업",
-        "하이엔드 외관 마감재 특화"
-      ],
-      detailNote: "에르메스·샤넬·디올 협업 세계적 아티스트 '자나이나 미레이로(Janaïna Milheiro)' 외관 디자인 협업"
-    },
-    {
-      icon: Train,
-      tag: "SPEED TRAFFIC",
-      title: "반송역 직결 쾌속 교통망",
-      subtitle: "GTX-A 서울역 30분대 · SRT 동탄역",
-      desc: "동탄~인덕원선 반송역(예정) 직결 계획과 GTX-A 전구간 개통(예정)으로 서울역 30분대 진입, 지역 내 최다 광역버스 노선을 누립니다.",
-      featureBadges: [
-        "동탄인덕원선 반송역 직결 계획",
-        "GTX-A · SRT 동탄역 광역교통",
-        "기흥동탄IC · 광역버스 최다 노선"
-      ],
-      detailNote: "※ 인동선 직결은 추후 사업 인허가 과정에서 변경/취소될 수 있습니다."
-    },
-    {
-      icon: Briefcase,
-      tag: "PERFECT LIFE",
-      title: "삼성 나노시티 직주근접",
-      subtitle: "도보·셔틀 통근 · 중심 쇼핑 인프라",
-      desc: "삼성전자 화성·기흥 캠퍼스(NanoCity) 인접으로 압도적인 직주근접 프리미엄과 롯데백화점, 스타필드마켓 등 풍부한 중심 인프라를 누립니다.",
-      featureBadges: [
-        "삼성전자 화성·기흥 캠퍼스 인접",
-        "롯데백화점 · 스타필드마켓",
-        "동탄 프리미엄 아울렛 인프라"
-      ],
-      detailNote: "워라밸을 실현하는 삼성 통근 권역 및 동탄 최중심 원스톱 라이프"
-    },
-    {
-      icon: Trees,
-      tag: "CENTER OF NATURE",
-      title: "센트럴파크 더블 파노라마",
-      subtitle: "도심 속 힐링 숲세권 · 안심 신탁 시행",
-      desc: "동탄 센트럴파크와 반석산 근린공원의 더블 파노라마 뷰(일부 세대)와 경부고속도로 지하화로 한층 더 쾌적해진 청정 주거 환경을 제공합니다.",
-      featureBadges: [
-        "센트럴파크 + 반석산 더블 뷰",
-        "경부고속도로 지하화 쾌적성",
-        "KB부동산신탁㈜ 신뢰 시행"
-      ],
-      detailNote: "홍상용 문화의거리, 동탄여울공원, 오산천 수변공원 인접"
-    }
-  ];
 
   const siteDetails = {
     site95: {
@@ -91,13 +34,6 @@ export default function OverviewSection() {
     },
   };
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % highlights.length);
-    }, 4500);
-    return () => clearInterval(timer);
-  }, [highlights.length]);
-
   const currentSite = siteDetails[activeSite];
 
   return (
@@ -106,7 +42,7 @@ export default function OverviewSection() {
       <div className="absolute top-0 right-0 w-96 h-96 bg-gold-500/10 rounded-full filter blur-3xl" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-600/10 rounded-full filter blur-3xl" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-16">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gold-500/10 border border-gold-400/40 text-gold-300 text-xs font-semibold">
@@ -121,87 +57,7 @@ export default function OverviewSection() {
           </p>
         </div>
 
-        {/* 4대 프리미엄 특장점 카드 (고도화 버전) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
-          {highlights.map((item, idx) => {
-            const IconComponent = item.icon;
-            const isActive = activeIndex === idx;
-
-            return (
-              <motion.div
-                key={idx}
-                onMouseEnter={() => setActiveIndex(idx)}
-                animate={{
-                  scale: isActive ? 1.03 : 0.98,
-                  y: isActive ? -6 : 0,
-                }}
-                transition={{ duration: 0.35, ease: 'easeOut' }}
-                className={`relative rounded-2xl p-6 transition-all duration-300 cursor-pointer flex flex-col justify-between overflow-hidden ${
-                  isActive
-                    ? 'bg-gradient-to-b from-[#121f42] to-[#0c1630] border-2 border-gold-400 shadow-2xl shadow-gold-500/25 z-20'
-                    : 'bg-[#0f1a36]/80 border border-slate-800/90 hover:border-slate-700 z-10'
-                }`}
-              >
-                <div>
-                  {/* Top Category Badge */}
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-[10px] font-mono tracking-widest text-gold-400 font-bold uppercase">
-                      {item.tag}
-                    </span>
-                    <span className="text-[10px] font-mono text-slate-500 font-bold">
-                      0{idx + 1} / 04
-                    </span>
-                  </div>
-
-                  {/* Icon */}
-                  <div
-                    className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 ${
-                      isActive
-                        ? 'bg-gradient-to-br from-gold-400 to-gold-600 text-navy-950 shadow-lg shadow-gold-500/30 scale-105'
-                        : 'bg-gold-500/10 border border-gold-500/30 text-gold-400'
-                    }`}
-                  >
-                    <IconComponent className="w-6 h-6" />
-                  </div>
-
-                  {/* Title & Subtitle */}
-                  <h3
-                    className={`text-xl font-bold font-serif mb-1 transition-colors duration-300 break-keep ${
-                      isActive ? 'text-gold-300' : 'text-white'
-                    }`}
-                  >
-                    {item.title}
-                  </h3>
-                  <p className="text-xs font-semibold text-amber-400/90 mb-3 font-mono">
-                    {item.subtitle}
-                  </p>
-
-                  {/* Description */}
-                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal break-keep mb-4">
-                    {item.desc}
-                  </p>
-
-                  {/* Feature Checkpoints */}
-                  <div className="space-y-1.5 pt-3 border-t border-slate-800/80">
-                    {item.featureBadges.map((badge, bIdx) => (
-                      <div key={bIdx} className="flex items-center gap-1.5 text-[11px] text-slate-300">
-                        <CheckCircle2 className={`w-3.5 h-3.5 shrink-0 ${isActive ? 'text-gold-400' : 'text-slate-500'}`} />
-                        <span className="break-keep">{badge}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Bottom Detail Note */}
-                <div className="mt-5 pt-3 border-t border-slate-800 text-[10px] text-slate-400 leading-normal break-keep">
-                  {item.detailNote}
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
-
-        {/* 95번지 vs 99번지 상세 사업개요 탭 스펙 박스 (핵심 소스 반영) */}
+        {/* 95번지 vs 99번지 상세 사업개요 탭 스펙 박스 */}
         <div className="rounded-3xl border border-gold-500/30 p-6 sm:p-10 shadow-2xl bg-[#080e1e]/90 backdrop-blur-xl">
           {/* Header & Block Selector Buttons */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-8 pb-6 border-b border-slate-800">
