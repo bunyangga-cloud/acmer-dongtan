@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Menu, X, Phone, CalendarCheck, Sparkles } from 'lucide-react';
+import AudioPlayer from '@/components/AudioPlayer';
 
 interface HeaderProps {
   onOpenPhoneModal: () => void;
@@ -75,8 +76,10 @@ export default function Header({ onOpenPhoneModal, onNavigateSection }: HeaderPr
             ))}
           </nav>
 
-          {/* Desktop Right CTA */}
+          {/* Desktop Right CTA & BGM Player */}
           <div className="hidden sm:flex items-center gap-3">
+            <AudioPlayer />
+
             <button
               onClick={onOpenPhoneModal}
               className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold bg-navy-950/80 border border-slate-700 text-slate-200 hover:border-gold-500/50 hover:text-white transition-all shadow-sm"
@@ -94,8 +97,9 @@ export default function Header({ onOpenPhoneModal, onNavigateSection }: HeaderPr
             </button>
           </div>
 
-          {/* Mobile Menu Toggle Button */}
+          {/* Mobile Menu & BGM Toggle */}
           <div className="flex items-center sm:hidden gap-2">
+            <AudioPlayer className="px-2 py-1 text-[10px]" />
             <button
               onClick={() => onNavigateSection('register')}
               className="px-3 py-1.5 rounded-lg text-xs font-bold bg-gold-500 text-navy-950"
