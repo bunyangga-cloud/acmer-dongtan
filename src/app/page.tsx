@@ -11,6 +11,7 @@ import FAQSection from '@/components/FAQSection';
 import RegisterSection from '@/components/RegisterSection';
 import PhoneModal from '@/components/PhoneModal';
 import Footer from '@/components/Footer';
+import ScrollToTopButton from '@/components/ScrollToTopButton';
 import FadeTransitionOverlay from '@/components/FadeTransitionOverlay';
 import IntroCurtain from '@/components/IntroCurtain';
 
@@ -78,6 +79,9 @@ export default function Home() {
 
       {/* Footer */}
       <Footer onOpenPhoneModal={() => setIsPhoneModalOpen(true)} />
+
+      {/* Floating Scroll To Top Button (우측 하단 상시 고정) */}
+      <ScrollToTopButton />
 
       {/* Hidden Phone Number Modal */}
       <PhoneModal

@@ -39,16 +39,9 @@ export default function Footer({ onOpenPhoneModal }: FooterProps) {
           <div className="flex items-center gap-4">
             <button
               onClick={onOpenPhoneModal}
-              className="px-4 py-2 rounded-lg bg-[#0d162e] border border-slate-700 text-slate-200 hover:text-gold-400 hover:border-gold-500/50 transition-all font-semibold shadow-sm"
+              className="px-4 py-2.5 rounded-lg bg-[#0d162e] border border-slate-700 text-slate-200 hover:text-gold-400 hover:border-gold-500/50 transition-all font-semibold shadow-sm text-xs"
             >
               전화문의 (1600-**** 오픈예정)
-            </button>
-            <button
-              onClick={scrollToTop}
-              className="p-2.5 rounded-lg bg-[#0d162e] border border-slate-700 text-slate-400 hover:text-white hover:border-slate-500 transition-all shadow-sm"
-              title="맨 위로 이동"
-            >
-              <ArrowUp className="w-4 h-4" />
             </button>
           </div>
         </div>
