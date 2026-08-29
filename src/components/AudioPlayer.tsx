@@ -17,8 +17,40 @@ export default function AudioPlayer({ className = '', variant = 'compact' }: Aud
     // 오디오 인스턴스 생성
     const audio = new Audio('https://theartdata.mycafe24.com/data/bgm/acmer/bgm.mp3');
     audio.loop = true;
-    audio.volume = 0.4;
+    audio.volume = 0.45;
     audioRef.current = audio;
+
+    // 1) 즉시 자동 재생 시도
+    const startAudio = () => {
+      if (!audioRef.current) return;
+      audioRef.current
+        .play()
+        .then(() => {
+          setIsPlaying(true);
+        })
+        .catch(() => {
+          // 브라우저 정책으로 첫 로드 자동재생 차단 시, 첫 사용자 클릭/터치/스크롤 시 자동 재생
+          const handleFirstUserInteraction = () => {
+            if (audioRef.current && audioRef.current.paused) {
+              audioRef.current
+                .play()
+                .then(() => {
+                  setIsPlaying(true);
+                })
+                .catch(() => {});
+            }
+            window.removeEventListener('click', handleFirstUserInteraction);
+            window.removeEventListener('touchstart', handleFirstUserInteraction);
+            window.removeEventListener('keydown', handleFirstUserInteraction);
+          };
+
+          window.addEventListener('click', handleFirstUserInteraction, { once: true });
+          window.addEventListener('touchstart', handleFirstUserInteraction, { once: true });
+          window.addEventListener('keydown', handleFirstUserInteraction, { once: true });
+        });
+    };
+
+    startAudio();
 
     // 언마운트 시 정리
     return () => {

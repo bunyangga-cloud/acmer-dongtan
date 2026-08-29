@@ -54,19 +54,22 @@ export default function Footer({ onOpenPhoneModal }: FooterProps) {
           </div>
         </div>
 
-        {/* Disclaimer Note */}
-        <div className="space-y-2 text-[11px] text-slate-400 leading-relaxed bg-[#0b1226]/80 p-4 rounded-xl border border-slate-800 shadow-sm">
-          <div className="flex items-center gap-1.5 text-gold-400 font-bold mb-1">
-            <ShieldAlert className="w-3.5 h-3.5 text-gold-400" /> 법적 유의사항 및 안내
+        {/* Disclaimer Note (법적 필수 고지사항) */}
+        <div className="space-y-2 text-[11px] text-slate-400 leading-relaxed bg-[#0b1226]/80 p-5 rounded-xl border border-slate-800 shadow-sm">
+          <div className="flex items-center gap-1.5 text-gold-400 font-bold mb-1.5 text-xs">
+            <ShieldAlert className="w-4 h-4 text-gold-400" /> 법적 유의사항 및 필수 고지사항
           </div>
           <p>
-            ※ 본 사이트상의 조감도, CG, 입지도, 구도 및 이미지 등은 소비자의 이해를 돕기 위한 것으로 실제 시공 및 인허가 과정에서 일부 변경될 수 있습니다.
+            ※ 본 사이트상의 조감도, CG, 영상, 입지도 및 이미지 등은 소비자의 이해를 돕기 위한 사전 홍보물로 실제 시공 및 인허가 과정에서 차이가 있을 수 있으므로 견본주택 및 현장 방문을 통해 확인하시기 바랍니다.
           </p>
           <p>
-            ※ 대표 전화번호(1600-0000) 및 견본주택 상세 주소는 2026년 9월 분양 승인 공고 후 정식으로 안내될 예정입니다.
+            ※ 사업개요 및 공급규모, 일정 등은 「주택공급에 관한 규칙」 등 관계 법령 및 인허가 과정에 따라 일부 변경될 수 있으며, 추후 발표될 입주자모집공고를 반드시 확인하시기 바랍니다.
           </p>
           <p>
-            ※ 수집된 개인정보는 분양 안내 목적 외에는 타 용도로 일체 사용되지 않습니다.
+            ※ 동탄~인덕원선 반송역(예정) 직결 및 광역교통 계획은 관계기관 자료에 기반한 계획 사항으로 인허가 과정에서 변경 또는 취소될 수 있습니다. (근거: 국토교통부고시 제2025-156호 수도권광역급행철도 A노선 민간투자사업 실시계획 등)
+          </p>
+          <p>
+            ※ 시공 하자 담보책임 관련 사항은 「집합건물의 소유 및 관리에 관한 법률」 제9조의2·시행령 제5조, 「공동주택관리법」 제36조·시행령 제36조가 적용됩니다.
           </p>
         </div>
 
