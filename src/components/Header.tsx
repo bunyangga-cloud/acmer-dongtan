@@ -47,15 +47,15 @@ export default function Header({ onOpenPhoneModal, onNavigateSection }: HeaderPr
         <div className="flex items-center justify-between">
           {/* Logo Area */}
           <button onClick={() => onNavigateSection('top')} className="group flex items-center text-left">
-            <div className="relative h-9 sm:h-11 w-auto aspect-[2184/720] shrink-0 flex items-center group-hover:scale-105 transition-transform">
+            <div className="relative h-11 sm:h-[52px] w-auto aspect-[2172/724] shrink-0 flex items-center group-hover:scale-105 transition-transform">
               <Image
-                src="/images/logo.png"
+                src="/images/logo2.png"
                 alt="아크메르 동탄 로고"
-                width={140}
-                height={46}
+                width={182}
+                height={60}
                 unoptimized
                 priority
-                className="h-full w-auto object-contain filter contrast-[1.05] drop-shadow-[0_0_8px_rgba(212,175,55,0.4)]"
+                className="h-full w-auto object-contain drop-shadow-[0_2px_12px_rgba(255,255,255,0.25)] filter brightness-105"
               />
             </div>
           </button>
