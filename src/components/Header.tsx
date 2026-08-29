@@ -42,16 +42,16 @@ export default function Header({ onOpenPhoneModal, onNavigateSection }: HeaderPr
           : 'bg-gradient-to-b from-black/85 via-black/50 to-transparent py-3 sm:py-4'
       }`}
     >
-      <div className="max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between gap-4">
           {/* Logo Area */}
           <button onClick={() => onNavigateSection('top')} className="group flex items-center text-left shrink-0">
-            <div className="relative h-11 sm:h-[54px] w-auto aspect-[2172/724] shrink-0 flex items-center group-hover:scale-105 transition-transform">
+            <div className="relative h-10 sm:h-12 w-auto aspect-[2172/724] shrink-0 flex items-center group-hover:scale-105 transition-transform">
               <Image
                 src="/images/logo2.png"
                 alt="아크메르 동탄 로고"
-                width={175}
-                height={58}
+                width={165}
+                height={55}
                 unoptimized
                 priority
                 className="h-full w-auto object-contain drop-shadow-[0_2px_12px_rgba(255,255,255,0.25)] filter brightness-105"
@@ -59,8 +59,8 @@ export default function Header({ onOpenPhoneModal, onNavigateSection }: HeaderPr
             </div>
           </button>
 
-          {/* Desktop Navigation (조감도, Q&A 간결화) */}
-          <nav className="hidden lg:flex items-center gap-6 xl:gap-8 2xl:gap-10">
+          {/* Desktop Navigation: 메뉴 + Q&A 우측 노란색 관심고객등록 버튼 */}
+          <nav className="hidden lg:flex items-center gap-5 xl:gap-6 2xl:gap-7">
             {navLinks.map((link) => (
               <button
                 key={link.targetId}
@@ -71,22 +71,21 @@ export default function Header({ onOpenPhoneModal, onNavigateSection }: HeaderPr
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gold-400 transition-all duration-300 group-hover:w-full" />
               </button>
             ))}
-          </nav>
 
-          {/* Desktop Right CTA: BGM -> 관심고객등록(노란버튼) -> 전화문의(가장 우측) */}
-          <div className="hidden sm:flex items-center gap-3 shrink-0">
-            <AudioPlayer />
-
-            {/* 노란색 관심고객등록 버튼 */}
+            {/* Q&A 바로 우측 노란색 관심고객등록 버튼 */}
             <button
               onClick={() => onNavigateSection('register')}
-              className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold bg-gradient-to-r from-amber-500 via-gold-400 to-amber-600 text-navy-950 hover:brightness-110 shadow-lg shadow-gold-500/25 transition-all whitespace-nowrap"
+              className="ml-1 flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold bg-gradient-to-r from-amber-500 via-gold-400 to-amber-600 text-navy-950 hover:brightness-110 shadow-md shadow-gold-500/25 transition-all whitespace-nowrap"
             >
               <Sparkles className="w-3.5 h-3.5" />
               <span>관심고객등록</span>
             </button>
+          </nav>
 
-            {/* 가장 우측: 전화문의 버튼 */}
+          {/* Desktop Right CTA: BGM 플레이어 & 대표 전화문의 */}
+          <div className="hidden sm:flex items-center gap-2.5 shrink-0">
+            <AudioPlayer />
+
             <button
               onClick={onOpenPhoneModal}
               className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold bg-navy-950/80 border border-slate-700 text-slate-200 hover:border-gold-500/50 hover:text-white transition-all shadow-sm whitespace-nowrap"
