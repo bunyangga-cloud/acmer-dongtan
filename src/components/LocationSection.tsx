@@ -128,93 +128,55 @@ export default function LocationSection() {
         {/* ========================================================= */}
         {/* 1. 카탈로그 감성 메인 헤더 & 입지VR 바로가기 CTA 배너 */}
         {/* ========================================================= */}
-        <div className="rounded-3xl bg-gradient-to-br from-slate-50 via-white to-amber-50/40 border border-slate-200/90 p-6 sm:p-10 md:p-12 shadow-xl shadow-slate-900/5 relative overflow-hidden">
+        <div className="rounded-3xl bg-gradient-to-br from-slate-50 via-white to-amber-50/40 border border-slate-200/90 p-6 sm:p-10 md:p-14 shadow-xl shadow-slate-900/5 relative overflow-hidden">
           
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          <div className="max-w-4xl space-y-6">
             
-            {/* 좌측: 타이틀 카피 & [입지VR 바로가기] 버튼 */}
-            <div className="lg:col-span-7 space-y-6">
-              
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-100/80 border border-amber-300 text-amber-900 text-xs font-bold tracking-wider">
-                <Compass className="w-4 h-4 text-amber-700 animate-spin-slow" />
-                <span>LOCATION PREMIUM · 360° SKY VR</span>
-              </div>
-
-              {/* 브로셔 원본 헤드라인 카피 */}
-              <div className="space-y-2">
-                <p className="font-serif text-lg sm:text-2xl text-slate-700 font-normal tracking-tight">
-                  동탄의 가장 완벽한 삶을 위해
-                </p>
-                <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-slate-900 tracking-tight leading-tight">
-                  모든 것이 <span className="font-serif font-black text-slate-950 border-b-4 border-amber-500 pb-0.5 inline-block text-4xl sm:text-5xl md:text-6xl mx-1">완성</span>될 자리에 서다
-                </h2>
-              </div>
-
-              {/* 브로셔 원본 바디 카피 */}
-              <p className="text-slate-600 text-sm sm:text-base leading-relaxed break-keep font-normal pt-2 border-t border-slate-200/80">
-                광역교통망과 삼성전자 배후의 직주근접 입지,<br className="hidden sm:inline" />
-                풍부한 생활 인프라와 쾌적한 자연,<br className="hidden sm:inline" />
-                우수한 교육환경까지 모두 갖춘 동탄의 프리미엄 라이프.
-              </p>
-
-              {/* [입지VR 바로가기] 메인 CTA 버튼 (새창 열기) */}
-              <div className="pt-2 flex flex-wrap items-center gap-4">
-                <a
-                  href={VR_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group relative inline-flex items-center gap-3 px-6 sm:px-8 py-3.5 sm:py-4 rounded-2xl bg-gradient-to-r from-[#172554] via-[#1e3a8a] to-[#0f172a] text-white font-bold text-sm sm:text-base shadow-xl shadow-blue-950/20 hover:shadow-2xl hover:shadow-amber-500/25 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 border border-amber-400/50 cursor-pointer overflow-hidden"
-                >
-                  {/* Subtle Shimmer Effect */}
-                  <span className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/15 to-transparent skew-x-12 -translate-x-full group-hover:translate-x-[300%] transition-transform duration-1000" />
-                  
-                  <div className="w-8 h-8 rounded-xl bg-amber-400/20 border border-amber-400/60 flex items-center justify-center text-amber-300 group-hover:scale-110 transition-transform">
-                    <Compass className="w-4 h-4 text-amber-300" />
-                  </div>
-                  
-                  <span className="tracking-wide">입지VR 바로가기</span>
-                  <ExternalLink className="w-4 h-4 text-amber-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                </a>
-
-                <div className="text-xs text-slate-500 flex items-center gap-1.5 font-medium">
-                  <Sparkles className="w-3.5 h-3.5 text-amber-600" />
-                  <span>360° 항공 조감 VR 파노라마 새창 연결</span>
-                </div>
-              </div>
-
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-100/80 border border-amber-300 text-amber-900 text-xs font-bold tracking-wider">
+              <Compass className="w-4 h-4 text-amber-700 animate-spin-slow" />
+              <span>LOCATION PREMIUM · 360° SKY VR</span>
             </div>
 
-            {/* 우측: 카탈로그 입지 썸네일 & 바로가기 인터랙티브 카드 */}
-            <div className="lg:col-span-5">
+            {/* 브로셔 원본 헤드라인 카피 */}
+            <div className="space-y-2">
+              <p className="font-serif text-lg sm:text-2xl text-slate-700 font-normal tracking-tight">
+                동탄의 가장 완벽한 삶을 위해
+              </p>
+              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-slate-900 tracking-tight leading-tight">
+                모든 것이 <span className="font-serif font-black text-slate-950 border-b-4 border-amber-500 pb-0.5 inline-block text-4xl sm:text-5xl md:text-6xl mx-1">완성</span>될 자리에 서다
+              </h2>
+            </div>
+
+            {/* 브로셔 원본 바디 카피 */}
+            <p className="text-slate-600 text-sm sm:text-base md:text-lg leading-relaxed break-keep font-normal pt-2 border-t border-slate-200/80 max-w-3xl">
+              광역교통망과 삼성전자 배후의 직주근접 입지,<br className="hidden sm:inline" />
+              풍부한 생활 인프라와 쾌적한 자연,<br className="hidden sm:inline" />
+              우수한 교육환경까지 모두 갖춘 동탄의 프리미엄 라이프.
+            </p>
+
+            {/* [입지VR 바로가기] 메인 CTA 버튼 (새창 열기) */}
+            <div className="pt-3 flex flex-wrap items-center gap-4 sm:gap-6">
               <a
                 href={VR_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group block relative rounded-2xl overflow-hidden border border-slate-300/80 shadow-lg hover:shadow-2xl hover:border-amber-500 transition-all duration-300 bg-white"
+                className="group relative inline-flex items-center gap-3 px-7 sm:px-9 py-4 rounded-2xl bg-gradient-to-r from-[#172554] via-[#1e3a8a] to-[#0f172a] text-white font-bold text-sm sm:text-base shadow-xl shadow-blue-950/20 hover:shadow-2xl hover:shadow-amber-500/25 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 border border-amber-400/50 cursor-pointer overflow-hidden"
               >
-                <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
-                  <img
-                    src="/images/location_catalog.png"
-                    alt="아크메르 동탄 입지환경 브로셔 조감도"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  {/* Overlay Tag */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex items-end p-4">
-                    <div className="flex items-center justify-between w-full text-white">
-                      <div>
-                        <span className="text-[10px] font-mono tracking-widest text-amber-300 font-bold uppercase block">
-                          360° INTERACTIVE VR
-                        </span>
-                        <h4 className="text-sm font-bold">아크메르 동탄 조감VR 관람</h4>
-                      </div>
-                      <span className="px-3 py-1.5 rounded-xl bg-amber-500 text-navy-950 text-xs font-bold flex items-center gap-1 group-hover:bg-amber-400 transition-colors shadow-md">
-                        <span>VR 체험</span>
-                        <ExternalLink className="w-3 h-3" />
-                      </span>
-                    </div>
-                  </div>
+                {/* Subtle Shimmer Effect */}
+                <span className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/15 to-transparent skew-x-12 -translate-x-full group-hover:translate-x-[300%] transition-transform duration-1000" />
+                
+                <div className="w-8 h-8 rounded-xl bg-amber-400/20 border border-amber-400/60 flex items-center justify-center text-amber-300 group-hover:scale-110 transition-transform">
+                  <Compass className="w-4 h-4 text-amber-300" />
                 </div>
+                
+                <span className="tracking-wide">입지VR 바로가기</span>
+                <ExternalLink className="w-4 h-4 text-amber-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </a>
+
+              <div className="text-xs sm:text-sm text-slate-500 flex items-center gap-2 font-medium">
+                <Sparkles className="w-4 h-4 text-amber-600 shrink-0" />
+                <span>360° 항공 조감 VR 파노라마 새창 연결</span>
+              </div>
             </div>
 
           </div>
