@@ -122,12 +122,12 @@ export default function RegisterSection() {
             <Sparkles className="w-3.5 h-3.5 text-amber-700" /> VIP INTEREST REGISTER
           </div>
           <h2 className="text-3xl sm:text-4xl font-serif font-bold text-slate-900 break-keep">
-            아크메르 동탄 <span className="gold-gradient-text">사전 관심고객 등록</span>
+            아크메르 동탄 <span className="gold-gradient-text">관심고객 등록</span>
           </h2>
           <div className="w-16 h-0.5 bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto" />
           <p className="text-slate-600 text-sm sm:text-base leading-relaxed break-keep font-normal">
-            아크메르 동탄은 불확실한 미확정 정보로 고객님께 혼선을 드리지 않습니다.<br className="hidden sm:block" />
-            <strong className="text-slate-900 font-semibold">모델하우스 관람 가능 일자 및 공식 모집공고 일정</strong>이 확정되는 즉시 1순위 VIP 확정 알림을 발송해 드립니다.
+            아크메르 동탄은 고객님의 소중한 정보를 안전하게 보호합니다.<br className="hidden sm:block" />
+            <strong className="text-slate-900 font-semibold">입주자모집공고 상세 분석, 청약 가이드, 견본주택 관람 및 향후 VIP 맞춤 안내</strong>를 가장 신속하게 전달해 드립니다.
           </p>
         </div>
 
@@ -140,7 +140,7 @@ export default function RegisterSection() {
           className="rounded-3xl border border-slate-200/90 p-6 sm:p-10 shadow-xl shadow-slate-200/50 bg-slate-50/60 backdrop-blur-md relative overflow-hidden"
         >
           {success ? (
-            /* Success View (고객 안심 및 이탈 방지 메시지) */
+            /* Success View (고객 안심 메시지) */
             <motion.div
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -152,7 +152,7 @@ export default function RegisterSection() {
 
               <div>
                 <span className="inline-block px-3.5 py-1 rounded-full bg-amber-100 text-amber-900 text-xs font-bold border border-amber-300 mb-2">
-                  VIP 사전 알림 등록 접수 완료
+                  VIP 관심고객 등록 접수 완료
                 </span>
                 <h3 className="text-2xl sm:text-3xl font-serif font-bold text-slate-900 break-keep">
                   관심고객 등록이 <span className="gold-gradient-text">완료되었습니다!</span>
@@ -163,19 +163,19 @@ export default function RegisterSection() {
               <div className="max-w-xl mx-auto bg-white rounded-2xl p-5 sm:p-6 border border-slate-200 text-left space-y-3.5 shadow-sm">
                 <div className="flex items-center gap-2 font-bold text-amber-800 text-sm pb-2.5 border-b border-slate-100">
                   <CalendarClock className="w-4 h-4 text-amber-700 shrink-0" />
-                  <span>향후 일정 및 안내 발송 시점 안내</span>
+                  <span>VIP 맞춤 안내 발송 안내</span>
                 </div>
                 
                 <p className="text-xs sm:text-sm text-slate-700 leading-relaxed break-keep">
-                  현재 아크메르 동탄은 공식 분양 승인 및 일정 조율 단계에 있습니다. <strong className="text-slate-900">확정되지 않은 정보로 섣불리 연락드려 혼선을 드리지 않기 위해, 무분별한 스팸성 영업 전화는 일체 드리지 않습니다.</strong>
+                  등록해주신 소중한 정보는 <strong className="text-slate-900">아크메르 동탄의 주요 분양 일정, 견본주택 관람 및 중요 변동 사항 VIP 우선 안내</strong> 목적으로만 안전하게 활용됩니다. 무분별한 스팸성 영업 전화는 일체 드리지 않습니다.
                 </p>
                 
                 <div className="p-3.5 rounded-xl bg-amber-50/80 border border-amber-200/80 text-xs sm:text-sm text-amber-950 font-medium leading-relaxed">
-                  📢 <strong>[모델하우스 관람 가능 일자]</strong> 및 <strong>[공식 입주자모집공고 일정]</strong>이 정식 확정되는 즉시, 등록해주신 연락처로 <strong>가장 빠른 1순위 VIP 확정 알림 문자</strong>를 발송해 드리겠습니다.
+                  📢 등록해주신 연락처로 <strong>청약 핵심 체크포인트 및 견본주택 방문, 향후 VIP 맞춤 분양 정보</strong>를 가장 빠르고 정확하게 안내해 드리겠습니다.
                 </div>
 
                 <div className="pt-1 text-[11px] text-slate-400 leading-relaxed">
-                  ※ 타 사이트나 개인 블로그의 미확정 추측성 정보에 유의하시기 바라며, 공식 확정 소식은 본 등록처를 통해 가장 안전하고 정확하게 전달됩니다.
+                  ※ 공식 분양 소식 및 변동 사항은 본 등록처를 통해 가장 안전하고 정확하게 전달됩니다.
                 </div>
               </div>
 
@@ -197,10 +197,10 @@ export default function RegisterSection() {
                 <ShieldCheck className="w-5 h-5 text-amber-700 shrink-0 mt-0.5" />
                 <div>
                   <strong className="text-amber-950 font-bold block mb-0.5">
-                    [사전 안내 원칙] 불필요한 영업 전화를 드리지 않습니다.
+                    [안심 안내 원칙] 불필요한 스팸 전화를 드리지 않습니다.
                   </strong>
                   <span className="text-slate-600 text-xs leading-normal">
-                    미확정된 정보로 인한 혼란을 방지하기 위해, <strong>모델하우스 관람 가능 일자 및 모집공고 일정이 공식 확정되는 시점에 1순위 VIP 우선 알림 문자</strong>를 발송해 드립니다.
+                    등록해주신 소중한 정보는 <strong>아크메르 동탄 주요 청약 일정, 견본주택 관람 및 중요 분양 변동 사항 VIP 우선 안내</strong> 목적으로만 안전하게 활용됩니다.
                   </span>
                 </div>
               </div>

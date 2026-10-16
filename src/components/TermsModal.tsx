@@ -93,7 +93,7 @@ export default function TermsModal({ isOpen, onClose }: TermsModalProps) {
                 <FileText className="w-4 h-4 text-amber-700" /> 4. 동의 거부 권리 및 불이익 안내
               </h4>
               <p className="text-slate-600">
-                - 귀하는 개인정보 수집 및 이용 동의를 거부할 권리가 있습니다. 단, 동의 거부 시 사전 관심고객 등록 및 분양 우선 안내 서비스 이용에 제한이 있을 수 있습니다.
+                - 귀하는 개인정보 수집 및 이용 동의를 거부할 권리가 있습니다. 단, 동의 거부 시 관심고객 등록 및 분양 우선 안내 서비스 이용에 제한이 있을 수 있습니다.
               </p>
             </div>
           </div>
