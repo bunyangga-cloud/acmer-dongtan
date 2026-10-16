@@ -3,7 +3,11 @@
 import React, { useState } from 'react';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
+import NoticeScheduleSection from '@/components/NoticeScheduleSection';
 import OverviewSection from '@/components/OverviewSection';
+import UnitTypesSection from '@/components/UnitTypesSection';
+import ComplexSection from '@/components/ComplexSection';
+import CommunitySection from '@/components/CommunitySection';
 import CoreValueSummarySection from '@/components/CoreValueSummarySection';
 import BirdseyeSection from '@/components/BirdseyeSection';
 import LocationSection from '@/components/LocationSection';
@@ -56,25 +60,37 @@ export default function Home() {
         onNavigateSection={handleNavigateSection}
       />
 
-      {/* 1. Main Hero Visual with Dynamic Pan & Zoom + Light Flares */}
+      {/* 1. Main Hero Visual */}
       <Hero onNavigateSection={handleNavigateSection} />
 
-      {/* 2. Overview & Brand Section (Includes 95 & 99 Block Specs) */}
+      {/* 2. 오늘 뜬 공식 입주자모집공고 & 청약일정 캘린더 (SCHEDULE) */}
+      <NoticeScheduleSection />
+
+      {/* 3. Overview & Brand Section (Includes 95 & 99 Block Specs) */}
       <OverviewSection />
 
-      {/* 2-2. 6대 핵심 요약 브리핑 섹션 (CORE VALUE 6) */}
+      {/* 4. 세대 평면 및 타입 안내 (UNIT TYPES - 95/99번지 전 타입) */}
+      <UnitTypesSection />
+
+      {/* 5. 단지배치도 & 동호수배치도 (COMPLEX MASTER PLAN) */}
+      <ComplexSection />
+
+      {/* 6. 하이엔드 커뮤니티 라이프 (COMMUNITY) */}
+      <CommunitySection />
+
+      {/* 7. 6대 핵심 요약 브리핑 섹션 (CORE VALUE 6) */}
       <CoreValueSummarySection onNavigateRegister={() => handleNavigateSection('register')} />
 
-      {/* 3. Bird's Eye View Gallery (dongtan.png & dongtan2.png Auto-Carousel) */}
+      {/* 8. Bird's Eye View Gallery (4대 Vimeo 시네마틱 조감도 영상) */}
       <BirdseyeSection />
 
-      {/* 4. Location Environment Section (locations.png Wide 1-Column) */}
+      {/* 9. Location Environment Section (360 VR 바로가기 & 1:1 대형 돋보기 지도) */}
       <LocationSection />
 
-      {/* 5. Q&A FAQ 5 Items */}
+      {/* 10. Q&A FAQ 5 Items */}
       <FAQSection />
 
-      {/* 6. Interest Registration Form (y3974@naver.com Email Delivery) */}
+      {/* 11. Interest Registration Form (VIP 사전청약의향서 / 관심고객등록) */}
       <RegisterSection />
 
       {/* Footer */}

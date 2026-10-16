@@ -27,8 +27,11 @@ export default function Header({ onOpenPhoneModal, onNavigateSection }: HeaderPr
   }, []);
 
   const navLinks = [
+    { name: '모집공고', targetId: 'schedule', isHot: true },
     { name: '사업개요', targetId: 'overview' },
-    { name: '핵심요약', targetId: 'core-summary' },
+    { name: '단지배치', targetId: 'complex' },
+    { name: '세대평면', targetId: 'unit-types' },
+    { name: '커뮤니티', targetId: 'community' },
     { name: '조감도', targetId: 'birdseye' },
     { name: '입지환경', targetId: 'location' },
     { name: 'Q&A', targetId: 'faq' },
@@ -42,16 +45,16 @@ export default function Header({ onOpenPhoneModal, onNavigateSection }: HeaderPr
           : 'bg-gradient-to-b from-black/85 via-black/50 to-transparent py-3 sm:py-4'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between gap-4">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between gap-2 sm:gap-4">
           {/* Logo Area */}
           <button onClick={() => onNavigateSection('top')} className="group flex items-center text-left shrink-0">
-            <div className="relative h-10 sm:h-12 w-auto aspect-[2172/724] shrink-0 flex items-center group-hover:scale-105 transition-transform">
+            <div className="relative h-9 sm:h-11 w-auto aspect-[2172/724] shrink-0 flex items-center group-hover:scale-105 transition-transform">
               <Image
                 src="/images/logo2.png"
                 alt="아크메르 동탄 로고"
-                width={165}
-                height={55}
+                width={150}
+                height={50}
                 unoptimized
                 priority
                 className="h-full w-auto object-contain drop-shadow-[0_2px_12px_rgba(255,255,255,0.25)] filter brightness-105"
@@ -60,14 +63,21 @@ export default function Header({ onOpenPhoneModal, onNavigateSection }: HeaderPr
           </button>
 
           {/* Desktop Navigation: 메뉴 + Q&A 우측 노란색 관심고객등록 버튼 */}
-          <nav className="hidden lg:flex items-center gap-5 xl:gap-6 2xl:gap-7">
+          <nav className="hidden lg:flex items-center gap-3.5 xl:gap-5 2xl:gap-6">
             {navLinks.map((link) => (
               <button
                 key={link.targetId}
                 onClick={() => onNavigateSection(link.targetId)}
-                className="text-xs xl:text-sm font-semibold text-slate-200 hover:text-gold-400 transition-colors tracking-wide relative group py-1 whitespace-nowrap"
+                className={`text-xs xl:text-sm font-semibold transition-colors tracking-wide relative group py-1 whitespace-nowrap flex items-center gap-1 ${
+                  link.isHot
+                    ? 'text-amber-300 hover:text-gold-200 font-bold'
+                    : 'text-slate-200 hover:text-gold-400'
+                }`}
               >
-                {link.name}
+                <span>{link.name}</span>
+                {link.isHot && (
+                  <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping inline-block" />
+                )}
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gold-400 transition-all duration-300 group-hover:w-full" />
               </button>
             ))}
@@ -75,7 +85,7 @@ export default function Header({ onOpenPhoneModal, onNavigateSection }: HeaderPr
             {/* Q&A 바로 우측 노란색 관심고객등록 버튼 */}
             <button
               onClick={() => onNavigateSection('register')}
-              className="ml-1 flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold bg-gradient-to-r from-amber-500 via-gold-400 to-amber-600 text-navy-950 hover:brightness-110 shadow-md shadow-gold-500/25 transition-all whitespace-nowrap"
+              className="ml-1 flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold bg-gradient-to-r from-amber-500 via-gold-400 to-amber-600 text-navy-950 hover:brightness-110 shadow-md shadow-gold-500/25 transition-all whitespace-nowrap"
             >
               <Sparkles className="w-3.5 h-3.5" />
               <span>관심고객등록</span>

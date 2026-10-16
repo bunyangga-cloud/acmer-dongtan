@@ -81,11 +81,12 @@ export default function Hero({ onNavigateSection }: HeroProps) {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/60 border border-gold-400/60 backdrop-blur-md mb-6 shadow-xl"
+          onClick={() => onNavigateSection('schedule')}
+          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/60 border border-gold-400/60 backdrop-blur-md mb-6 shadow-xl cursor-pointer hover:bg-black/80 transition-colors"
         >
           <Calendar className="w-4 h-4 text-gold-400" />
           <span className="text-xs sm:text-sm font-bold tracking-wide text-gold-300">
-            2026년 9월 GRAND OPEN 예정
+            2026.10.16 오늘 입주자모집공고 GRAND OPEN!
           </span>
           <span className="w-1.5 h-1.5 rounded-full bg-gold-400 animate-ping" />
         </motion.div>
@@ -175,11 +176,13 @@ export default function Hero({ onNavigateSection }: HeroProps) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.75 }}
-          className="mt-12 pt-6 border-t border-white/20 max-w-xl mx-auto text-xs text-slate-300 flex items-center justify-center gap-6"
+          className="mt-12 pt-6 border-t border-white/20 max-w-xl mx-auto text-xs text-slate-300 flex items-center justify-center gap-4 sm:gap-6"
         >
-          <div>오픈 예정: <span className="text-gold-300 font-bold">2026.09</span></div>
+          <div>공고일: <span className="text-gold-300 font-bold">2026.10.16</span></div>
           <div className="w-1 h-1 rounded-full bg-slate-500" />
-          <div>문의: <span className="text-white font-mono">대표번호 오픈 직전 공개</span></div>
+          <div>특별공급: <span className="text-gold-300 font-bold">10.26(월)</span></div>
+          <div className="w-1 h-1 rounded-full bg-slate-500" />
+          <div>1순위: <span className="text-gold-300 font-bold">10.27(화)</span></div>
         </motion.div>
       </div>
 
