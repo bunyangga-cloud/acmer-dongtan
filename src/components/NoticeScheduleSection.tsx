@@ -227,11 +227,11 @@ export default function NoticeScheduleSection() {
               </div>
 
               <div 
-                onClick={() => setZoomImage('/images/cy99.webp')}
+                onClick={() => setZoomImage('/images/cy99.jpg')}
                 className="group relative rounded-2xl overflow-hidden bg-slate-50 border border-slate-200 p-2 sm:p-4 flex justify-center cursor-zoom-in"
               >
                 <img
-                  src="/images/cy99.webp"
+                  src="/images/cy99.jpg"
                   alt="아크메르 동탄 분양일정 및 청약안내 총정리"
                   className="w-full h-auto object-contain max-w-5xl mx-auto filter contrast-[1.02] group-hover:scale-[1.01] transition-transform duration-300"
                 />
@@ -273,11 +273,11 @@ export default function NoticeScheduleSection() {
               </div>
 
               <div 
-                onClick={() => setZoomImage('/images/95/gg95.webp')}
+                onClick={() => setZoomImage('/images/95/gg95.jpg')}
                 className="group relative rounded-2xl overflow-hidden bg-slate-50 border border-slate-200 p-2 sm:p-4 flex justify-center cursor-zoom-in"
               >
                 <img
-                  src="/images/95/gg95.webp"
+                  src="/images/95/gg95.jpg"
                   alt="아크메르 동탄 95번지 입주자모집공고 요약표"
                   className="w-full h-auto object-contain max-w-5xl mx-auto filter contrast-[1.02] group-hover:scale-[1.01] transition-transform duration-300"
                 />
@@ -319,11 +319,11 @@ export default function NoticeScheduleSection() {
               </div>
 
               <div 
-                onClick={() => setZoomImage('/images/99/gg99.webp')}
+                onClick={() => setZoomImage('/images/99/gg99.jpg')}
                 className="group relative rounded-2xl overflow-hidden bg-slate-50 border border-slate-200 p-2 sm:p-4 flex justify-center cursor-zoom-in"
               >
                 <img
-                  src="/images/99/gg99.webp"
+                  src="/images/99/gg99.jpg"
                   alt="아크메르 동탄 99번지 입주자모집공고 요약표"
                   className="w-full h-auto object-contain max-w-5xl mx-auto filter contrast-[1.02] group-hover:scale-[1.01] transition-transform duration-300"
                 />
