@@ -106,7 +106,7 @@ export default function ComplexSection() {
           
           <div className="mb-4 flex flex-col sm:flex-row items-center justify-between gap-3 px-2">
             <div className="flex items-center gap-2">
-              <span className="px-2.5 py-0.5 rounded text-xs font-bold bg-navy-950 text-gold-300">
+              <span className="px-2.5 py-0.5 rounded text-xs font-black bg-gradient-to-r from-amber-500 to-amber-600 text-white shadow-sm">
                 {activeBlock}번지
               </span>
               <h3 className="font-serif font-bold text-lg sm:text-xl text-slate-900">
@@ -116,9 +116,9 @@ export default function ComplexSection() {
 
             <button
               onClick={() => setZoomImage(currentImage)}
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-navy-950 text-gold-300 hover:bg-black text-xs font-bold transition-all shadow-md cursor-pointer shrink-0"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-gradient-to-r from-amber-500 via-gold-400 to-amber-600 text-navy-950 hover:brightness-105 text-xs font-bold transition-all shadow-md border border-amber-300 cursor-pointer shrink-0"
             >
-              <Maximize2 className="w-3.5 h-3.5" />
+              <Maximize2 className="w-3.5 h-3.5 text-navy-950" />
               <span>원본 크게보기</span>
             </button>
           </div>

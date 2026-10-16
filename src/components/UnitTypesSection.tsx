@@ -258,7 +258,7 @@ export default function UnitTypesSection() {
               onClick={() => setActiveBlock('95')}
               className={`flex items-center gap-2 px-6 sm:px-9 py-3 rounded-xl text-sm sm:text-base font-bold transition-all duration-300 cursor-pointer ${
                 activeBlock === '95'
-                  ? 'bg-navy-950 text-gold-300 shadow-md scale-102'
+                  ? 'bg-gradient-to-r from-amber-500 via-gold-400 to-amber-600 text-navy-950 shadow-md shadow-amber-500/25 border border-amber-300 scale-102'
                   : 'text-slate-600 hover:text-slate-900'
               }`}
             >
@@ -270,7 +270,7 @@ export default function UnitTypesSection() {
               onClick={() => setActiveBlock('99')}
               className={`flex items-center gap-2 px-6 sm:px-9 py-3 rounded-xl text-sm sm:text-base font-bold transition-all duration-300 cursor-pointer ${
                 activeBlock === '99'
-                  ? 'bg-navy-950 text-gold-300 shadow-md scale-102'
+                  ? 'bg-gradient-to-r from-amber-500 via-gold-400 to-amber-600 text-navy-950 shadow-md shadow-amber-500/25 border border-amber-300 scale-102'
                   : 'text-slate-600 hover:text-slate-900'
               }`}
             >
@@ -298,7 +298,7 @@ export default function UnitTypesSection() {
               >
                 <span>{type.name}</span>
                 <span className={`text-[10px] px-1.5 py-0.2 rounded font-mono ${
-                  isSelected ? 'bg-navy-950/20 text-navy-950' : 'bg-slate-100 text-slate-500'
+                  isSelected ? 'bg-white/85 text-amber-950 font-bold border border-amber-300/50' : 'bg-slate-100 text-slate-500'
                 }`}>
                   {type.units}세대
                 </span>
@@ -314,7 +314,7 @@ export default function UnitTypesSection() {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 mb-6 border-b border-slate-200">
             <div>
               <div className="flex items-center gap-2.5">
-                <span className="px-3 py-1 rounded-full text-xs font-extrabold bg-navy-950 text-gold-300">
+                <span className="px-3 py-1 rounded-full text-xs font-black bg-gradient-to-r from-amber-500 to-amber-600 text-white shadow-sm">
                   {activeBlock}번지
                 </span>
                 <h3 className="text-2xl sm:text-3xl font-serif font-bold text-slate-900">
@@ -345,7 +345,7 @@ export default function UnitTypesSection() {
 
               <button
                 onClick={() => setZoomModalImage(currentUnit.image)}
-                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-navy-950 text-gold-300 hover:bg-black text-xs font-bold transition-all shadow-md cursor-pointer ml-auto sm:ml-0"
+                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-amber-500 via-gold-400 to-amber-600 text-navy-950 hover:brightness-105 text-xs font-bold transition-all shadow-md border border-amber-300 cursor-pointer ml-auto sm:ml-0"
                 title="평면도 크게 보기"
               >
                 <Maximize2 className="w-3.5 h-3.5" />

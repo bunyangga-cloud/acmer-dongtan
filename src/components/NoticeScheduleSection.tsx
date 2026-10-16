@@ -94,8 +94,12 @@ export default function NoticeScheduleSection() {
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="px-2 py-0.5 rounded text-[11px] font-bold bg-navy-950 text-gold-300">필독 호재</span>
-                <h4 className="text-base sm:text-lg font-bold text-slate-900">95번지 & 99번지 2개 단지 동시 중복 청약 가능!</h4>
+                <span className="px-2.5 py-0.5 rounded-full text-xs font-black bg-gradient-to-r from-red-500 to-rose-600 text-white shadow-sm tracking-wide">
+                  필독 호재
+                </span>
+                <h4 className="text-base sm:text-lg font-bold text-slate-900">
+                  95번지 & 99번지 2개 단지 동시 중복 청약 가능!
+                </h4>
               </div>
               <p className="text-xs sm:text-sm text-slate-600 mt-1 break-keep">
                 95번지(11/3 화)와 99번지(11/4 수)의 <strong>당첨자 발표일이 달라 두 단지 모두 청약이 가능</strong>하여 당첨 확률이 2배로 높아집니다.
@@ -107,17 +111,17 @@ export default function NoticeScheduleSection() {
             <a
               href="/docs/acmer_95_notice.pdf"
               download
-              className="flex-1 md:flex-initial inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-navy-950 text-gold-300 hover:bg-black text-xs font-bold transition-all shadow-md"
+              className="flex-1 md:flex-initial inline-flex items-center justify-center gap-1.5 px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl bg-gradient-to-r from-amber-500 via-gold-400 to-amber-600 text-navy-950 hover:brightness-110 text-xs sm:text-sm font-extrabold transition-all shadow-md shadow-amber-500/25 border border-amber-300"
             >
-              <Download className="w-3.5 h-3.5" />
+              <Download className="w-4 h-4 text-navy-950" />
               <span>95 공고문 PDF</span>
             </a>
             <a
               href="/docs/acmer_99_notice.pdf"
               download
-              className="flex-1 md:flex-initial inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-navy-950 text-gold-300 hover:bg-black text-xs font-bold transition-all shadow-md"
+              className="flex-1 md:flex-initial inline-flex items-center justify-center gap-1.5 px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl bg-gradient-to-r from-amber-500 via-gold-400 to-amber-600 text-navy-950 hover:brightness-110 text-xs sm:text-sm font-extrabold transition-all shadow-md shadow-amber-500/25 border border-amber-300"
             >
-              <Download className="w-3.5 h-3.5" />
+              <Download className="w-4 h-4 text-navy-950" />
               <span>99 공고문 PDF</span>
             </a>
           </div>
@@ -240,7 +244,7 @@ export default function NoticeScheduleSection() {
               <div className="mb-4 flex flex-col sm:flex-row items-center justify-between gap-3 px-2 text-slate-900">
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="px-2.5 py-0.5 rounded text-xs font-bold bg-navy-950 text-gold-300">95번지</span>
+                    <span className="px-2.5 py-0.5 rounded text-xs font-black bg-gradient-to-r from-amber-500 to-amber-600 text-white shadow-sm">95번지</span>
                     <h3 className="font-serif font-bold text-lg sm:text-xl">아크메르 동탄 95 입주자모집공고 요약표 (총 812세대)</h3>
                   </div>
                   <p className="text-xs text-slate-500 mt-1">
@@ -251,9 +255,9 @@ export default function NoticeScheduleSection() {
                 <a
                   href="/docs/acmer_95_notice.pdf"
                   download
-                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-navy-950 text-gold-300 hover:bg-black font-bold text-xs shadow-md transition-all shrink-0"
+                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 via-gold-400 to-amber-600 text-navy-950 hover:brightness-105 font-extrabold text-xs shadow-md border border-amber-300 transition-all shrink-0"
                 >
-                  <Download className="w-3.5 h-3.5" />
+                  <Download className="w-3.5 h-3.5 text-navy-950" />
                   <span>95번지 공고문 전문 PDF 다운로드</span>
                 </a>
               </div>
@@ -279,7 +283,7 @@ export default function NoticeScheduleSection() {
               <div className="mb-4 flex flex-col sm:flex-row items-center justify-between gap-3 px-2 text-slate-900">
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="px-2.5 py-0.5 rounded text-xs font-bold bg-navy-950 text-gold-300">99번지</span>
+                    <span className="px-2.5 py-0.5 rounded text-xs font-black bg-gradient-to-r from-amber-500 to-amber-600 text-white shadow-sm">99번지</span>
                     <h3 className="font-serif font-bold text-lg sm:text-xl">아크메르 동탄 99 입주자모집공고 요약표 (총 996세대)</h3>
                   </div>
                   <p className="text-xs text-slate-500 mt-1">
@@ -290,9 +294,9 @@ export default function NoticeScheduleSection() {
                 <a
                   href="/docs/acmer_99_notice.pdf"
                   download
-                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-navy-950 text-gold-300 hover:bg-black font-bold text-xs shadow-md transition-all shrink-0"
+                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 via-gold-400 to-amber-600 text-navy-950 hover:brightness-105 font-extrabold text-xs shadow-md border border-amber-300 transition-all shrink-0"
                 >
-                  <Download className="w-3.5 h-3.5" />
+                  <Download className="w-3.5 h-3.5 text-navy-950" />
                   <span>99번지 공고문 전문 PDF 다운로드</span>
                 </a>
               </div>
