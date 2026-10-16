@@ -7,11 +7,11 @@ import { ChevronLeft, ChevronRight, Sparkles, Film, CheckCircle2, Play } from 'l
 export default function BirdseyeSection() {
   const [activeVideo, setActiveVideo] = useState<number>(0);
 
-  // Vimeo 4대 시네마틱 조감도 영상 데이터
+  // Vimeo 4대 시네마틱 조감도 영상 데이터 (실제 영상 내용과 탭 1:1 일치)
   const videos = [
     {
       id: 0,
-      url: 'https://player.vimeo.com/video/1233211875?autoplay=1&muted=1&controls=0&autopause=0&loop=1',
+      url: 'https://player.vimeo.com/video/1228679455?autoplay=1&muted=1&controls=0&autopause=0&loop=1',
       title: '아크메르 동탄 - 49층 랜드마크 시네마틱 조감도',
       subtitle: '동탄 스카이라인을 압도하는 주거 타워의 웅장한 입면 및 조감도 뷰',
       tag: "CINEMATIC BIRD'S EYE 01",
@@ -20,26 +20,26 @@ export default function BirdseyeSection() {
     {
       id: 1,
       url: 'https://player.vimeo.com/video/1228692028?autoplay=1&muted=1&controls=0&autopause=0&loop=1',
-      title: '아크메르 동탄 - 반송역 초역세권 파노라마 뷰',
-      subtitle: '동탄인덕원선 반송역 직결 계획 및 센트럴파크 연계 프리미엄 뷰',
-      tag: 'STATION & PARK VIEW 02',
-      shortTitle: '초역세권 파노라마',
+      title: '아크메르 동탄 - 스카이라인 항공 부감도 파노라마',
+      subtitle: '동탄 센트럴파크와 도심 전경을 한눈에 내려다보는 압도적인 스카이 뷰',
+      tag: 'SKY PANORAMA 02',
+      shortTitle: '항공 부감도 파노라마',
     },
     {
       id: 2,
-      url: 'https://player.vimeo.com/video/1228679455?autoplay=1&muted=1&controls=0&autopause=0&loop=1',
-      title: '아크메르 동탄 - 하이엔드 건축 익스테리어 특화',
-      subtitle: '자나이나 미레이로 디자인 협업 및 최고급 외관 마감재 시네마틱 뷰',
-      tag: 'ARCHITECTURE & ART 03',
-      shortTitle: '익스테리어 디자인',
+      url: 'https://player.vimeo.com/video/1233211875?autoplay=1&muted=1&controls=0&autopause=0&loop=1',
+      title: '아크메르 동탄 - 동탄인덕원선 반송역 직결 뷰',
+      subtitle: '단지와 바로 연결되는 반송역 직결 계획 및 원스톱 초역세권 프리미엄',
+      tag: 'STATION DIRECT 03',
+      shortTitle: '반송역 지하철 직결',
     },
     {
       id: 3,
       url: 'https://player.vimeo.com/video/1233211897?autoplay=1&muted=1&controls=0&autopause=0&loop=1',
-      title: '아크메르 동탄 - 프리미엄 라이프 스페이스 & 조경',
-      subtitle: '동탄 최중심의 라이프스타일과 쾌적한 에코 단지 파노라마 뷰',
-      tag: 'PREMIUM LANDSCAPE 04',
-      shortTitle: '라이프 & 조경 뷰',
+      title: '아크메르 동탄 - 하이엔드 브랜드 & 라이프스타일',
+      subtitle: '동탄 최정상 랜드마크의 품격 높은 주거 감성과 하이엔드 가치',
+      tag: 'PREMIUM BRAND 04',
+      shortTitle: '하이엔드 브랜드 뷰',
     },
   ];
 
