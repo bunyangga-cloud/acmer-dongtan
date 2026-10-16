@@ -10,11 +10,14 @@ import {
   ShieldCheck, 
   CheckCircle2, 
   AlertCircle, 
-  Building2 
+  Building2,
+  Maximize2,
+  X 
 } from 'lucide-react';
 
 export default function NoticeScheduleSection() {
   const [activeTab, setActiveTab] = useState<'calendar' | 'block95' | 'block99'>('calendar');
+  const [zoomImage, setZoomImage] = useState<string | null>(null);
 
   const keySchedules = [
     {
@@ -223,12 +226,19 @@ export default function NoticeScheduleSection() {
                 </div>
               </div>
 
-              <div className="rounded-2xl overflow-hidden bg-slate-50 border border-slate-200 flex justify-center">
+              <div 
+                onClick={() => setZoomImage('/images/cy99.webp')}
+                className="group relative rounded-2xl overflow-hidden bg-slate-50 border border-slate-200 p-2 sm:p-4 flex justify-center cursor-zoom-in"
+              >
                 <img
                   src="/images/cy99.webp"
                   alt="아크메르 동탄 분양일정 및 청약안내 총정리"
-                  className="w-full h-auto object-contain max-w-4xl"
+                  className="w-full h-auto object-contain max-w-5xl mx-auto filter contrast-[1.02] group-hover:scale-[1.01] transition-transform duration-300"
                 />
+                <div className="absolute bottom-4 right-4 bg-slate-900/85 backdrop-blur-md text-amber-300 text-xs px-4 py-1.5 rounded-full flex items-center gap-1.5 shadow-lg border border-amber-400/30 opacity-90 group-hover:opacity-100 transition-opacity">
+                  <Maximize2 className="w-3.5 h-3.5 text-amber-400" />
+                  <span>클릭 시 원본 고해상도 확대</span>
+                </div>
               </div>
             </motion.div>
           )}
@@ -262,12 +272,19 @@ export default function NoticeScheduleSection() {
                 </a>
               </div>
 
-              <div className="rounded-2xl overflow-hidden bg-slate-50 border border-slate-200 flex justify-center">
+              <div 
+                onClick={() => setZoomImage('/images/95/gg95.webp')}
+                className="group relative rounded-2xl overflow-hidden bg-slate-50 border border-slate-200 p-2 sm:p-4 flex justify-center cursor-zoom-in"
+              >
                 <img
                   src="/images/95/gg95.webp"
                   alt="아크메르 동탄 95번지 입주자모집공고 요약표"
-                  className="w-full h-auto object-contain max-w-4xl"
+                  className="w-full h-auto object-contain max-w-5xl mx-auto filter contrast-[1.02] group-hover:scale-[1.01] transition-transform duration-300"
                 />
+                <div className="absolute bottom-4 right-4 bg-slate-900/85 backdrop-blur-md text-amber-300 text-xs px-4 py-1.5 rounded-full flex items-center gap-1.5 shadow-lg border border-amber-400/30 opacity-90 group-hover:opacity-100 transition-opacity">
+                  <Maximize2 className="w-3.5 h-3.5 text-amber-400" />
+                  <span>클릭 시 원본 고해상도 확대</span>
+                </div>
               </div>
             </motion.div>
           )}
@@ -301,12 +318,19 @@ export default function NoticeScheduleSection() {
                 </a>
               </div>
 
-              <div className="rounded-2xl overflow-hidden bg-slate-50 border border-slate-200 flex justify-center">
+              <div 
+                onClick={() => setZoomImage('/images/99/gg99.webp')}
+                className="group relative rounded-2xl overflow-hidden bg-slate-50 border border-slate-200 p-2 sm:p-4 flex justify-center cursor-zoom-in"
+              >
                 <img
                   src="/images/99/gg99.webp"
                   alt="아크메르 동탄 99번지 입주자모집공고 요약표"
-                  className="w-full h-auto object-contain max-w-4xl"
+                  className="w-full h-auto object-contain max-w-5xl mx-auto filter contrast-[1.02] group-hover:scale-[1.01] transition-transform duration-300"
                 />
+                <div className="absolute bottom-4 right-4 bg-slate-900/85 backdrop-blur-md text-amber-300 text-xs px-4 py-1.5 rounded-full flex items-center gap-1.5 shadow-lg border border-amber-400/30 opacity-90 group-hover:opacity-100 transition-opacity">
+                  <Maximize2 className="w-3.5 h-3.5 text-amber-400" />
+                  <span>클릭 시 원본 고해상도 확대</span>
+                </div>
               </div>
             </motion.div>
           )}
@@ -361,6 +385,28 @@ export default function NoticeScheduleSection() {
         </div>
 
       </div>
+
+      {/* 고해상도 전체화면 확대 모달 */}
+      {zoomImage && (
+        <div
+          onClick={() => setZoomImage(null)}
+          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex items-center justify-center p-4 sm:p-8 cursor-zoom-out animate-fadeIn"
+        >
+          <button
+            onClick={() => setZoomImage(null)}
+            className="absolute top-5 right-5 w-12 h-12 rounded-full bg-white/20 hover:bg-white/30 text-white flex items-center justify-center transition-colors cursor-pointer z-50"
+            title="닫기"
+          >
+            <X className="w-6 h-6" />
+          </button>
+
+          <img
+            src={zoomImage}
+            alt="공고문 고해상도 원본"
+            className="max-h-[92vh] max-w-[94vw] object-contain rounded-xl shadow-2xl"
+          />
+        </div>
+      )}
     </section>
   );
 }

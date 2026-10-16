@@ -140,14 +140,14 @@ export default function Hero({ onNavigateSection }: HeroProps) {
                 onMouseEnter={() => setActiveFeature(idx)}
                 className={`w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-2.5 sm:py-2.5 rounded-xl transition-all duration-500 cursor-pointer backdrop-blur-md ${
                   isActive
-                    ? 'bg-black/85 text-gold-300 font-bold border-2 border-gold-400 shadow-[0_0_25px_rgba(212,175,55,0.5)] scale-102 sm:scale-105 -translate-y-0.5 sm:-translate-y-1'
-                    : 'bg-black/60 text-slate-300 border border-white/20 hover:border-gold-400/50 hover:text-white opacity-80 hover:opacity-100'
+                    ? 'bg-gradient-to-r from-amber-500 via-gold-400 to-amber-600 text-navy-950 font-extrabold border-2 border-amber-300 shadow-[0_0_25px_rgba(212,175,55,0.6)] scale-102 sm:scale-105 -translate-y-0.5 sm:-translate-y-1'
+                    : 'bg-slate-900/80 text-slate-200 border border-white/20 hover:border-gold-400/50 hover:text-white opacity-85 hover:opacity-100'
                 }`}
               >
-                <IconComponent className={`w-4 h-4 transition-transform duration-300 ${isActive ? 'text-gold-400 scale-110' : 'text-slate-400'}`} />
-                <span className="text-xs sm:text-sm tracking-wide font-medium">{item.text}</span>
+                <IconComponent className={`w-4 h-4 transition-transform duration-300 ${isActive ? 'text-navy-950 scale-110' : 'text-amber-400'}`} />
+                <span className="text-xs sm:text-sm tracking-wide">{item.text}</span>
                 {isActive && (
-                  <span className="w-1.5 h-1.5 rounded-full bg-gold-400 animate-ping" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-navy-950 animate-ping" />
                 )}
               </button>
             );

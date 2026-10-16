@@ -137,7 +137,7 @@ export default function CommunitySection() {
 
           <div
             onClick={() => setZoomImage(currentCommunity.image)}
-            className="group relative rounded-2xl overflow-hidden bg-white border border-slate-200 p-2 sm:p-4 flex items-center justify-center cursor-zoom-in min-h-[460px] sm:min-h-[650px]"
+            className="group relative rounded-2xl overflow-hidden bg-white border border-slate-200 p-2 sm:p-4 flex items-center justify-center cursor-zoom-in"
           >
             <AnimatePresence mode="wait">
               <motion.img
@@ -148,11 +148,11 @@ export default function CommunitySection() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.3 }}
-                className="max-h-[900px] w-auto max-w-full object-contain filter contrast-[1.02] group-hover:scale-[1.01] transition-transform duration-300"
+                className="w-full h-auto max-w-5xl mx-auto object-contain filter contrast-[1.02] group-hover:scale-[1.01] transition-transform duration-300"
               />
             </AnimatePresence>
 
-            <div className="absolute bottom-4 right-4 bg-black/75 backdrop-blur-md text-white text-xs px-3.5 py-1.5 rounded-full flex items-center gap-1.5 shadow-lg opacity-85 group-hover:opacity-100 transition-opacity">
+            <div className="absolute bottom-4 right-4 bg-slate-900/85 backdrop-blur-md text-amber-300 text-xs px-4 py-1.5 rounded-full flex items-center gap-1.5 shadow-lg border border-amber-400/30 opacity-90 group-hover:opacity-100 transition-opacity">
               <Maximize2 className="w-3.5 h-3.5 text-amber-400" />
               <span>클릭 시 원본 고해상도 확대</span>
             </div>
